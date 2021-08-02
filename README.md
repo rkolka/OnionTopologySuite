@@ -12,7 +12,7 @@ Because it has layers. Starting from user facing (top) layer:
 And because "Manifold" is a registered trademark.
 
 ## Using
-Download add-in [(link)](https://github.com/rkolka/OnionTopologySuite/blob/master/OnionTopologySuite.zip) and unpack it under ~\shared\.
+Download add-in [(link)](https://raw.githubusercontent.com/rkolka/OnionTopologySuite/master/OnionTopologySuite.zip) and unpack it under ~\shared\.
 
 Import these files into your project:
 * OnionTopologySuiteWKB.sql
