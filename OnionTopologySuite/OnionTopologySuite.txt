@@ -1,0 +1,16 @@
+Import these files
+OnionTopologySuiteWKB.sql
+OnionTopologySuiteGEOM.sql
+
+and include OnionTopologySuiteGEOM in your queries.
+-- $manifold$
+-- $include$ [OnionTopologySuiteGEOM]
+
+...your queries...
+
+
+
+You can also look at
+OnionTopologySuiteTest.sql
+and 
+OnionTopologySuite.map
