@@ -1,14 +1,24 @@
 # OnionTopologySuite
-Expose parts of NetTopologySuite as [Manifold](https://manifold.net) SQL functions
+Expose parts of NetTopologySuite as Manifold(tm) SQL functions. There are some interesting functions that have no counterpart built into Manifold. 
+
+## Why onion?
+Because it has layers. Starting from user facing (top) layer:
+* :onion: Manifold SQL functions that take and return Manifold's GEOM type. Defined in OnionTopologySuiteGEOM.sql. Converting GEOM to/from WKB with built-in GeomWkb/BinaryWkbGeom functions.
+* :onion: Manifold SQL functions that take and return WKB type. Declared in OnionTopologySuiteWKB.sql, actual definitions in layer below.
+* :onion: C# functions (that is, static methods that return a value and have no visible side effects) that take and return WKB type. Defined in OnionTopologySuite.dll. Converting WKB to/from NTS Geometry type with NetTopologySuite.IO.WKBReader/WKBWriter. 
+* :onion: C# static methods from NetTopologySuite.TestRunner.Functions that take and return NTS Geometry type. I just copied the code from NTS TestRunner project into this project because it had almost everything I wished for.
+* :onion: Objects and methods in NetTopologySuite that do the hard work, but are not clean functions with N inputs and 1 output.
+
+And because "Manifold" is a registered trademark.
 
 ## Using
 Download add-in [(link)](https://github.com/rkolka/OnionTopologySuite/blob/master/OnionTopologySuite.zip) and unpack it under ~\shared\.
 
-Import these files:
+Import these files into your project:
 * OnionTopologySuiteWKB.sql
 * OnionTopologySuiteGEOM.sql
 
-and include OnionTopologySuiteGEOM in your queries.
+and include OnionTopologySuiteGEOM in your queries. 
 ```sql
 -- $manifold$
 -- $include$ [OnionTopologySuiteGEOM]
@@ -19,7 +29,7 @@ and include OnionTopologySuiteGEOM in your queries.
 You can also look at OnionTopologySuiteTest.sql and OnionTopologySuite.map
 
 ## Developing
-Almost mechanically converted all functions from NetTopologySuite\test\NetTopologySuite.TestRunner\Functions.
+I almost mechanically converted all functions from NetTopologySuite\test\NetTopologySuite.TestRunner\Functions.
 Some are duplicates or don't even make much sense in Manifold. 
 
 ## List of functions
