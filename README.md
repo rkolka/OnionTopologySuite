@@ -1,6 +1,6 @@
 [:floppy_disk: Click here to download the add-in](https://raw.githubusercontent.com/rkolka/OnionTopologySuite/master/OnionTopologySuite.zip "Click here to download")
 # OnionTopologySuite
-Expose parts of NetTopologySuite as Manifold(tm) SQL functions. There are some interesting functions that have no counterpart built into Manifold. 
+Expose parts of NetTopologySuite as Manifold® SQL functions. There are some interesting functions that have no counterpart built into Manifold. 
 
 ## Why onion?
 Because it has layers. Starting from user facing (top) layer:
