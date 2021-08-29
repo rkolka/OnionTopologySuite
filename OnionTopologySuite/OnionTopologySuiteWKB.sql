@@ -130,6 +130,8 @@ FUNCTION WKBGetCoordinates(@wKBGeom VARBINARY) VARBINARY AS SCRIPT FILE 'OnionTo
 -- WKBLinearReferencingFunctions
 FUNCTION WKBExtractPoint(@wKBGeom VARBINARY, @index FLOAT64) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBLinearReferencingFunctions.WKBExtractPoint';
 FUNCTION WKBExtractLine(@wKBGeom VARBINARY, @start FLOAT64, @end FLOAT64) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBLinearReferencingFunctions.WKBExtractLine';
+FUNCTION WKBExtractLineByGeom(@wKBGeom VARBINARY, @wKBGeom2 VARBINARY) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBLinearReferencingFunctions.WKBExtractLineByGeom';
+FUNCTION WKBExtractLineByGeomBounds(@wKBGeom VARBINARY, @wKBGeom2 VARBINARY, @b1 FLOAT64, @b2 FLOAT64) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBLinearReferencingFunctions.WKBExtractLineByGeomBounds';
 FUNCTION WKBProject(@wKBGeom VARBINARY, @wKBGeom2 VARBINARY) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBLinearReferencingFunctions.WKBProject';
 FUNCTION WKBProjectIndex(@wKBGeom VARBINARY, @wKBGeom2 VARBINARY) FLOAT64 AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBLinearReferencingFunctions.WKBProjectIndex';
   

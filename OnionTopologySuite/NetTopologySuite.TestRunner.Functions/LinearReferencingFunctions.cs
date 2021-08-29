@@ -41,6 +41,43 @@ namespace Open.Topology.TestRunner.Functions
             return ll.ExtractLine(start, end);
         }
 
+        public static Geometry ExtractLineByGeom(Geometry g, Geometry g2)
+        {
+            return ExtractLineByGeomBounds(g, g2, 0, 0);
+        }
+
+
+        public static Geometry ExtractLineByGeomBounds(Geometry g, Geometry g2, double b1, double b2)
+        {
+            var ll = new LengthIndexedLine(g);
+
+
+            Coordinate[] coords = g2.Coordinates;
+
+            double indexStart = ll.Project(coords[0]);
+            double indexEnd = indexStart;
+            double index = indexStart;
+            foreach (var coord in coords)
+            {
+                index = ll.Project(coord);
+                if (index < indexStart)
+                {
+                    indexStart = index;
+                }
+                if (indexEnd < index)
+                {
+                    indexEnd = index;
+                }
+
+            }
+
+            indexStart = indexStart - b1 < ll.StartIndex ? ll.StartIndex : indexStart - b1;
+            indexEnd = ll.EndIndex < indexEnd + b2 ? ll.EndIndex : indexEnd + b2;
+
+            return ll.ExtractLine(indexStart, indexEnd);
+        }
+
+
         public static Geometry Project(Geometry g, Geometry g2)
         {
             var ll = new LengthIndexedLine(g);
@@ -88,5 +125,7 @@ namespace Open.Topology.TestRunner.Functions
             return ll.Project(g2.Coordinate);
 
         }
+
+
     }
 }
