@@ -29,6 +29,22 @@ public static class WKBLinearReferencingFunctions
         Geometry result = LinearReferencingFunctions.Project(g, g2);
         return wKBWriter.Write(result);
     }
+
+    public static byte[] WKBExtractLineByGeom(byte[] wKBGeom, byte[] wKBGeom2)
+    {
+        Geometry g = wKBReader.Read(wKBGeom);
+        Geometry g2 = wKBReader.Read(wKBGeom2);
+        Geometry result = LinearReferencingFunctions.ExtractLineByGeom(g, g2);
+        return wKBWriter.Write(result);
+    }
+
+    public static byte[] WKBExtractLineByGeomBounds(byte[] wKBGeom, byte[] wKBGeom2, double b1, double b2)
+    {
+        Geometry g = wKBReader.Read(wKBGeom);
+        Geometry g2 = wKBReader.Read(wKBGeom2);
+        Geometry result = LinearReferencingFunctions.ExtractLineByGeomBounds(g, g2, b1, b2);
+        return wKBWriter.Write(result);
+    }
     public static double WKBProjectIndex(byte[] wKBGeom, byte[] wKBGeom2)
     {
         Geometry g = wKBReader.Read(wKBGeom);

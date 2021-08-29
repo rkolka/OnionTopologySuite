@@ -142,6 +142,8 @@ FUNCTION NTSGetCoordinates(@geom GEOM) GEOM AS BinaryWkbGeom(WKBGetCoordinates(G
 -- WKBLinearReferencingFunctions
 FUNCTION NTSExtractPoint(@geom GEOM, @index FLOAT64) GEOM AS BinaryWkbGeom(WKBExtractPoint(GeomWkb(@geom), @index)) END ;
 FUNCTION NTSExtractLine(@geom GEOM, @start FLOAT64, @end FLOAT64) GEOM AS BinaryWkbGeom(WKBExtractLine(GeomWkb(@geom), @start, @end)) END ;
+FUNCTION NTSExtractLineByGeom(@geom GEOM, @geom2 GEOM) GEOM AS BinaryWkbGeom(WKBExtractLineByGeom(GeomWkb(@geom), GeomWkb(@geom2))) END ;
+FUNCTION NTSExtractLineByGeomBounds(@geom GEOM, @geom2 GEOM, @b1 FLOAT64, @b2 FLOAT64) GEOM AS BinaryWkbGeom(WKBExtractLineByGeomBounds(GeomWkb(@geom), GeomWkb(@geom2), @b1, @b2)) END ;
 FUNCTION NTSProject(@geom GEOM, @geom2 GEOM) GEOM AS BinaryWkbGeom(WKBProject(GeomWkb(@geom), GeomWkb(@geom2))) END ;
 FUNCTION NTSProjectIndex(@geom GEOM, @geom2 GEOM) FLOAT64 AS WKBProjectIndex(GeomWkb(@geom), GeomWkb(@geom2)) END ;
  
