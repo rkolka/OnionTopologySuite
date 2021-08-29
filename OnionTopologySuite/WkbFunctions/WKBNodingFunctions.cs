@@ -33,6 +33,15 @@ public static class WKBNodingFunctions
     {
         Geometry geom = wKBReader.Read(wKBGeom);
         Geometry result = NodingFunctions.FindOneNode(geom);
+        /*System.ArgumentException
+  HResult=0x80070057
+  Message=ShouldNeverReachHere
+  Source=NetTopologySuite
+  StackTrace:
+   at NetTopologySuite.IO.WKBWriter.GetBuffer(Geometry geometry, Boolean includeSRID)
+   at NetTopologySuite.IO.WKBWriter.Write(Geometry geometry)
+   at WKBNodingFunctions.WKBFindOneNode(Byte[] wKBGeom) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\WkbFunctions\WKBNodingFunctions.cs:line 36
+*/
         return wKBWriter.Write(result);
     }
 

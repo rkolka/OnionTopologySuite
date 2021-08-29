@@ -111,6 +111,15 @@ namespace Open.Topology.TestRunner.Functions
         {
             if (g is Polygon)
             {
+                /*System.IndexOutOfRangeException
+  HResult=0x80131508
+  Message=Index was outside the bounds of the array.
+  Source=NetTopologySuite
+  StackTrace:
+   at NetTopologySuite.Geometries.Polygon.GetInteriorRingN(Int32 n)
+   at Open.Topology.TestRunner.Functions.GeometryFunctions.GetPolygonHoleN(Geometry g, Int32 i) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\NetTopologySuite.TestRunner.Functions\GeometryFunctions.cs:line 114
+   at WKBGeometryFunctions.WKBGetPolygonHoleN(Byte[] wKBGeom, Int32 i) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\WkbFunctions\WKBGeometryFunctions.cs:line 113
+*/
                 var ring = (LinearRing)((Polygon)g).GetInteriorRingN(i);
                 return ring;
             }

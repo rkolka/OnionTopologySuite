@@ -1,6 +1,7 @@
 ﻿using NetTopologySuite.Algorithm.Construct;
 using NetTopologySuite.Geometries;
 using NetTopologySuite.Hull;
+using Manifold;
 
 
 
@@ -17,8 +18,6 @@ public static class OnionTopologySuite
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
     // to write wkb, use Geometry.ToBinary(), but for some geometry types (GeometryCollection) it is not available.
-
-
 
     public static byte[] WKBMaximumInscribedCircle(byte[] geomwkb, double tolerance)
     {

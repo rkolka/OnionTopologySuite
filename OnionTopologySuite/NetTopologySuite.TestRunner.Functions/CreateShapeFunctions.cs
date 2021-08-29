@@ -125,6 +125,30 @@ namespace Open.Topology.TestRunner.Functions
             }
             // close ring
             ring[n - 1] = ring[0].Copy();
+            /*System.ArgumentException
+  HResult=0x80070057
+  Message=Number of points must be 0 or >3
+  Source=NetTopologySuite
+  StackTrace:
+   at NetTopologySuite.Geometries.LinearRing.ValidateConstruction()
+   at NetTopologySuite.Geometries.GeometryFactory.CreateLinearRing(CoordinateSequence coordinates)
+   at NetTopologySuite.Geometries.GeometryFactory.CreatePolygon(Coordinate[] coordinates)
+   at Open.Topology.TestRunner.Functions.CreateShapeFunctions.PointFieldStar(Geometry ptsGeom, Geometry centrePt) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\NetTopologySuite.TestRunner.Functions\CreateShapeFunctions.cs:line 128
+   at Open.Topology.TestRunner.Functions.CreateShapeFunctions.PointFieldCentroidStar(Geometry ptsGeom) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\NetTopologySuite.TestRunner.Functions\CreateShapeFunctions.cs:line 103
+   at WKBCreateShapeFunctions.WKBPointFieldCentroidStar(Byte[] wKBptsGeom) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\WkbFunctions\WKBCreateShapeFunctions.cs:line 68
+
+            System.ArgumentException
+  HResult=0x80070057
+  Message=Number of points must be 0 or >3
+  Source=NetTopologySuite
+  StackTrace:
+   at NetTopologySuite.Geometries.LinearRing.ValidateConstruction()
+   at NetTopologySuite.Geometries.GeometryFactory.CreateLinearRing(CoordinateSequence coordinates)
+   at NetTopologySuite.Geometries.GeometryFactory.CreatePolygon(Coordinate[] coordinates)
+   at Open.Topology.TestRunner.Functions.CreateShapeFunctions.PointFieldStar(Geometry ptsGeom, Geometry centrePt) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\NetTopologySuite.TestRunner.Functions\CreateShapeFunctions.cs:line 140
+   at WKBCreateShapeFunctions.WKBPointFieldStar(Byte[] wKBptsGeom, Byte[] wKBcentrePt) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\WkbFunctions\WKBCreateShapeFunctions.cs:line 76
+
+*/
             return ptsGeom.Factory.CreatePolygon(ring);
         }
 

@@ -18,6 +18,18 @@ namespace Open.Topology.TestRunner.Functions
 
         public static Geometry SequenceLines(Geometry g)
         {
+            /*System.TypeInitializationException
+  HResult=0x80131534
+  Message=The type initializer for 'NetTopologySuite.Geometries.GeometryFactory' threw an exception.
+  Source=NetTopologySuite
+  StackTrace:
+   at NetTopologySuite.Operation.Linemerge.LineSequencer..ctor()
+   at Open.Topology.TestRunner.Functions.LineHandlingFunctions.SequenceLines(Geometry g) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\NetTopologySuite.TestRunner.Functions\LineHandlingFunctions.cs:line 21
+   at WKBLineHandlingFunctions.WKBSequenceLines(Byte[] wKBGeom) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\WkbFunctions\WKBLineHandlingFunctions.cs:line 24
+
+Inner Exception 1:
+ThreadAbortException: Thread was being aborted.
+*/
             var ls = new LineSequencer();
             ls.Add(g);
             return ls.GetSequencedLineStrings();
