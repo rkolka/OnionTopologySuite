@@ -15,14 +15,16 @@ And because "Manifold" is a registered trademark.
 ## Using
 Download add-in [(link)](https://raw.githubusercontent.com/rkolka/OnionTopologySuite/master/OnionTopologySuite.zip) and unpack it under ~\shared\.
 
-Import these files into your project:
+These files are imported into your project if you run it from Tools->Add-ins->OnionTopologySuite:
 * OnionTopologySuiteWKB.sql
 * OnionTopologySuiteGEOM.sql
 
-and include OnionTopologySuiteGEOM in your queries. 
+
+
+Include [OnionTopologySuiteGEOM.sql] in your queries. 
 ```sql
 -- $manifold$
--- $include$ [OnionTopologySuiteGEOM]
+-- $include$ [OnionTopologySuiteGEOM.sql]
 
 ...your query...
 ```
