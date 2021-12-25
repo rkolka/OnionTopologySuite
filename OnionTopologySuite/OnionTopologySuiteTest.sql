@@ -1,5 +1,33 @@
 ﻿-- $manifold$
--- $include$ [OnionTopologySuiteGEOM]
+-- $include$ [OnionTopologySuiteGEOM.sql]
+
+CREATE DRAWING [Drawing] (
+  PROPERTY 'FieldGeom' 'Geom',
+  PROPERTY 'Table' '[Drawing Table]'
+);
+CREATE TABLE [Drawing Table] (
+  [mfd_id] INT64,
+  [Geom] GEOM,
+  INDEX [mfd_id_x] BTREE ([mfd_id]),
+  INDEX [Geom_x] RTREE ([Geom]),
+  PROPERTY 'FieldCoordSystem.Geom' '{ "Axes": "XY", "Base": "WGS 84 (EPSG:4326)", "CenterLat": 0, "CenterLon": 0, "Eccentricity": 0.08181919084262149, "MajorAxis": 6378137, "Name": "WGS 84 \\/ Pseudo-Mercator (EPSG:3857)", "System": "Pseudo Mercator", "Unit": "Meter", "UnitScale": 1, "UnitShort": "m" }'
+);
+
+CREATE TABLE [Results] (
+  [mfd_id] INT64,
+  [signature] NVARCHAR,
+  [resultNumber] FLOAT64,
+  [resultbOOLEAN] BOOLEAN,
+  [resultGeom] GEOM,
+  INDEX [mfd_id_x] BTREE ([mfd_id]),
+  INDEX [resultGeom_x] RTREE ([resultGeom])
+);
+CREATE DRAWING [Results Drawing] (
+  PROPERTY 'FieldGeom' 'resultGeom',
+  PROPERTY 'StyleAreaColorBack' '{ "Value": -16777216 }',
+  PROPERTY 'Table' '[Results]'
+);
+
 
 VALUE @area GEOM = ( SELECT First([Geom]) FROM [Drawing] where GeomIsArea([Geom]) );
 VALUE @line GEOM = ( SELECT First([Geom]) FROM [Drawing] where GeomIsLine([Geom]) );
