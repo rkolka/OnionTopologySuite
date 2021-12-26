@@ -1,5 +1,4 @@
-﻿using System;
-using NetTopologySuite.Algorithm;
+﻿using NetTopologySuite.Algorithm;
 using NetTopologySuite.Geometries;
 
 namespace Open.Topology.TestRunner.Functions
@@ -31,7 +30,7 @@ namespace Open.Topology.TestRunner.Functions
                     return g1.Factory.CreatePoint(ri.GetIntersection(0));
                 case 2:
                     // return line
-                    return g1.Factory.CreateLineString(new [] {ri.GetIntersection(0), ri.GetIntersection(1)});
+                    return g1.Factory.CreateLineString(new[] { ri.GetIntersection(0), ri.GetIntersection(1) });
             }
             return null;
         }

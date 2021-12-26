@@ -1,6 +1,4 @@
-﻿using NetTopologySuite.Algorithm;
-using NetTopologySuite.Geometries;
-using NetTopologySuite.Operation;
+﻿using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 
@@ -9,7 +7,7 @@ public class WKBBoundaryFunctions
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static byte[] WKBboundary(byte[] wKBGeom) 
+    public static byte[] WKBboundary(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = BoundaryFunctions.Boundary(g);

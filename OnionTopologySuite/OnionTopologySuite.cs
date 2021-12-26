@@ -1,7 +1,6 @@
 ﻿using NetTopologySuite.Algorithm.Construct;
 using NetTopologySuite.Geometries;
 using NetTopologySuite.Hull;
-using Manifold;
 
 
 
@@ -11,9 +10,9 @@ using Manifold;
 /// </summary>
 public static class OnionTopologySuite
 {
-    
-    
-    
+
+
+
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 

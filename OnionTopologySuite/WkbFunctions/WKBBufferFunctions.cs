@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using NetTopologySuite.Geometries;
-using NetTopologySuite.Geometries.Utilities;
-using NetTopologySuite.Operation.Buffer;
-using NetTopologySuite.Operation.Buffer.Validate;
+﻿using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 
@@ -61,7 +56,7 @@ public static class WKBBufferFunctions
         return wKBWriter.Write(result);
     }
 
-  
+
 
     public static byte[] WKBBufferValidated(byte[] wKBGeom, double distance)
     {

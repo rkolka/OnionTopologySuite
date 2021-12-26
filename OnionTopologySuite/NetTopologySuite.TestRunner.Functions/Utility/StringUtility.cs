@@ -1,9 +1,9 @@
-﻿using System;
+﻿using NetTopologySuite.Utilities;
+using RTools_NTS.Util;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using NetTopologySuite.Utilities;
-using RTools_NTS.Util;
 
 namespace Open.Topology.TestRunner.Utility
 {
@@ -73,7 +73,7 @@ namespace Open.Topology.TestRunner.Utility
             {
                 try
                 {
-                    stackTrace += ++lineNumber +": " + stringReader.ReadLine() + NewLine;
+                    stackTrace += ++lineNumber + ": " + stringReader.ReadLine() + NewLine;
                 }
                 catch (IOException)
                 {
@@ -90,13 +90,13 @@ namespace Open.Topology.TestRunner.Utility
         public static string GetTimeString(long milliseconds)
         {
             long remainder = milliseconds;
-            long days = remainder/86400000;
-            remainder = remainder%86400000;
-            long hours = remainder/3600000;
-            remainder = remainder%3600000;
-            long minutes = remainder/60000;
-            remainder = remainder%60000;
-            long seconds = remainder/1000;
+            long days = remainder / 86400000;
+            remainder = remainder % 86400000;
+            long hours = remainder / 3600000;
+            remainder = remainder % 3600000;
+            long minutes = remainder / 60000;
+            remainder = remainder % 60000;
+            long seconds = remainder / 1000;
             return days + "d " + hours + "h " + minutes + "m " + seconds + "s";
         }
 
@@ -375,8 +375,8 @@ namespace Open.Topology.TestRunner.Utility
         public static string Format(double d, int decimals)
         {
             double factor = Math.Pow(10, decimals);
-            double digits = Math.Round(factor*d);
-            return ((int) Math.Floor(digits/factor)) + "." + ((int) (digits%factor));
+            double digits = Math.Round(factor * d);
+            return ((int)Math.Floor(digits / factor)) + "." + ((int)(digits % factor));
         }
 
         /**
@@ -390,7 +390,7 @@ namespace Open.Topology.TestRunner.Utility
             bool wrapPending = false;
             for (int i = 0; i < s.Length; i++)
             {
-                if (i%n == 0 && i > 0)
+                if (i % n == 0 && i > 0)
                 {
                     wrapPending = true;
                 }

@@ -1,6 +1,6 @@
-﻿using System;
-using NetTopologySuite.Geometries;
+﻿using NetTopologySuite.Geometries;
 using NetTopologySuite.Geometries.Utilities;
+using System;
 
 namespace Open.Topology.TestRunner.Functions
 {

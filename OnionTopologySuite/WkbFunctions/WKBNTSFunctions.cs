@@ -1,7 +1,4 @@
-﻿using System;
-using NetTopologySuite.Geometries;
-using NetTopologySuite.Operation.Buffer;
-using NetTopologySuite.Utilities;
+﻿using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 

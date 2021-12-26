@@ -1,8 +1,4 @@
-﻿using NetTopologySuite.Algorithm;
-using NetTopologySuite.Densify;
-using NetTopologySuite.Geometries;
-using NetTopologySuite.Geometries.Utilities;
-using NetTopologySuite.Operation.Linemerge;
+﻿using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 
@@ -24,33 +20,34 @@ public static class WKBConstructionFunctions
         Geometry result = ConstructionFunctions.MinimumDiameter(g);
         return wKBWriter.Write(result);
     }
-    public static double WKBMinimumDiameterLength(byte[] wKBGeom) {
+    public static double WKBMinimumDiameterLength(byte[] wKBGeom)
+    {
         Geometry g = wKBReader.Read(wKBGeom);
         double result = ConstructionFunctions.MinimumDiameterLength(g);
         return result;
     }
 
-    public static byte[] WKBMinimumRectangle(byte[] wKBGeom) 
+    public static byte[] WKBMinimumRectangle(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = ConstructionFunctions.MinimumRectangle(g);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBMinimumBoundingCircle(byte[] wKBGeom) 
+    public static byte[] WKBMinimumBoundingCircle(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = ConstructionFunctions.MinimumBoundingCircle(g);
         return wKBWriter.Write(result);
     }
-    public static double WKBMinimumBoundingCircleDiameterLength(byte[] wKBGeom) 
+    public static double WKBMinimumBoundingCircleDiameterLength(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         double result = ConstructionFunctions.MinimumBoundingCircleDiameterLength(g);
         return result;
     }
 
-    public static byte[] WKBMaximumDiameter(byte[] wKBGeom) 
+    public static byte[] WKBMaximumDiameter(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = ConstructionFunctions.MaximumDiameter(g);
@@ -62,7 +59,7 @@ public static class WKBConstructionFunctions
         double result = ConstructionFunctions.MaximumDiameterLength(g);
         return result;
     }
-  
+
     public static byte[] WKBConvexHull(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);

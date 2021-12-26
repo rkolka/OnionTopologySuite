@@ -1,12 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using NetTopologySuite.Algorithm;
-using NetTopologySuite.Geometries;
-using NetTopologySuite.Geometries.Utilities;
-using NetTopologySuite.Noding;
-using NetTopologySuite.Noding.Snapround;
-using NetTopologySuite.Precision;
-using NetTopologySuite.Utilities;
+﻿using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 

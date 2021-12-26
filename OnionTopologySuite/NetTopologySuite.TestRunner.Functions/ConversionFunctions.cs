@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using NetTopologySuite.Geometries;
+﻿using NetTopologySuite.Geometries;
 using NetTopologySuite.Geometries.Utilities;
 using NetTopologySuite.Utilities;
+using System.Collections.Generic;
 
 namespace Open.Topology.TestRunner.Functions
 {

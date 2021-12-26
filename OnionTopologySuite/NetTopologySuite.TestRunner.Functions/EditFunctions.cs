@@ -1,5 +1,5 @@
-﻿using System;
-using NetTopologySuite.Geometries;
+﻿using NetTopologySuite.Geometries;
+using System;
 
 namespace Open.Topology.TestRunner.Functions
 {
@@ -13,7 +13,7 @@ namespace Open.Topology.TestRunner.Functions
             if (!(polyGeom is Polygon polygon))
                 throw new ArgumentException("A is not a polygon");
             if (!(hole is Polygon || hole is LineString))
-             throw new ArgumentException("B must be a polygon or line");
+                throw new ArgumentException("B must be a polygon or line");
 
             var holePts = ExtractLine(hole);
             if (!CoordinateArrays.IsRing(holePts))
@@ -34,7 +34,8 @@ namespace Open.Topology.TestRunner.Functions
 
         private static Coordinate[] ExtractLine(Geometry hole)
         {
-            if (hole is Polygon phole) {
+            if (hole is Polygon phole)
+            {
                 return phole.ExteriorRing.Coordinates;
             }
             return hole.Coordinates;

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using NetTopologySuite.Geometries;
-using NetTopologySuite.Shape.Fractal;
+﻿using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 

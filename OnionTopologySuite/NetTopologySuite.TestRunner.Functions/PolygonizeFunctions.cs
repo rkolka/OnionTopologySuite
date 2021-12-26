@@ -1,8 +1,8 @@
-using System.Collections.Generic;
-using System.Linq;
 using NetTopologySuite.Geometries;
 using NetTopologySuite.Geometries.Utilities;
 using NetTopologySuite.Operation.Polygonize;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Open.Topology.TestRunner.Functions
 {
@@ -14,7 +14,7 @@ namespace Open.Topology.TestRunner.Functions
             var polygonizer = new Polygonizer(extractOnlyPolygonal);
             polygonizer.Add(lines);
             return polygonizer.GetGeometry();
-            
+
         }
         public static Geometry Polygonize(Geometry g)
         {

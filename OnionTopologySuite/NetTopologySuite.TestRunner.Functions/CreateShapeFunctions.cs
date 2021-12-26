@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using NetTopologySuite.Algorithm;
+﻿using NetTopologySuite.Algorithm;
 using NetTopologySuite.Geometries;
 using NetTopologySuite.Utilities;
+using System;
+using System.Collections.Generic;
 
 namespace Open.Topology.TestRunner.Functions
 {
@@ -17,7 +17,7 @@ namespace Open.Topology.TestRunner.Functions
             var env = FunctionsUtil.GetEnvelopeOrDefault(g);
             var geomFact = FunctionsUtil.GetFactoryOrDefault(g);
 
-            int nCellsOnSide = (int) Math.Sqrt(nCells) + 1;
+            int nCellsOnSide = (int)Math.Sqrt(nCells) + 1;
             double cellSizeX = env.Width / nCellsOnSide;
             double cellSizeY = env.Height / nCellsOnSide;
 
@@ -43,7 +43,7 @@ namespace Open.Topology.TestRunner.Functions
             var env = FunctionsUtil.GetEnvelopeOrDefault(g);
             var geomFact = FunctionsUtil.GetFactoryOrDefault(g);
 
-            int nCellsOnSideY = (int) Math.Sqrt(nCells);
+            int nCellsOnSideY = (int)Math.Sqrt(nCells);
             int nCellsOnSideX = nCells / nCellsOnSideY;
 
             double cellSizeX = env.Width / (nCellsOnSideX - 1);

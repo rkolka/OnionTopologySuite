@@ -1,9 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
+﻿using Manifold;
 using NetTopologySuite.Geometries;
-using Manifold;
+using System;
+using System.IO;
 
 public class Script
 {
@@ -22,19 +20,19 @@ public class Script
 
         string AddinDir = System.IO.Path.GetDirectoryName(new System.Uri(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).LocalPath);
 
-        
+
 
         using (Database db = app.GetDatabaseRoot())
         {
             foreach (string fname in CodeFiles)
             {
                 bool rewrite = true;
-                
+
                 if (db.GetComponentType(fname) == "")
                 {
                     rewrite = true;
                 }
-                else 
+                else
                 {
                     rewrite = false;
 
@@ -52,7 +50,6 @@ public class Script
                 if (rewrite)
                 {
                     string text = File.ReadAllText(AddinDir + "\\" + fname);
-                    // TODO? check hash?
 
                     // insert
                     CreateQuery(app, db, fname, text, AddinCodeFolder);
@@ -81,7 +78,7 @@ public class Script
         {
             propertyset.SetProperty("Folder", folder);
 
-        }        
+        }
         db.Insert(name, "query", null, propertyset);
 
     }

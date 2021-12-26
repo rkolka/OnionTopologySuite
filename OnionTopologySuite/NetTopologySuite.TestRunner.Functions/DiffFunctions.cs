@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using NetTopologySuite.Geometries;
+﻿using NetTopologySuite.Geometries;
 using NetTopologySuite.Geometries.Utilities;
+using System.Collections.Generic;
 
 namespace Open.Topology.TestRunner.Functions
 {
@@ -13,7 +13,7 @@ namespace Open.Topology.TestRunner.Functions
             var diffBA = DiffVertices(b, a);
 
             return a.Factory.CreateGeometryCollection(
-                new Geometry[] {diffAB, diffBA});
+                new Geometry[] { diffAB, diffBA });
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Open.Topology.TestRunner.Functions
 
 
             return a.Factory.CreateGeometryCollection(
-                new Geometry[] {diffAB, diffBA});
+                new Geometry[] { diffAB, diffBA });
         }
 
         public static GeometryCollection DuplicateSegments(Geometry a)

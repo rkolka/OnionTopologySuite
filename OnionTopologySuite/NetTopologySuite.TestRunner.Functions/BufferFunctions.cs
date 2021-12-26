@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using NetTopologySuite.Geometries;
+﻿using NetTopologySuite.Geometries;
 using NetTopologySuite.Geometries.Utilities;
 using NetTopologySuite.Operation.Buffer;
 using NetTopologySuite.Operation.Buffer.Validate;
+using System;
+using System.Collections.Generic;
 
 namespace Open.Topology.TestRunner.Functions
 {
@@ -142,8 +142,10 @@ namespace Open.Topology.TestRunner.Functions
 
         public static Geometry VariableBuffer(Geometry line,
         double startDist,
-        double endDist) {
-            if (line is Polygon poly) {
+        double endDist)
+        {
+            if (line is Polygon poly)
+            {
                 line = poly.ExteriorRing;
             }
             return NetTopologySuite.Operation.Buffer.VariableBuffer.Buffer(line, startDist, endDist);
@@ -151,13 +153,14 @@ namespace Open.Topology.TestRunner.Functions
 
         public static Geometry VariableBufferMid(Geometry line,
         double startDist,
-        double midDist)  
+        double midDist)
         {
-            if (line is Polygon poly) {
+            if (line is Polygon poly)
+            {
                 line = poly.ExteriorRing;
             }
             return NetTopologySuite.Operation.Buffer.VariableBuffer.Buffer(line, startDist, midDist, startDist);
         }
 
-}
+    }
 }

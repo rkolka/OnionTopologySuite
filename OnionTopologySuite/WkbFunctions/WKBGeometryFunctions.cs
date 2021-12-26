@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using NetTopologySuite.Algorithm;
-using NetTopologySuite.Geometries;
-using NetTopologySuite.Operation.Overlay.Snap;
+﻿using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 
@@ -40,7 +37,8 @@ public static class WKBGeometryFunctions
         bool result = GeometryFunctions.IsSimple(g);
         return result;
     }
-    public static bool WKBIsValid(byte[] wKBGeom) {
+    public static bool WKBIsValid(byte[] wKBGeom)
+    {
         Geometry g = wKBReader.Read(wKBGeom);
         bool result = GeometryFunctions.IsValid(g);
         return result;
@@ -79,7 +77,7 @@ public static class WKBGeometryFunctions
 
     public static byte[] WKBSnap(byte[] wKBGeom, byte[] wKBGeom2, double distance)
     {
-        Geometry g = wKBReader.Read(wKBGeom); 
+        Geometry g = wKBReader.Read(wKBGeom);
         Geometry g2 = wKBReader.Read(wKBGeom2);
         Geometry result = GeometryFunctions.Snap(g, g2, distance);
         return wKBWriter.Write(result);
@@ -99,7 +97,7 @@ public static class WKBGeometryFunctions
         return wKBWriter.Write(result);
     }
 
-   
+
     public static byte[] WKBGetPolygonHoles(byte[] wKBGeom)
     {
         Geometry geom = wKBReader.Read(wKBGeom);

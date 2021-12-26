@@ -5,7 +5,7 @@ namespace Open.Topology.TestRunner.Functions
 {
     public static class PrecisionFunctions
     {
-      
+
 
         public static Geometry ReducePrecisionPointwise(Geometry geom, double scaleFactor)
         {

@@ -2,7 +2,6 @@
 using NetTopologySuite.Densify;
 using NetTopologySuite.Geometries;
 using NetTopologySuite.Geometries.Utilities;
-using NetTopologySuite.Operation.Linemerge;
 
 namespace Open.Topology.TestRunner.Functions
 {

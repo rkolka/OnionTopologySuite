@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using NetTopologySuite.Geometries;
-using NetTopologySuite.Utilities;
-
+﻿using NetTopologySuite.Geometries;
 using Open.Topology.TestRunner.Functions;
+using System;
 
 public static class WKBCreateRandomGeometryFunctions
 {

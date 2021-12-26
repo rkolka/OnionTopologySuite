@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using NetTopologySuite.Geometries;
-using NetTopologySuite.Index.Chain;
-using NetTopologySuite.Index.KdTree;
-using NetTopologySuite.Index.Quadtree;
-using NetTopologySuite.Index.Strtree;
+﻿using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 

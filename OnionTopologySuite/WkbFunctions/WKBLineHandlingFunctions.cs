@@ -1,8 +1,4 @@
-using System.Collections.Generic;
-using NetTopologySuite.Dissolve;
 using NetTopologySuite.Geometries;
-using NetTopologySuite.Geometries.Utilities;
-using NetTopologySuite.Operation.Linemerge;
 
 using Open.Topology.TestRunner.Functions;
 

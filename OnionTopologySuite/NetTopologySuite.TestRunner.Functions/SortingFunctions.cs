@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using NetTopologySuite.Geometries;
+﻿using NetTopologySuite.Geometries;
 using NetTopologySuite.Shape.Fractal;
+using System.Collections.Generic;
 
 namespace Open.Topology.TestRunner.Functions
 {

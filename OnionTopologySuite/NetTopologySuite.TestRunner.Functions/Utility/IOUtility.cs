@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using NetTopologySuite;
+﻿using NetTopologySuite;
 using NetTopologySuite.Geometries;
 using NetTopologySuite.IO;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Open.Topology.TestRunner.Utility
 {

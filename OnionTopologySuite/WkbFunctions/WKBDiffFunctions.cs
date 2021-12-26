@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using NetTopologySuite.Geometries;
-using NetTopologySuite.Geometries.Utilities;
+﻿using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 

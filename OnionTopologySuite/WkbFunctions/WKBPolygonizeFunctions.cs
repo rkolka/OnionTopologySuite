@@ -1,8 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
 using NetTopologySuite.Geometries;
-using NetTopologySuite.Geometries.Utilities;
-using NetTopologySuite.Operation.Polygonize;
 
 using Open.Topology.TestRunner.Functions;
 

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using NetTopologySuite.Geometries;
+﻿using NetTopologySuite.Geometries;
 using NetTopologySuite.Index.Chain;
 using NetTopologySuite.Index.KdTree;
 using NetTopologySuite.Index.Quadtree;
 using NetTopologySuite.Index.Strtree;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Open.Topology.TestRunner.Functions
 {
@@ -56,7 +56,7 @@ namespace Open.Topology.TestRunner.Functions
             return geoms.Factory.BuildGeometry(bounds);
         }
 
-        private static void addBounds(IBoundable<Envelope, Geometry> bnd, List<Geometry>  bounds,
+        private static void addBounds(IBoundable<Envelope, Geometry> bnd, List<Geometry> bounds,
             GeometryFactory factory)
         {
             // don't include bounds of leaf nodes
@@ -64,7 +64,8 @@ namespace Open.Topology.TestRunner.Functions
 
             var env = (Envelope)bnd.Bounds;
             bounds.Add(factory.ToGeometry(env));
-            if (bnd is AbstractNode<Envelope, Geometry>) {
+            if (bnd is AbstractNode<Envelope, Geometry>)
+            {
                 var node = (AbstractNode<Envelope, Geometry>)bnd;
                 var children = node.ChildBoundables;
                 foreach (var child in children)
@@ -86,7 +87,7 @@ namespace Open.Topology.TestRunner.Functions
             var index = new STRtree<Geometry>();
             geom.Apply(new DelegateGeometryFilter
             {
-                DoFilter = delegate(Geometry tmpGeometry)
+                DoFilter = delegate (Geometry tmpGeometry)
                 {
                     // only insert atomic geometries
                     if (tmpGeometry is GeometryCollection) return;
@@ -108,7 +109,7 @@ namespace Open.Topology.TestRunner.Functions
         {
             var index = BuildSTRtree(geoms);
             object[] result = index.NearestNeighbour(new GeometryItemDistance());
-            var resultGeoms = new [] { (Geometry)result[0], (Geometry)result[1] };
+            var resultGeoms = new[] { (Geometry)result[0], (Geometry)result[1] };
             return geoms.Factory.CreateGeometryCollection(resultGeoms);
         }
 
@@ -132,7 +133,7 @@ namespace Open.Topology.TestRunner.Functions
             var index = new Quadtree<Geometry>();
             geom.Apply(new DelegateGeometryFilter()
             {
-                DoFilter = delegate(Geometry tmpGeometry)
+                DoFilter = delegate (Geometry tmpGeometry)
                 {
                     // only insert atomic geometries
                     if (tmpGeometry is GeometryCollection) return;

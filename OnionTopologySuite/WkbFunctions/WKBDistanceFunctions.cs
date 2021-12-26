@@ -1,6 +1,4 @@
-﻿using NetTopologySuite.Algorithm.Distance;
-using NetTopologySuite.Geometries;
-using NetTopologySuite.Operation.Distance;
+﻿using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 

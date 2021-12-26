@@ -1,7 +1,7 @@
-﻿using System;
-using NetTopologySuite.Geometries;
+﻿using NetTopologySuite.Geometries;
 using NetTopologySuite.Geometries.Utilities;
 using NetTopologySuite.Utilities;
+using System;
 
 namespace Open.Topology.TestRunner.Functions
 {
@@ -48,11 +48,11 @@ namespace Open.Topology.TestRunner.Functions
             var geomFact = FunctionsUtil.GetFactoryOrDefault(g);
             var line = new LineString[3];
             var p0 = (new LineSegment(pts[1], pts[2])).ClosestPoint(cc);
-            line[0] = geomFact.CreateLineString(new Coordinate[] {p0, cc});
+            line[0] = geomFact.CreateLineString(new Coordinate[] { p0, cc });
             var p1 = (new LineSegment(pts[0], pts[2])).ClosestPoint(cc);
-            line[1] = geomFact.CreateLineString(new Coordinate[] {p1, cc});
+            line[1] = geomFact.CreateLineString(new Coordinate[] { p1, cc });
             var p2 = (new LineSegment(pts[0], pts[1])).ClosestPoint(cc);
-            line[2] = geomFact.CreateLineString(new Coordinate[] {p2, cc});
+            line[2] = geomFact.CreateLineString(new Coordinate[] { p2, cc });
             return geomFact.CreateMultiLineString(line);
         }
 
@@ -73,9 +73,9 @@ namespace Open.Topology.TestRunner.Functions
             var cc = Triangle.InCentre(pts[0], pts[1], pts[2]);
             var geomFact = FunctionsUtil.GetFactoryOrDefault(g);
             var line = new LineString[3];
-            line[0] = geomFact.CreateLineString(new Coordinate[] {pts[0], cc});
-            line[1] = geomFact.CreateLineString(new Coordinate[] {pts[1], cc});
-            line[2] = geomFact.CreateLineString(new Coordinate[] {pts[2], cc});
+            line[0] = geomFact.CreateLineString(new Coordinate[] { pts[0], cc });
+            line[1] = geomFact.CreateLineString(new Coordinate[] { pts[1], cc });
+            line[2] = geomFact.CreateLineString(new Coordinate[] { pts[2], cc });
             return geomFact.CreateMultiLineString(line);
         }
 

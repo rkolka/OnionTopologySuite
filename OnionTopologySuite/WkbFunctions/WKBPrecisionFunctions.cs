@@ -1,5 +1,4 @@
 using NetTopologySuite.Geometries;
-using NetTopologySuite.Precision;
 
 using Open.Topology.TestRunner.Functions;
 
