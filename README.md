@@ -32,7 +32,7 @@ You can also look at OnionTopologySuiteTest.sql and OnionTopologySuite.map
 
 ## Developing
 I almost mechanically converted all functions from NetTopologySuite\test\NetTopologySuite.TestRunner\Functions.
-Some are duplicates or don't even make much sense in Manifold. 
+Some are duplicates of, or don't even make much sense in Manifold. 
 
 ## List of functions
 For details, study code comments [here](https://github.com/NetTopologySuite/NetTopologySuite/tree/c838c5061aa0f13d1fa65f828a868d790302ec06/test/NetTopologySuite.TestRunner/Functions)
