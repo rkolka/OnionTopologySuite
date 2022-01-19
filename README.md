@@ -1,8 +1,8 @@
 [:floppy_disk: Click here to download the add-in](https://raw.githubusercontent.com/rkolka/OnionTopologySuite/master/OnionTopologySuite.zip "Click here to download")
 # OnionTopologySuite
-Expose parts of NetTopologySuite as Manifold® SQL functions. There are some interesting functions that have no counterpart built into Manifold. 
+Exposes parts of NetTopologySuite as Manifold® SQL functions. There are some interesting functions that have no counterpart built into Manifold. 
 
-## Why onion?
+## Why Onion?
 Because it has layers. Starting from user facing (top) layer:
 * :onion: Manifold SQL functions that take and return Manifold's GEOM type. Defined in OnionTopologySuiteGEOM.sql. Converting GEOM to/from WKB with built-in GeomWkb/BinaryWkbGeom functions.
 * :onion: Manifold SQL functions that take and return WKB type. Declared in OnionTopologySuiteWKB.sql, actual definitions in layer below.
@@ -10,7 +10,6 @@ Because it has layers. Starting from user facing (top) layer:
 * :onion: C# static methods from NetTopologySuite.TestRunner.Functions that take and return NTS Geometry type. I just copied the code from NTS TestRunner project into this project because it had almost everything I wished for.
 * :onion: Objects and methods in NetTopologySuite that do the hard work, but are not clean functions with N inputs and 1 output.
 
-And because "Manifold" is a registered trademark.
 
 ## Using
 Download add-in [(link)](https://raw.githubusercontent.com/rkolka/OnionTopologySuite/master/OnionTopologySuite.zip) and unpack it under ~\shared\.
