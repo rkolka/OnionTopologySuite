@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("OnionTopologySuite")]
-[assembly: AssemblyDescription("Manifold Release 9 add-in created by riivo in 5/5/2021 9:25:11 AM")]
+[assembly: AssemblyDescription("Manifold Release 9 add-in created by Riivo Kolka in 5/5/2021")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HOBUVANKER")]
+[assembly: AssemblyCompany("Kuus Koma Kaks Kaheksa")]
 [assembly: AssemblyProduct("OnionTopologySuite")]
-[assembly: AssemblyCopyright("Copyright © riivo, HOBUVANKER 2021")]
+[assembly: AssemblyCopyright("Copyright © Riivo Kolka, Kuus Koma Kaks Kaheksa 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
