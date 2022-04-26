@@ -21,20 +21,21 @@ public class Script
         string AddinDir = System.IO.Path.GetDirectoryName(new System.Uri(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).LocalPath);
 
 
-
+        // Import CodeFiles
         using (Database db = app.GetDatabaseRoot())
         {
             foreach (string fname in CodeFiles)
             {
-                bool rewrite = true;
+                // if not existing or user wants to overwrite
+                bool overwrite = true;
 
                 if (db.GetComponentType(fname) == "")
                 {
-                    rewrite = true;
+                    overwrite = true;
                 }
                 else
                 {
-                    rewrite = false;
+                    overwrite = false;
 
                     string message = $"{db.GetComponentType(fname).ToUpper()} {fname} already exists. DROP?";
 
@@ -43,11 +44,11 @@ public class Script
                     if (result == System.Windows.Forms.DialogResult.Yes)
                     {
                         db.Delete(fname);
-                        rewrite = true;
+                        overwrite = true;
                     }
                 }
 
-                if (rewrite)
+                if (overwrite)
                 {
                     string text = File.ReadAllText(AddinDir + "\\" + fname);
 
