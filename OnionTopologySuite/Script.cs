@@ -84,7 +84,10 @@ public class Script
 
     }
 
-
+    public static Geometry NTSGeometryFromMfdGeom(Manifold.Geom mg)
+    {
+        throw new NotImplementedException();
+    }
 
     public static Manifold.Geom MfdGeomFromNTSGeometry(Geometry ng)
     {
@@ -96,29 +99,204 @@ public class Script
         }
         GeomBuilder gb = Manifold.Application.CreateGeomBuilder();
 
-        Coordinate[] coords = ng.Coordinates;
-
-
-        switch (ng.GeometryType)
+        if (!double.IsNaN(ng.Coordinate.Z))
         {
-            case "Point":
-                gb.StartGeomPoint3();
-                gb.AddBranch();
-                gb.AddCoord3(new Manifold.Point<double>(coords[0].X, coords[0].Y));
-                gb.EndBranch();
-                mg = gb.EndGeom();
-                break;
-            case "MultiPoint":
-            case "LineString":
-            case "LinearRing":
-            case "MultiLineString":
-            case "Polygon":
-            case "MultiPolygon":
-            case "GeometryCollection":
-            default:
-                throw new ArgumentException("Unknown geometry type");
+            switch (ng)
+            {
+                case Point g:
+                    gb.StartGeomPoint3();
+                    gb.AddBranch();
+                    gb.AddCoord3(new Manifold.Point3<double>(g.X, g.Y, g.Z));
+                    gb.EndBranch();
+                    mg = gb.EndGeom();
+                    break;
+                case MultiPoint g:
+                    gb.StartGeomPoint3();
+                    gb.AddBranch();
+                    foreach (var p in g.Coordinates)
+                    {
+                        gb.AddCoord3(new Manifold.Point3<double>(p.X, p.Y, p.Z));
+                    }
+                    gb.EndBranch();
+                    mg = gb.EndGeom();
+                    break;
+                case LineString g:
+                    gb.StartGeomLine3();
+                    gb.AddBranch();
+                    foreach (var p in g.Coordinates)
+                    {
+                        gb.AddCoord3(new Manifold.Point3<double>(p.X, p.Y, p.Z));
+                    }
+                    gb.EndBranch();
+                    mg = gb.EndGeom();
+                    break;
+                case MultiLineString g:
+                    gb.StartGeomLine3();
+                    foreach (var l in g.Geometries)
+                    {
+                        gb.AddBranch();
+                        foreach (var p in l.Coordinates)
+                        {
+                            gb.AddCoord3(new Manifold.Point3<double>(p.X, p.Y, p.Z));
+                        }
+                        gb.EndBranch();
+                    }
+                    mg = gb.EndGeom();
+                    break;
+                case Polygon g:
+                    gb.StartGeomArea3();
+                    gb.AddBranch();
+                    foreach (var p in g.Shell.Coordinates)
+                    {
+                        gb.AddCoord3(new Manifold.Point3<double>(p.X, p.Y, p.Z));
+                    }
+                    gb.EndBranch();
+                    foreach (var h in g.Holes)
+                    {
+                        gb.AddBranch();
+                        foreach (var p in h.Coordinates)
+                        {
+                            gb.AddCoord3(new Manifold.Point3<double>(p.X, p.Y, p.Z));
+                        }
+                        gb.EndBranch();
+                    }
+                    mg = gb.EndGeom();
+                    break;
+                case MultiPolygon mp:
+                    gb.StartGeomArea3();
+                    foreach (Polygon g in mp.Geometries)
+                    {
+                        gb.AddBranch();
+                        foreach (var p in g.Shell.Coordinates)
+                        {
+                            gb.AddCoord3(new Manifold.Point3<double>(p.X, p.Y, p.Z));
+                        }
+                        gb.EndBranch();
+                        foreach (var h in g.Holes)
+                        {
+                            gb.AddBranch();
+                            foreach (var p in h.Coordinates)
+                            {
+                                gb.AddCoord3(new Manifold.Point3<double>(p.X, p.Y, p.Z));
+                            }
+                            gb.EndBranch();
+                        }
+                    }
+                    mg = gb.EndGeom();
+                    break;
+                case GeometryCollection g:
+                    gb.StartGeomPoint3();
+                    gb.AddBranch();
+                    foreach (var p in g.Coordinates)
+                    {
+                        gb.AddCoord3(new Manifold.Point3<double>(p.X, p.Y, p.Z));
+                    }
+                    gb.EndBranch();
+                    mg = gb.EndGeom();
+                    break;
+                default:
+                    throw new ArgumentException("OnionTS: Unknown NTS geometry type");
+            }
         }
-
+        else
+        {
+            switch (ng)
+            {
+                case Point g:
+                    gb.StartGeomPoint();
+                    gb.AddBranch();
+                    gb.AddCoord(new Manifold.Point<double>(g.X, g.Y));
+                    gb.EndBranch();
+                    mg = gb.EndGeom();
+                    break;
+                case MultiPoint g:
+                    gb.StartGeomPoint();
+                    gb.AddBranch();
+                    foreach (var p in g.Coordinates)
+                    {
+                        gb.AddCoord(new Manifold.Point<double>(p.X, p.Y));
+                    }
+                    gb.EndBranch();
+                    mg = gb.EndGeom();
+                    break;
+                case LineString g:
+                    gb.StartGeomLine();
+                    gb.AddBranch();
+                    foreach (var p in g.Coordinates)
+                    {
+                        gb.AddCoord(new Manifold.Point<double>(p.X, p.Y));
+                    }
+                    gb.EndBranch();
+                    mg = gb.EndGeom();
+                    break;
+                case MultiLineString g:
+                    gb.StartGeomLine();
+                    foreach (var l in g.Geometries)
+                    {
+                        gb.AddBranch();
+                        foreach (var p in l.Coordinates)
+                        {
+                            gb.AddCoord(new Manifold.Point<double>(p.X, p.Y));
+                        }
+                        gb.EndBranch();
+                    }
+                    mg = gb.EndGeom();
+                    break;
+                case Polygon g:
+                    gb.StartGeomArea();
+                    gb.AddBranch();
+                    foreach (var p in g.Shell.Coordinates)
+                    {
+                        gb.AddCoord(new Manifold.Point<double>(p.X, p.Y));
+                    }
+                    gb.EndBranch();
+                    foreach (var h in g.Holes)
+                    {
+                        gb.AddBranch();
+                        foreach (var p in h.Coordinates)
+                        {
+                            gb.AddCoord(new Manifold.Point<double>(p.X, p.Y));
+                        }
+                        gb.EndBranch();
+                    }
+                    mg = gb.EndGeom();
+                    break;
+                case MultiPolygon mp:
+                    gb.StartGeomArea();
+                    foreach (Polygon g in mp.Geometries)
+                    {
+                        gb.AddBranch();
+                        foreach (var p in g.Shell.Coordinates)
+                        {
+                            gb.AddCoord(new Manifold.Point<double>(p.X, p.Y));
+                        }
+                        gb.EndBranch();
+                        foreach (var h in g.Holes)
+                        {
+                            gb.AddBranch();
+                            foreach (var p in h.Coordinates)
+                            {
+                                gb.AddCoord(new Manifold.Point<double>(p.X, p.Y));
+                            }
+                            gb.EndBranch();
+                        }
+                    }
+                    mg = gb.EndGeom();
+                    break;
+                case GeometryCollection g:
+                    gb.StartGeomPoint();
+                    gb.AddBranch();
+                    foreach (var p in g.Coordinates)
+                    {
+                        gb.AddCoord(new Manifold.Point<double>(p.X, p.Y));
+                    }
+                    gb.EndBranch();
+                    mg = gb.EndGeom();
+                    break;
+                default:
+                    throw new ArgumentException("OnionTS: Unknown NTS geometry type");
+            }
+        }
         return mg;
     }
 
@@ -126,7 +304,7 @@ public class Script
     {
         byte[] bytes = geom.GetBytes();
         // write out to file.
-        File.WriteAllBytes($"{geom.Type}{(geom.HasZ ? "Z" : "")}{(geom.HasCurves ? "C" : "")}_o{geom.Opts}_b{geom.Branches.Count}_c{geom.Coords.Count}_{geom.GetHashCode()}.bin", bytes);
+        File.WriteAllBytes($"{geom.Type}{(geom.HasZ ? "Z" : "")}{(geom.HasCurves ? "C" : "")}_o{geom.Opts}_b{geom.Branches.Count}_c{geom.Coords.Count}_{geom.GetHashCode()}.geom", bytes);
         return bytes;
     }
 }
