@@ -86,7 +86,25 @@ public class Script
 
     public static Geometry NTSGeometryFromMfdGeom(Manifold.Geom mg)
     {
-        throw new NotImplementedException();
+        Geometry ng = null;
+
+        switch (mg.Type)
+        {
+            case "Area":
+
+                break;
+            case "Line":
+                break;
+            case "Point":
+                break;
+            default:
+                break;
+        }
+
+        if (mg.Branches.Count)
+        {
+
+        }
     }
 
     public static Manifold.Geom MfdGeomFromNTSGeometry(Geometry ng)

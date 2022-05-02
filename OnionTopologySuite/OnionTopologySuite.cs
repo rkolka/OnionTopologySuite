@@ -17,6 +17,13 @@ public static class OnionTopologySuite
 
     // to write wkb, use Geometry.ToBinary(), but for some geometry types (GeometryCollection) it is not available.
 
+    public static byte[] WKBZzz(byte[] geomwkb, double tolerance)
+    {
+        Geometry geometry = wKBReader.Read(geomwkb);
+        return new Zzz(geometry, tolerance).RunZZZ().ToBinary();
+    }
+
+
     public static byte[] WKBMaximumInscribedCircle(byte[] geomwkb, double tolerance)
     {
         Geometry geometry = wKBReader.Read(geomwkb);
