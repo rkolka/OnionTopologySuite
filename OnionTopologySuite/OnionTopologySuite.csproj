@@ -43,15 +43,11 @@
       <HintPath>C:\Program Files\Manifold\v9.0\bin64\extnet.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="NetTopologySuite, Version=2.0.0.0, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\NetTopologySuite\src\NetTopologySuite\bin\x64\Release\netstandard2.0\NetTopologySuite.dll</HintPath>
+    <Reference Include="NetTopologySuite">
+      <HintPath>..\..\NetTopologySuite\src\NetTopologySuite\bin\Release\netstandard2.0\NetTopologySuite.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
-    </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />

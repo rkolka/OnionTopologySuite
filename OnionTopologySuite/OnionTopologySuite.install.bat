@@ -17,11 +17,6 @@ GOTO CANNOTCREATEDIR
 :COPYFILES
 echo ------- Copying add-in files
 copy NetTopologySuite.dll "%M9%\OnionTopologySuite\"
-copy NetTopologySuite.Lab.dll "%M9%\OnionTopologySuite\"
-copy System.Runtime.CompilerServices.Unsafe.dll "%M9%\OnionTopologySuite\"
-copy System.Buffers.dll "%M9%\OnionTopologySuite\"
-copy System.Memory.dll "%M9%\OnionTopologySuite\"
-copy System.Numerics.Vectors.dll "%M9%\OnionTopologySuite\"
 
 copy OnionTopologySuite.dll "%M9%\OnionTopologySuite\"
 copy OnionTopologySuite.dll.addin "%M9%\OnionTopologySuite\"

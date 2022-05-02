@@ -86,25 +86,26 @@ public class Script
 
     public static Geometry NTSGeometryFromMfdGeom(Manifold.Geom mg)
     {
-        Geometry ng = null;
+        //Geometry ng = null;
 
-        switch (mg.Type)
-        {
-            case "Area":
+        //switch (mg.Type)
+        //{
+        //    case "Area":
 
-                break;
-            case "Line":
-                break;
-            case "Point":
-                break;
-            default:
-                break;
-        }
+        //        break;
+        //    case "Line":
+        //        break;
+        //    case "Point":
+        //        break;
+        //    default:
+        //        break;
+        //}
 
-        if (mg.Branches.Count)
-        {
+        //if (mg.Branches.Count)
+        //{
 
-        }
+        //}
+        return null;
     }
 
     public static Manifold.Geom MfdGeomFromNTSGeometry(Geometry ng)
