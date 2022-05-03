@@ -103,6 +103,44 @@ VALUE @tolerance          FLOAT64 = 0.001;
 
 DELETE FROM [Results];
 
+-- WKBBezierCurveFunctions
+
+VALUE @alpha	          FLOAT64 = 1.2;  -- A curvedness parameter (0 is linear, 1 is round, >1 is increasingly curved)
+VALUE @skew		          FLOAT64 = -1;  -- The skew parameter (0 is none, positive skews towards longer side, negative towards shorter
+VALUE @controlPoints      GEOM = ( SELECT Last([Geom]) FROM [Drawing] where mfd_id = 5 ); -- create a name field
+
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveByAlpha(@geom, @alpha)', NTSBezierCurveByAlpha(@geom, @alpha) FROM (VALUES (1));
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveByAlphaAndSkew(@geom, @alpha, @skew)', NTSBezierCurveByAlphaAndSkew(@geom, @alpha, @skew) FROM (VALUES (1));
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveWithControlPoints(@geom, @controlPoints)', NTSBezierCurveWithControlPoints(@geom, @controlPoints) FROM (VALUES (1));
+
+
+-- WKBHullFunctions
+VALUE @maxLength          FLOAT64 = 3.3;  -- The target maximum edge length
+VALUE @isHolesAllowed     BOOLEAN = FALSE; -- A flag whether holes are allowed in the result
+VALUE @lengthRatio        FLOAT64 = 0.4;   -- The edge length ratio 
+	-- is a fraction of the length difference between the longest and shortest edges 
+	-- in the Delaunay Triangulation of the input points.
+
+VALUE @vertexNumFraction  FLOAT64 = -0.6; -- The target fraction of number of input vertices in result
+	-- Larger values compute less concave results. A value of 1 produces the convex hull; 
+	-- a value of 0 produces the original geometry. 
+	-- An outer hull is computed if the parameter is positive, 
+	-- an inner hull is computed if it is negative.
+
+VALUE @areaDeltaRatio     FLOAT64 = 0.5;  -- The target ratio of area difference to original area
+	-- target parameter specifying the ratio of maximum difference in
+    -- area to original area. Larger values compute less concave results. A value of
+    -- 0 produces the original geometry. An outer hull is computed if the parameter
+    -- is positive, an inner hull is computed if it is negative.
+
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSConcaveHullByLength(@geom, @maxLength, @isHolesAllowed)', NTSConcaveHullByLength(@geom, @maxLength, @isHolesAllowed) FROM (VALUES (1));
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSConcaveHullByLengthRatio(@geom, @lengthRatio, @isHolesAllowed)', NTSConcaveHullByLengthRatio(@geom, @lengthRatio, @isHolesAllowed) FROM (VALUES (1));
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSPolygonHull(@geom, @vertexNumFraction)', NTSPolygonHull(@geom, @vertexNumFraction) FROM (VALUES (1));
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSPolygonHullByAreaDelta(@geom, @areaDeltaRatio)', NTSPolygonHullByAreaDelta(@geom, @areaDeltaRatio) FROM (VALUES (1));
+
+
+
+-- WKBAffineTransformationFunctions
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSTransformByVectors(@geom, @geomcontrol)', NTSTransformByVectors(@geom, @geomcontrol) FROM (VALUES (1));
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSTransformByBaseline(@geom, @geomdestBaseline)', NTSTransformByBaseline(@geom, @geomdestBaseline) FROM (VALUES (1));
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSScale(@geom, @scale)', NTSScale(@geom, @scale) FROM (VALUES (1));

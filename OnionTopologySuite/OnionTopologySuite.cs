@@ -2,7 +2,6 @@
 using NetTopologySuite.Geometries;
 
 
-
 /// <summary>
 /// Experiments using NTS directly
 /// ,Otherwise, look at folder WKBFunctions.
@@ -16,13 +15,6 @@ public static class OnionTopologySuite
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
     // to write wkb, use Geometry.ToBinary(), but for some geometry types (GeometryCollection) it is not available.
-
-    //public static byte[] WKBZzz(byte[] geomwkb, double tolerance)
-    //{
-    //    Geometry geometry = wKBReader.Read(geomwkb);
-    //    return new Zzz(geometry, tolerance).RunZZZ().ToBinary();
-    //}
-
 
     public static byte[] WKBMaximumInscribedCircle(byte[] geomwkb, double tolerance)
     {

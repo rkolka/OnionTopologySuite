@@ -1,8 +1,17 @@
 ﻿-- $manifold$
 -- $include$ [OnionTopologySuiteWKB.sql]
 
+-- WKBBezierCurveFunctions
+FUNCTION NTSBezierCurveByAlpha(@geom GEOM, @alpha FLOAT64) GEOM AS BinaryWkbGeom(WKBBezierCurveByAlpha(GeomWkb(@geom), @alpha)) END ;
+FUNCTION NTSBezierCurveByAlphaAndSkew(@geom GEOM, @alpha FLOAT64, @skew BOOLEAN) GEOM AS BinaryWkbGeom(WKBBezierCurveByAlphaAndSkew(GeomWkb(@geom), @alpha, @skew)) END ;
+FUNCTION NTSBezierCurveWithControlPoints(@geom GEOM, @controlPoints GEOM) GEOM AS BinaryWkbGeom(WKBBezierCurveWithControlPoints(GeomWkb(@geom), GeomWkb(@controlPoints))) END ;
 
- 
+-- WKBHullFunctions
+FUNCTION NTSConcaveHullByLength(@geom GEOM, @maxLength FLOAT64, @isHolesAllowed BOOLEAN) GEOM AS BinaryWkbGeom(WKBConcaveHullByLength(GeomWkb(@geom), @maxLength, @isHolesAllowed)) END ;
+FUNCTION NTSConcaveHullByLengthRatio(@geom GEOM, @lengthRatio FLOAT64, @isHolesAllowed BOOLEAN) GEOM AS BinaryWkbGeom(WKBConcaveHullByLengthRatio(GeomWkb(@geom), @lengthRatio, @isHolesAllowed)) END ;
+FUNCTION NTSPolygonHull(@geom GEOM, @vertexNumFraction FLOAT64) GEOM AS BinaryWkbGeom(WKBPolygonHull(GeomWkb(@geom), @vertexNumFraction)) END ;
+FUNCTION NTSPolygonHullByAreaDelta(@geom GEOM, @areaDeltaRatio FLOAT64) GEOM AS BinaryWkbGeom(WKBPolygonHullByAreaDelta(GeomWkb(@geom), @areaDeltaRatio)) END ;
+
 -- WKBAffineTransformationFunctions
 FUNCTION NTSTransformByVectors(@geom GEOM, @control GEOM) GEOM AS BinaryWkbGeom(WKBTransformByVectors(GeomWkb(@geom), GeomWkb(@control))) END ;
 FUNCTION NTSTransformByBaseline(@geom GEOM, @destBaseline GEOM) GEOM AS BinaryWkbGeom(WKBTransformByBaseline(GeomWkb(@geom), GeomWkb(@destBaseline))) END ;
