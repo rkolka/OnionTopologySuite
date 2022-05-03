@@ -96,6 +96,8 @@
     <Compile Include="NetTopologySuite.TestRunner.Functions\ValidationFunctions.cs" />
     <Compile Include="Script.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WkbFunctions\WKBMaximumCircleFunctions.cs" />
+    <Compile Include="WkbFunctions\WKBAngleFunctions.cs" />
     <Compile Include="WkbFunctions\WKBBezierCurveFunctions.cs" />
     <Compile Include="WkbFunctions\WKBOffsetCurveFunctions.cs" />
     <Compile Include="WkbFunctions\WKBHullFunctions.cs" />
