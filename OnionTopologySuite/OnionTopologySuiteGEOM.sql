@@ -1,22 +1,22 @@
 ﻿-- $manifold$
 -- $include$ [OnionTopologySuiteWKB.sql]
 
--- WKBOffsetCurveFunctions
+-- OffsetCurveFunctions
 FUNCTION NTSOffsetCurve(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBOffsetCurve(GeomWkb(@geom), @distance)) END  ;
 FUNCTION NTSOffsetCurveWithParams(@geom GEOM, @distance FLOAT64, @quadrantSegments INT32, @joinStyle INT32, @mitreLimit FLOAT64) GEOM AS BinaryWkbGeom(WKBOffsetCurveWithParams(GeomWkb(@geom), @distance, @quadrantSegments, @joinStyle, @mitreLimit)) END ;
 
--- WKBBezierCurveFunctions
+-- BezierCurveFunctions
 FUNCTION NTSBezierCurveByAlpha(@geom GEOM, @alpha FLOAT64) GEOM AS BinaryWkbGeom(WKBBezierCurveByAlpha(GeomWkb(@geom), @alpha)) END ;
 FUNCTION NTSBezierCurveByAlphaAndSkew(@geom GEOM, @alpha FLOAT64, @skew BOOLEAN) GEOM AS BinaryWkbGeom(WKBBezierCurveByAlphaAndSkew(GeomWkb(@geom), @alpha, @skew)) END ;
 FUNCTION NTSBezierCurveWithControlPoints(@geom GEOM, @controlPoints GEOM) GEOM AS BinaryWkbGeom(WKBBezierCurveWithControlPoints(GeomWkb(@geom), GeomWkb(@controlPoints))) END ;
 
--- WKBHullFunctions
+-- HullFunctions
 FUNCTION NTSConcaveHullByLength(@geom GEOM, @maxLength FLOAT64, @isHolesAllowed BOOLEAN) GEOM AS BinaryWkbGeom(WKBConcaveHullByLength(GeomWkb(@geom), @maxLength, @isHolesAllowed)) END ;
 FUNCTION NTSConcaveHullByLengthRatio(@geom GEOM, @lengthRatio FLOAT64, @isHolesAllowed BOOLEAN) GEOM AS BinaryWkbGeom(WKBConcaveHullByLengthRatio(GeomWkb(@geom), @lengthRatio, @isHolesAllowed)) END ;
 FUNCTION NTSPolygonHull(@geom GEOM, @vertexNumFraction FLOAT64) GEOM AS BinaryWkbGeom(WKBPolygonHull(GeomWkb(@geom), @vertexNumFraction)) END ;
 FUNCTION NTSPolygonHullByAreaDelta(@geom GEOM, @areaDeltaRatio FLOAT64) GEOM AS BinaryWkbGeom(WKBPolygonHullByAreaDelta(GeomWkb(@geom), @areaDeltaRatio)) END ;
 
--- WKBAffineTransformationFunctions
+-- AffineTransformationFunctions
 FUNCTION NTSTransformByVectors(@geom GEOM, @control GEOM) GEOM AS BinaryWkbGeom(WKBTransformByVectors(GeomWkb(@geom), GeomWkb(@control))) END ;
 FUNCTION NTSTransformByBaseline(@geom GEOM, @destBaseline GEOM) GEOM AS BinaryWkbGeom(WKBTransformByBaseline(GeomWkb(@geom), GeomWkb(@destBaseline))) END ;
 FUNCTION NTSScale(@geom GEOM, @scale FLOAT64) GEOM AS BinaryWkbGeom(WKBScale(GeomWkb(@geom), @scale)) END ;
@@ -26,20 +26,20 @@ FUNCTION NTSRotate(@geom GEOM, @multipleOfPi FLOAT64) GEOM AS BinaryWkbGeom(WKBR
 FUNCTION NTSTranslateCentreToOrigin(@geom GEOM) GEOM AS BinaryWkbGeom(WKBTranslateCentreToOrigin(GeomWkb(@geom))) END ;
 FUNCTION NTSTranslateToOrigin(@geom GEOM) GEOM AS BinaryWkbGeom(WKBTranslateToOrigin(GeomWkb(@geom))) END ;
  
--- WKBBoundaryFunctions
+-- BoundaryFunctions
 FUNCTION NTSBoundary(@geom GEOM) GEOM AS BinaryWkbGeom(WKBboundary(GeomWkb(@geom))) END ;
 FUNCTION NTSBoundaryMod2(@geom GEOM) GEOM AS BinaryWkbGeom(WKBboundaryMod2(GeomWkb(@geom))) END ;
 FUNCTION NTSBoundaryEndpoint(@geom GEOM) GEOM AS BinaryWkbGeom(WKBboundaryEndpoint(GeomWkb(@geom))) END ;
 FUNCTION NTSBoundaryMonoValentEnd(@geom GEOM) GEOM AS BinaryWkbGeom(WKBboundaryMonoValentEnd(GeomWkb(@geom))) END ;
 FUNCTION NTSBoundaryMultiValentEnd(@geom GEOM) GEOM AS BinaryWkbGeom(WKBboundaryMultiValentEnd(GeomWkb(@geom))) END ;
  
--- WKBBufferByUnionFunctions
+-- BufferByUnionFunctions
 FUNCTION NTSComponentBuffers(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBComponentBuffers(GeomWkb(@geom), @distance)) END ;
 FUNCTION NTSBufferByComponents(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferByComponents(GeomWkb(@geom), @distance)) END ;
 FUNCTION NTSBufferBySegments(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferBySegments(GeomWkb(@geom), @distance)) END ;
 FUNCTION NTSBufferByChains(@geom GEOM, @distance FLOAT64, @maxChainSize INT32) GEOM AS BinaryWkbGeom(WKBBufferByChains(GeomWkb(@geom), @distance, @maxChainSize)) END ;
  
--- WKBBufferFunctions
+-- BufferFunctions
 FUNCTION NTSBuffer(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBBuffer(GeomWkb(@geom), @distance)) END ;
 FUNCTION NTSBufferWithParams(@geom GEOM, @distance FLOAT64, @quadrantSegments INT32, @capStyle INT32, @joinStyle INT32, @mitreLimit FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferWithParams(GeomWkb(@geom), @distance, @quadrantSegments, @capStyle, @joinStyle, @mitreLimit)) END ;
 FUNCTION NTSBufferWithSimplify(@geom GEOM, @distance FLOAT64, @simplifyFactor FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferWithSimplify(GeomWkb(@geom), @distance, @simplifyFactor)) END ;
@@ -54,14 +54,14 @@ FUNCTION NTSBufferEach(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBB
 FUNCTION NTSVariableBuffer(@line GEOM, @startDist FLOAT64, @endDist FLOAT64) GEOM AS BinaryWkbGeom(WKBVariableBuffer(GeomWkb(@line), @startDist, @endDist)) END ;
 FUNCTION NTSVariableBufferMid(@line GEOM, @startDist FLOAT64, @midDist FLOAT64) GEOM AS BinaryWkbGeom(WKBVariableBufferMid(GeomWkb(@line), @startDist, @midDist)) END ;
  
--- WKBCGAlgorithmFunctions
+-- CGAlgorithmFunctions
 FUNCTION NTSOrientationIndex(@segment GEOM, @ptGeom GEOM) INT32 AS WKBOrientationIndex(GeomWkb(@segment), GeomWkb(@ptGeom)) END ;
 FUNCTION NTSOrientationIndexDd(@segment GEOM, @ptGeom GEOM) INT32 AS WKBOrientationIndexDd(GeomWkb(@segment), GeomWkb(@ptGeom)) END ;
 FUNCTION NTSSegmentIntersects(@g1 GEOM, @g2 GEOM) BOOLEAN AS WKBSegmentIntersects(GeomWkb(@g1), GeomWkb(@g2)) END ;
 FUNCTION NTSSegmentIntersection(@g1 GEOM, @g2 GEOM) GEOM AS BinaryWkbGeom(WKBSegmentIntersection(GeomWkb(@g1), GeomWkb(@g2))) END ;
 FUNCTION NTSSegmentIntersectionDd(@g1 GEOM, @g2 GEOM) GEOM AS BinaryWkbGeom(WKBSegmentIntersectionDd(GeomWkb(@g1), GeomWkb(@g2))) END ;
  
--- WKBConstructionFunctions
+-- ConstructionFunctions
 FUNCTION NTSOctagonalEnvelope(@geom GEOM) GEOM AS BinaryWkbGeom(WKBOctagonalEnvelope(GeomWkb(@geom))) END ;
 FUNCTION NTSMinimumDiameter(@geom GEOM) GEOM AS BinaryWkbGeom(WKBMinimumDiameter(GeomWkb(@geom))) END ;
 FUNCTION NTSMinimumDiameterLength(@geom GEOM) FLOAT64 AS WKBMinimumDiameterLength(GeomWkb(@geom)) END ;
@@ -77,14 +77,14 @@ FUNCTION NTSInteriorPoint(@geom GEOM) GEOM AS BinaryWkbGeom(WKBInteriorPoint(Geo
 FUNCTION NTSDensify(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBDensify(GeomWkb(@geom), @distance)) END ;
 FUNCTION NTSExtractLines(@geom GEOM) GEOM AS BinaryWkbGeom(WKBExtractLines(GeomWkb(@geom))) END ;
  
--- WKBConversionFunctions
+-- ConversionFunctions
 FUNCTION NTSPointsToLine(@geom GEOM) GEOM AS BinaryWkbGeom(WKBPointsToLine(GeomWkb(@geom))) END ;
 FUNCTION NTSLineToPolygon(@geom GEOM) GEOM AS BinaryWkbGeom(WKBLineToPolygon(GeomWkb(@geom))) END ;
 FUNCTION NTSToPoints(@geom1 GEOM, @geom2 GEOM) GEOM AS BinaryWkbGeom(WKBToPoints(GeomWkb(@geom1), GeomWkb(@geom2))) END ;
 FUNCTION NTSToLines(@geom1 GEOM, @geom2 GEOM) GEOM AS BinaryWkbGeom(WKBToLines(GeomWkb(@geom1), GeomWkb(@geom2))) END ;
 FUNCTION NTSToGeometryCollection(@geom GEOM, @geom2 GEOM) GEOM AS BinaryWkbGeom(WKBToGeometryCollection(GeomWkb(@geom), GeomWkb(@geom2))) END ;
  
--- WKBCreateRandomGeometryFunctions
+-- CreateRandomGeometryFunctions
 FUNCTION NTSRandomPointsInGrid(@geom GEOM, @nPts INT32) GEOM AS BinaryWkbGeom(WKBRandomPointsInGrid(GeomWkb(@geom), @nPts)) END ;
 FUNCTION NTSRandomPoints(@geom GEOM, @nPts INT32) GEOM AS BinaryWkbGeom(WKBRandomPoints(GeomWkb(@geom), @nPts)) END ;
 FUNCTION NTSRandomRadialPoints(@geom GEOM, @nPts INT32) GEOM AS BinaryWkbGeom(WKBRandomRadialPoints(GeomWkb(@geom), @nPts)) END ;
@@ -96,7 +96,7 @@ FUNCTION NTSRandomSegmentsInGrid(@geom GEOM, @nPts INT32) GEOM AS BinaryWkbGeom(
 FUNCTION NTSRandomLineString(@geom GEOM, @nPts INT32) GEOM AS BinaryWkbGeom(WKBRandomLineString(GeomWkb(@geom), @nPts)) END ;
 FUNCTION NTSRandomRectilinearWalk(@geom GEOM, @nPts INT32) GEOM AS BinaryWkbGeom(WKBRandomRectilinearWalk(GeomWkb(@geom), @nPts)) END ;
  
--- WKBCreateShapeFunctions
+-- CreateShapeFunctions
 FUNCTION NTSGrid(@geom GEOM, @nCells INT32) GEOM AS BinaryWkbGeom(WKBGrid(GeomWkb(@geom), @nCells)) END ;
 FUNCTION NTSGridPoints(@geom GEOM, @nCells INT32) GEOM AS BinaryWkbGeom(WKBGridPoints(GeomWkb(@geom), @nCells)) END ;
 FUNCTION NTSSupercircle3(@geom GEOM, @nPts INT32) GEOM AS BinaryWkbGeom(WKBSupercircle3(GeomWkb(@geom), @nPts)) END ;
@@ -107,7 +107,7 @@ FUNCTION NTSSupercircle(@geom GEOM, @nPts INT32, @pow FLOAT64) GEOM AS BinaryWkb
 FUNCTION NTSPointFieldCentroidStar(@ptsGeom GEOM) GEOM AS BinaryWkbGeom(WKBPointFieldCentroidStar(GeomWkb(@ptsGeom))) END ;
 FUNCTION NTSPointFieldStar(@ptsGeom GEOM, @centrePt GEOM) GEOM AS BinaryWkbGeom(WKBPointFieldStar(GeomWkb(@ptsGeom), GeomWkb(@centrePt))) END ;
  
--- WKBDiffFunctions
+-- DiffFunctions
 FUNCTION NTSDiffVerticesBoth(@a GEOM, @b GEOM) GEOM AS BinaryWkbGeom(WKBDiffVerticesBoth(GeomWkb(@a), GeomWkb(@b))) END ;
 FUNCTION NTSDiffVertices(@a GEOM, @b GEOM) GEOM AS BinaryWkbGeom(WKBDiffVertices(GeomWkb(@a), GeomWkb(@b))) END ;
 FUNCTION NTSDiffSegments(@a GEOM, @b GEOM) GEOM AS BinaryWkbGeom(WKBDiffSegments(GeomWkb(@a), GeomWkb(@b))) END ;
@@ -115,10 +115,10 @@ FUNCTION NTSDiffSegmentsBoth(@a GEOM, @b GEOM) GEOM AS BinaryWkbGeom(WKBDiffSegm
 FUNCTION NTSDuplicateSegments(@a GEOM) GEOM AS BinaryWkbGeom(WKBDuplicateSegments(GeomWkb(@a))) END ;
 FUNCTION NTSSingleSegments(@a GEOM) GEOM AS BinaryWkbGeom(WKBSingleSegments(GeomWkb(@a))) END ;
  
--- WKBDissolveFunctions
+-- DissolveFunctions
 FUNCTION NTSDissolve(@geom GEOM) GEOM AS BinaryWkbGeom(WKBDissolve(GeomWkb(@geom))) END ;
  
--- WKBDistanceFunctions
+-- DistanceFunctions
 FUNCTION NTSDistance(@a GEOM, @b GEOM) FLOAT64 AS WKBDistance(GeomWkb(@a), GeomWkb(@b)) END ;
 FUNCTION NTSIsWithinDistance(@a GEOM, @b GEOM, @dist FLOAT64) BOOLEAN AS WKBIsWithinDistance(GeomWkb(@a), GeomWkb(@b), @dist) END ;
 FUNCTION NTSNearestPoints(@a GEOM, @b GEOM) GEOM AS BinaryWkbGeom(WKBNearestPoints(GeomWkb(@a), GeomWkb(@b))) END ;
@@ -131,10 +131,10 @@ FUNCTION NTSDistanceIndexed(@a GEOM, @b GEOM) FLOAT64 AS WKBDistanceIndexed(Geom
 FUNCTION NTSNearestPointsIndexed(@a GEOM, @b GEOM) GEOM AS BinaryWkbGeom(WKBNearestPointsIndexed(GeomWkb(@a), GeomWkb(@b))) END ;
 FUNCTION NTSNearestPointsIndexedAll(@a GEOM, @b GEOM) GEOM AS BinaryWkbGeom(WKBNearestPointsIndexedAll(GeomWkb(@a), GeomWkb(@b))) END ;
  
--- WKBEditFunctions
+-- EditFunctions
 FUNCTION NTSAddHole(@polyGeom GEOM, @hole GEOM) GEOM AS BinaryWkbGeom(WKBAddHole(GeomWkb(@polyGeom), GeomWkb(@hole))) END ;
  
--- WKBGeometryFunctions
+-- GeometryFunctions
 FUNCTION NTSLength(@geom GEOM) FLOAT64 AS WKBLength(GeomWkb(@geom)) END ;
 FUNCTION NTSArea(@geom GEOM) FLOAT64 AS WKBArea(GeomWkb(@geom)) END ;
 FUNCTION NTSIsCCW(@geom GEOM) BOOLEAN AS WKBIsCCW(GeomWkb(@geom)) END ;
@@ -152,7 +152,7 @@ FUNCTION NTSGetPolygonHoles(@geom GEOM) GEOM AS BinaryWkbGeom(WKBGetPolygonHoles
 FUNCTION NTSGetPolygonHoleN(@geom GEOM, @i INT32) GEOM AS BinaryWkbGeom(WKBGetPolygonHoleN(GeomWkb(@geom), @i)) END ;
 FUNCTION NTSGetCoordinates(@geom GEOM) GEOM AS BinaryWkbGeom(WKBGetCoordinates(GeomWkb(@geom))) END ;
  
--- WKBLinearReferencingFunctions
+-- LinearReferencingFunctions
 FUNCTION NTSExtractPoint(@geom GEOM, @index FLOAT64) GEOM AS BinaryWkbGeom(WKBExtractPoint(GeomWkb(@geom), @index)) END ;
 FUNCTION NTSExtractLine(@geom GEOM, @start FLOAT64, @end FLOAT64) GEOM AS BinaryWkbGeom(WKBExtractLine(GeomWkb(@geom), @start, @end)) END ;
 FUNCTION NTSExtractLineByGeom(@geom GEOM, @geom2 GEOM) GEOM AS BinaryWkbGeom(WKBExtractLineByGeom(GeomWkb(@geom), GeomWkb(@geom2))) END ;
@@ -160,7 +160,7 @@ FUNCTION NTSExtractLineByGeomBounds(@geom GEOM, @geom2 GEOM, @b1 FLOAT64, @b2 FL
 FUNCTION NTSProject(@geom GEOM, @geom2 GEOM) GEOM AS BinaryWkbGeom(WKBProject(GeomWkb(@geom), GeomWkb(@geom2))) END ;
 FUNCTION NTSProjectIndex(@geom GEOM, @geom2 GEOM) FLOAT64 AS WKBProjectIndex(GeomWkb(@geom), GeomWkb(@geom2)) END ;
  
--- WKBLineHandlingFunctions
+-- LineHandlingFunctions
 FUNCTION NTSMergeLines(@geom GEOM) GEOM AS BinaryWkbGeom(WKBMergeLines(GeomWkb(@geom))) END ;
 FUNCTION NTSSequenceLines(@geom GEOM) GEOM AS BinaryWkbGeom(WKBSequenceLines(GeomWkb(@geom))) END ;
 FUNCTION NTSExtractLines(@geom GEOM) GEOM AS BinaryWkbGeom(WKBExtractLines(GeomWkb(@geom))) END ;
@@ -168,7 +168,7 @@ FUNCTION NTSExtractSegments(@geom GEOM) GEOM AS BinaryWkbGeom(WKBExtractSegments
 FUNCTION NTSExtractChains(@geom GEOM, @maxChainSize INT32) GEOM AS BinaryWkbGeom(WKBExtractChains(GeomWkb(@geom), @maxChainSize)) END ;
 FUNCTION NTSDissolve(@geom GEOM) GEOM AS BinaryWkbGeom(WKBDissolve(GeomWkb(@geom))) END ;
  
--- WKBLineSegmentFunctions
+-- LineSegmentFunctions
 FUNCTION NTSSegmentIntersects(@geom1 GEOM, @geom2 GEOM) BOOLEAN AS WKBSegmentIntersects(GeomWkb(@geom1), GeomWkb(@geom2)) END ;
 FUNCTION NTSSegmentIntersection(@geom1 GEOM, @geom2 GEOM) GEOM AS BinaryWkbGeom(WKBSegmentIntersection(GeomWkb(@geom1), GeomWkb(@geom2))) END ;
 FUNCTION NTSSegmentIntersectionDd(@geom1 GEOM, @geom2 GEOM) GEOM AS BinaryWkbGeom(WKBSegmentIntersectionDd(GeomWkb(@geom1), GeomWkb(@geom2))) END ;
@@ -176,7 +176,7 @@ FUNCTION NTSLineIntersection(@geom1 GEOM, @geom2 GEOM) GEOM AS BinaryWkbGeom(WKB
 FUNCTION NTSLineIntersectionDD(@geom1 GEOM, @geom2 GEOM) GEOM AS BinaryWkbGeom(WKBLineIntersectionDD(GeomWkb(@geom1), GeomWkb(@geom2))) END ;
 FUNCTION NTSReflectPoint(@geom1 GEOM, @geom2 GEOM) GEOM AS BinaryWkbGeom(WKBReflectPoint(GeomWkb(@geom1), GeomWkb(@geom2))) END ;
  
--- WKBNodingFunctions
+-- NodingFunctions
 FUNCTION NTSIsNodingValid(@geom GEOM) BOOLEAN AS WKBIsNodingValid(GeomWkb(@geom)) END ;
 FUNCTION NTSIsSegmentNodingValid(@geom GEOM) BOOLEAN AS WKBIsSegmentNodingValid(GeomWkb(@geom)) END ;
 FUNCTION NTSFindOneNode(@geom GEOM) GEOM AS BinaryWkbGeom(WKBFindOneNode(GeomWkb(@geom))) END ;
@@ -189,11 +189,11 @@ FUNCTION NTSMCIndexNoding(@geom GEOM) GEOM AS BinaryWkbGeom(WKBMCIndexNoding(Geo
 FUNCTION NTSSnapRoundWithPrecision(@geom GEOM, @scaleFactor FLOAT64) GEOM AS BinaryWkbGeom(WKBSnapRoundWithPrecision(GeomWkb(@geom), @scaleFactor)) END ;
 FUNCTION NTSScaledNoding(@geom GEOM, @scaleFactor FLOAT64) GEOM AS BinaryWkbGeom(WKBScaledNoding(GeomWkb(@geom), @scaleFactor)) END ;
  
--- WKBNTSFunctions
+-- NTSFunctions
 FUNCTION NTSLogoLines(@geom GEOM) GEOM AS BinaryWkbGeom(WKBLogoLines(GeomWkb(@geom))) END ;
 FUNCTION NTSLogoBuffer(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBLogoBuffer(GeomWkb(@geom), @distance)) END ;
  
--- WKBOverlayFunctions
+-- OverlayFunctions
 FUNCTION NTSIntersection(@a GEOM, @b GEOM) GEOM AS BinaryWkbGeom(WKBIntersection(GeomWkb(@a), GeomWkb(@b))) END ;
 FUNCTION NTSUnion(@a GEOM, @b GEOM) GEOM AS BinaryWkbGeom(WKBUnion(GeomWkb(@a), GeomWkb(@b))) END ;
 FUNCTION NTSSymDifference(@a GEOM, @b GEOM) GEOM AS BinaryWkbGeom(WKBSymDifference(GeomWkb(@a), GeomWkb(@b))) END ;
@@ -203,7 +203,7 @@ FUNCTION NTSUnaryUnion(@a GEOM) GEOM AS BinaryWkbGeom(WKBUnaryUnion(GeomWkb(@a))
 FUNCTION NTSUnionUsingGeometryCollection(@a GEOM, @b GEOM) GEOM AS BinaryWkbGeom(WKBUnionUsingGeometryCollection(GeomWkb(@a), GeomWkb(@b))) END ;
 FUNCTION NTSClip(@a GEOM, @mask GEOM) GEOM AS BinaryWkbGeom(WKBClip(GeomWkb(@a), GeomWkb(@mask))) END ;
  
--- WKBPolygonizeFunctions
+-- PolygonizeFunctions
 FUNCTION NTSPolygonize(@geom GEOM) GEOM AS BinaryWkbGeom(WKBPolygonize(GeomWkb(@geom))) END ;
 FUNCTION NTSPolygonizeValidPolygonal(@geom GEOM) GEOM AS BinaryWkbGeom(WKBPolygonizeValidPolygonal(GeomWkb(@geom))) END ;
 FUNCTION NTSPolygonizeDangles(@geom GEOM) GEOM AS BinaryWkbGeom(WKBPolygonizeDangles(GeomWkb(@geom))) END ;
@@ -211,10 +211,10 @@ FUNCTION NTSPolygonizeCutEdges(@geom GEOM) GEOM AS BinaryWkbGeom(WKBPolygonizeCu
 FUNCTION NTSPolygonizeInvalidRingLines(@geom GEOM) GEOM AS BinaryWkbGeom(WKBPolygonizeInvalidRingLines(GeomWkb(@geom))) END ;
 FUNCTION NTSPolygonizeAllErrors(@geom GEOM) GEOM AS BinaryWkbGeom(WKBPolygonizeAllErrors(GeomWkb(@geom))) END ;
  
--- WKBPrecisionFunctions
+-- PrecisionFunctions
 FUNCTION NTSReducePrecisionPointwise(@geom GEOM, @scaleFactor FLOAT64) GEOM AS BinaryWkbGeom(WKBReducePrecisionPointwise(GeomWkb(@geom), @scaleFactor)) END ;
  
--- WKBSelectionFunctions
+-- SelectionFunctions
 FUNCTION NTSIntersects(@a GEOM, @mask GEOM) GEOM AS BinaryWkbGeom(WKBIntersects(GeomWkb(@a), GeomWkb(@mask))) END ;
 FUNCTION NTSCovers(@a GEOM, @mask GEOM) GEOM AS BinaryWkbGeom(WKBCovers(GeomWkb(@a), GeomWkb(@mask))) END ;
 FUNCTION NTSCoveredBy(@a GEOM, @mask GEOM) GEOM AS BinaryWkbGeom(WKBCoveredBy(GeomWkb(@a), GeomWkb(@mask))) END ;
@@ -229,18 +229,18 @@ FUNCTION NTSwithinDistance(@a GEOM, @mask GEOM, @maximumDistance FLOAT64) GEOM A
 FUNCTION NTSwithinDistanceIndexed(@a GEOM, @mask GEOM, @maximumDistance FLOAT64) GEOM AS BinaryWkbGeom(WKBwithinDistanceIndexed(GeomWkb(@a), GeomWkb(@mask), @maximumDistance)) END ;
 FUNCTION NTSFirstNComponents(@geom GEOM, @n INT32) GEOM AS BinaryWkbGeom(WKBFirstNComponents(GeomWkb(@geom), @n)) END ;
  
--- WKBSimplificationFunctions
+-- SimplificationFunctions
 FUNCTION NTSSimplifyDp(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBSimplifyDp(GeomWkb(@geom), @distance)) END ;
 FUNCTION NTSSimplifyTp(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBSimplifyTp(GeomWkb(@geom), @distance)) END ;
 FUNCTION NTSSimplifyVW(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBSimplifyVW(GeomWkb(@geom), @distance)) END ;
  
--- WKBSortingFunctions
+-- SortingFunctions
 FUNCTION NTSSortByLength(@geom GEOM) GEOM AS BinaryWkbGeom(WKBSortByLength(GeomWkb(@geom))) END ;
 FUNCTION NTSSortByArea(@geom GEOM) GEOM AS BinaryWkbGeom(WKBSortByArea(GeomWkb(@geom))) END ;
 FUNCTION NTSSortByHilbertCode(@geom GEOM) GEOM AS BinaryWkbGeom(WKBSortByHilbertCode(GeomWkb(@geom))) END ;
 FUNCTION NTSSortByMortonCode(@geom GEOM) GEOM AS BinaryWkbGeom(WKBSortByMortonCode(GeomWkb(@geom))) END ;
  
--- WKBSpatialIndexFunctions
+-- SpatialIndexFunctions
 FUNCTION NTSKdTreeQuery(@pts GEOM, @query GEOM, @tolerance FLOAT64) GEOM AS BinaryWkbGeom(WKBKdTreeQuery(GeomWkb(@pts), GeomWkb(@query), @tolerance)) END ;
 FUNCTION NTSKdTreeQueryRepeated(@pts GEOM, @queryEnv GEOM, @tolerance FLOAT64) GEOM AS BinaryWkbGeom(WKBKdTreeQueryRepeated(GeomWkb(@pts), GeomWkb(@queryEnv), @tolerance)) END ;
 FUNCTION NTSSTRtreeBounds(@geoms GEOM) GEOM AS BinaryWkbGeom(WKBSTRtreeBounds(GeomWkb(@geoms))) END ;
@@ -251,7 +251,7 @@ FUNCTION NTSStrTreeNNk(@geoms GEOM, @geom GEOM, @k INT32) GEOM AS BinaryWkbGeom(
 FUNCTION NTSQuadTreeQuery(@geoms GEOM, @queryEnv GEOM) GEOM AS BinaryWkbGeom(WKBQuadTreeQuery(GeomWkb(@geoms), GeomWkb(@queryEnv))) END ;
 FUNCTION NTSMonotoneChains(@geom GEOM) GEOM AS BinaryWkbGeom(WKBMonotoneChains(GeomWkb(@geom))) END ;
  
--- WKBTriangleFunctions
+-- TriangleFunctions
 FUNCTION NTSCentroid(@geom GEOM) GEOM AS BinaryWkbGeom(WKBCentroid(GeomWkb(@geom))) END ;
 FUNCTION NTSCircumcentre(@geom GEOM) GEOM AS BinaryWkbGeom(WKBCircumcentre(GeomWkb(@geom))) END ;
 FUNCTION NTSCircumcentreDD(@geom GEOM) GEOM AS BinaryWkbGeom(WKBCircumcentreDD(GeomWkb(@geom))) END ;
@@ -259,6 +259,6 @@ FUNCTION NTSPerpendicularBisectors(@geom GEOM) GEOM AS BinaryWkbGeom(WKBPerpendi
 FUNCTION NTSInCentre(@geom GEOM) GEOM AS BinaryWkbGeom(WKBInCentre(GeomWkb(@geom))) END ;
 FUNCTION NTSAngleBisectors(@geom GEOM) GEOM AS BinaryWkbGeom(WKBAngleBisectors(GeomWkb(@geom))) END ;
  
--- WKBValidationFunctions
+-- ValidationFunctions
 FUNCTION NTSInvalidLocations(@geom GEOM) GEOM AS BinaryWkbGeom(WKBInvalidLocations(GeomWkb(@geom))) END ;
 FUNCTION NTSInvalidGeoms(@geom GEOM) GEOM AS BinaryWkbGeom(WKBInvalidGeoms(GeomWkb(@geom))) END ;
