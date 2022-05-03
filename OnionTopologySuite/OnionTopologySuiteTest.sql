@@ -108,8 +108,8 @@ VALUE @joinStyle          INT32 = 3;
 --        Bevel = 3
 VALUE @mitreLimit         FLOAT64 = 1;
 
-INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'WKBOffsetCurve(@geom, @distance)', WKBOffsetCurve(@geom, @distance) FROM (VALUES (1));
-INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'WKBOffsetCurveWithParams(@geom, @distance, @quadrantSegments, @joinStyle, @mitreLimit)', WKBOffsetCurveWithParams(@geom, @distance, @quadrantSegments, @joinStyle, @mitreLimit) FROM (VALUES (1));
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSOffsetCurve(@lines, @distance)', NTSOffsetCurve(@lines, @distance) FROM (VALUES (1));
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSOffsetCurveWithParams(@lines, @distance, @quadrantSegments, @joinStyle, @mitreLimit)', NTSOffsetCurveWithParams(@lines, @distance, @quadrantSegments, @joinStyle, @mitreLimit) FROM (VALUES (1));
 
 
 -- WKBBezierCurveFunctions
