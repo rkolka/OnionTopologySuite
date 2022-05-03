@@ -1,6 +1,10 @@
 ﻿-- $manifold$
 -- $include$ [OnionTopologySuiteWKB.sql]
 
+-- WKBOffsetCurveFunctions
+FUNCTION NTSOffsetCurve(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBOffsetCurve(GeomWkb(@geom), @distance)) END  ;
+FUNCTION NTSOffsetCurveWithParams(@geom GEOM, @distance FLOAT64, @quadrantSegments INT32, @joinStyle INT32, @mitreLimit FLOAT64) GEOM AS BinaryWkbGeom(WKBOffsetCurveWithParams(GeomWkb(@geom), @distance, @quadrantSegments, @joinStyle, @mitreLimit)) END ;
+
 -- WKBBezierCurveFunctions
 FUNCTION NTSBezierCurveByAlpha(@geom GEOM, @alpha FLOAT64) GEOM AS BinaryWkbGeom(WKBBezierCurveByAlpha(GeomWkb(@geom), @alpha)) END ;
 FUNCTION NTSBezierCurveByAlphaAndSkew(@geom GEOM, @alpha FLOAT64, @skew BOOLEAN) GEOM AS BinaryWkbGeom(WKBBezierCurveByAlphaAndSkew(GeomWkb(@geom), @alpha, @skew)) END ;

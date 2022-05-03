@@ -1,32 +1,32 @@
 ﻿-- $manifold$
 -- $include$ [OnionTopologySuiteGEOM.sql]
 
-CREATE DRAWING [Drawing] (
-  PROPERTY 'FieldGeom' 'Geom',
-  PROPERTY 'Table' '[Drawing Table]'
-);
-CREATE TABLE [Drawing Table] (
-  [mfd_id] INT64,
-  [Geom] GEOM,
-  INDEX [mfd_id_x] BTREE ([mfd_id]),
-  INDEX [Geom_x] RTREE ([Geom]),
-  PROPERTY 'FieldCoordSystem.Geom' '{ "Axes": "XY", "Base": "WGS 84 (EPSG:4326)", "CenterLat": 0, "CenterLon": 0, "Eccentricity": 0.08181919084262149, "MajorAxis": 6378137, "Name": "WGS 84 \\/ Pseudo-Mercator (EPSG:3857)", "System": "Pseudo Mercator", "Unit": "Meter", "UnitScale": 1, "UnitShort": "m" }'
-);
+--CREATE DRAWING [Drawing] (
+--  PROPERTY 'FieldGeom' 'Geom',
+--  PROPERTY 'Table' '[Drawing Table]'
+--);
+--CREATE TABLE [Drawing Table] (
+--  [mfd_id] INT64,
+--  [Geom] GEOM,
+--  INDEX [mfd_id_x] BTREE ([mfd_id]),
+--  INDEX [Geom_x] RTREE ([Geom]),
+--  PROPERTY 'FieldCoordSystem.Geom' '{ "Axes": "XY", "Base": "WGS 84 (EPSG:4326)", "CenterLat": 0, "CenterLon": 0, "Eccentricity": 0.08181919084262149, "MajorAxis": 6378137, "Name": "WGS 84 \\/ Pseudo-Mercator (EPSG:3857)", "System": "Pseudo Mercator", "Unit": "Meter", "UnitScale": 1, "UnitShort": "m" }'
+--);
 
-CREATE TABLE [Results] (
-  [mfd_id] INT64,
-  [signature] NVARCHAR,
-  [resultNumber] FLOAT64,
-  [resultbOOLEAN] BOOLEAN,
-  [resultGeom] GEOM,
-  INDEX [mfd_id_x] BTREE ([mfd_id]),
-  INDEX [resultGeom_x] RTREE ([resultGeom])
-);
-CREATE DRAWING [Results Drawing] (
-  PROPERTY 'FieldGeom' 'resultGeom',
-  PROPERTY 'StyleAreaColorBack' '{ "Value": -16777216 }',
-  PROPERTY 'Table' '[Results]'
-);
+--CREATE TABLE [Results] (
+--  [mfd_id] INT64,
+--  [signature] NVARCHAR,
+--  [resultNumber] FLOAT64,
+--  [resultbOOLEAN] BOOLEAN,
+--  [resultGeom] GEOM,
+--  INDEX [mfd_id_x] BTREE ([mfd_id]),
+--  INDEX [resultGeom_x] RTREE ([resultGeom])
+--);
+--CREATE DRAWING [Results Drawing] (
+--  PROPERTY 'FieldGeom' 'resultGeom',
+--  PROPERTY 'StyleAreaColorBack' '{ "Value": -16777216 }',
+--  PROPERTY 'Table' '[Results]'
+--);
 
 
 VALUE @area GEOM = ( SELECT First([Geom]) FROM [Drawing] where GeomIsArea([Geom]) );
@@ -77,34 +77,42 @@ VALUE @geoms              GEOM = @area;
 VALUE @geomsegment        GEOM = @line;
 VALUE @i                  INT32 = 2;
 VALUE @index              INT32 = 3;
-VALUE @joinStyle          INT32 = 3;
---        Round = 1,
---        Mitre = 2,
---        Bevel = 3
+
 VALUE @k                  INT32 = 6;  --NNk
 VALUE @maxChainSize       INT32 = 4;
 VALUE @maximumDistance    FLOAT64 = 5;
 VALUE @midDist            FLOAT64 = 3; -- Variable buffer
 VALUE @minArea            FLOAT64 = 1;
-VALUE @mitreLimit         FLOAT64 = 1;
+
 VALUE @multipleOfPi       FLOAT64 = 0.31831;
 VALUE @n                  INT32 = 3;
 VALUE @nCells             INT32 = 8;
 VALUE @nPts               INT32 = 6;
 VALUE @pow                FLOAT64 = 2;
-VALUE @quadrantSegments   INT32 = 5;
 VALUE @scale              FLOAT64 = 2.2;
 VALUE @scaleFactor        FLOAT64 = 2.3;
 VALUE @simplifyFactor     FLOAT64 = 1.1;
 VALUE @start              FLOAT64 = 2; --using the length along the line as the index.
 VALUE @startDist          FLOAT64 = 1; -- Variable buffer
 VALUE @tolerance          FLOAT64 = 0.001;
- 
+
 
 DELETE FROM [Results];
 
--- WKBBezierCurveFunctions
+-- WKBOffsetCurveFunctions
+VALUE @distance           FLOAT64 = 2;
+VALUE @quadrantSegments   INT32 = 5;
+VALUE @joinStyle          INT32 = 3;
+--        Round = 1,
+--        Mitre = 2,
+--        Bevel = 3
+VALUE @mitreLimit         FLOAT64 = 1;
 
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'WKBOffsetCurve(@geom, @distance)', WKBOffsetCurve(@geom, @distance) FROM (VALUES (1));
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'WKBOffsetCurveWithParams(@geom, @distance, @quadrantSegments, @joinStyle, @mitreLimit)', WKBOffsetCurveWithParams(@geom, @distance, @quadrantSegments, @joinStyle, @mitreLimit) FROM (VALUES (1));
+
+
+-- WKBBezierCurveFunctions
 VALUE @alpha	          FLOAT64 = 1.2;  -- A curvedness parameter (0 is linear, 1 is round, >1 is increasingly curved)
 VALUE @skew		          FLOAT64 = -1;  -- The skew parameter (0 is none, positive skews towards longer side, negative towards shorter
 VALUE @controlPoints      GEOM = ( SELECT Last([Geom]) FROM [Drawing] where mfd_id = 5 ); -- create a name field
@@ -150,7 +158,7 @@ INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSRotate(@geom, @mult
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSTranslateCentreToOrigin(@geom)', NTSTranslateCentreToOrigin(@geom) FROM (VALUES (1));
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSTranslateToOrigin(@geom)', NTSTranslateToOrigin(@geom) FROM (VALUES (1));
 
-
+-- WKBBoundaryFunctions
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBoundary(@geom)', NTSBoundary(@geom) FROM (VALUES (1));
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBoundaryMod2(@geom)', NTSBoundaryMod2(@geom) FROM (VALUES (1));
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBoundaryEndpoint(@geom)', NTSBoundaryEndpoint(@geom) FROM (VALUES (1));

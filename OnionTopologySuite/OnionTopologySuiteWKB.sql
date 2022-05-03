@@ -1,4 +1,8 @@
 ﻿
+-- WKBOffsetCurveFunctions
+FUNCTION WKBOffsetCurve(@wKBGeom VARBINARY, @distance FLOAT64) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBOffsetCurveFunctions.WKBOffsetCurve';
+FUNCTION WKBOffsetCurveWithParams(@wKBGeom VARBINARY, @distance FLOAT64, @quadrantSegments INT32, @joinStyle INT32, @mitreLimit FLOAT64) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBOffsetCurveFunctions.WKBOffsetCurveWithParams';
+
 -- WKBBezierCurveFunctions
 FUNCTION WKBBezierCurveByAlpha(@wKBGeom VARBINARY, @alpha FLOAT64) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBBezierCurveFunctions.WKBBezierCurveByAlpha';
 FUNCTION WKBBezierCurveByAlphaAndSkew(@wKBGeom VARBINARY, @alpha FLOAT64, @skew BOOLEAN) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBBezierCurveFunctions.WKBBezierCurveByAlphaAndSkew';
