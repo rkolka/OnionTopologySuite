@@ -1,7 +1,5 @@
 ﻿using NetTopologySuite.Algorithm.Construct;
 using NetTopologySuite.Geometries;
-using NetTopologySuite.Hull;
-
 
 
 /// <summary>
@@ -37,11 +35,6 @@ public static class OnionTopologySuite
         return null; // not implemented in NTS
     }
 
-    public static byte[] WKBChiShape(byte[] geomwkb, double tolerance)
-    {
-        Geometry geometry = wKBReader.Read(geomwkb);
-        return new ChiShape(geometry, tolerance).GetResult().ToBinary();
-    }
 
 
 }
