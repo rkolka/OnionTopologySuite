@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-set M9=C:\Program Files\Manifold\v9.0\shared
+set M9=C:\Program Files\Manifold\v9.0\shared\Addins
 
 if exist "%M9%\OnionTopologySuite\" GOTO ALREADYINSTALLED
 GOTO DOINST
@@ -17,8 +17,6 @@ GOTO CANNOTCREATEDIR
 :COPYFILES
 echo ------- Copying add-in files
 copy NetTopologySuite.dll "%M9%\OnionTopologySuite\"
-copy NetTopologySuite.Lab.dll "%M9%\OnionTopologySuite\"
-copy System.Runtime.CompilerServices.Unsafe.dll "%M9%\OnionTopologySuite\"
 copy System.Buffers.dll "%M9%\OnionTopologySuite\"
 copy System.Memory.dll "%M9%\OnionTopologySuite\"
 copy System.Numerics.Vectors.dll "%M9%\OnionTopologySuite\"

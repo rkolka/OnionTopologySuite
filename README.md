@@ -36,6 +36,23 @@ Some are duplicates of, or don't even make much sense in Manifold.
 
 ## List of functions
 For details, study code comments [here](https://github.com/NetTopologySuite/NetTopologySuite/tree/c838c5061aa0f13d1fa65f828a868d790302ec06/test/NetTopologySuite.TestRunner/Functions)
+
+#### OffsetCurveFunctions
+* NTSOffsetCurve(@geom, @distance)
+* NTSOffsetCurveWithParams(@geom, @distance, @quadrantSegments, @joinStyle, @mitreLimit) 
+
+#### BezierCurveFunctions
+* NTSBezierCurveByAlpha(@geom, @alpha)
+* NTSBezierCurveByAlphaAndSkew(@geom, @alpha, @skew)
+* NTSBezierCurveWithControlPoints(@geom, @controlPoints)
+
+#### HullFunctions
+* NTSConcaveHullByLength(@geom, @maxLength, @isHolesAllowed)
+* NTSConcaveHullByLengthRatio(@geom, @lengthRatio, @isHolesAllowed)
+* NTSPolygonHull(@geom, @vertexNumFraction)
+* NTSPolygonHullByAreaDelta(@geom, @areaDeltaRatio)
+
+#### AffineTransformationFunctions
 * NTSTransformByVectors(@geom, @geomcontrol)
 * NTSTransformByBaseline(@geom, @geomdestBaseline)
 * NTSScale(@geom, @scale)
@@ -44,15 +61,21 @@ For details, study code comments [here](https://github.com/NetTopologySuite/NetT
 * NTSRotate(@geom, @multipleOfPi)
 * NTSTranslateCentreToOrigin(@geom)
 * NTSTranslateToOrigin(@geom)
+
+#### BoundaryFunctions
 * NTSBoundary(@geom)
 * NTSBoundaryMod2(@geom)
 * NTSBoundaryEndpoint(@geom)
 * NTSBoundaryMonoValentEnd(@geom)
 * NTSBoundaryMultiValentEnd(@geom)
+
+#### BufferByUnionFunctions
 * NTSComponentBuffers(@geom, @distance)
 * NTSBufferByComponents(@geom, @distance)
 * NTSBufferBySegments(@geom, @distance)
 * NTSBufferByChains(@geom, @distance, @maxChainSize)
+
+#### BufferFunctions
 * NTSBuffer(@geom, @distance)
 * NTSBufferWithParams(@geom, @distance, @quadrantSegments, @capStyle, @joinStyle, @mitreLimit)
 * NTSBufferWithSimplify(@geom, @distance, @simplifyFactor)
@@ -66,11 +89,15 @@ For details, study code comments [here](https://github.com/NetTopologySuite/NetT
 * NTSBufferEach(@geom, @distance)
 * NTSVariableBuffer(@geomline, @startDist, @endDist)
 * NTSVariableBufferMid(@geomline, @startDist, @midDist)
+
+#### CGAlgorithmFunctions
 * NTSOrientationIndex(@geomsegment, @geomptGeom)
 * NTSOrientationIndexDd(@geomsegment, @geomptGeom)
 * NTSSegmentIntersects(@geomg1, @geomg2)
 * NTSSegmentIntersection(@geomg1, @geomg2)
 * NTSSegmentIntersectionDd(@geomg1, @geomg2)
+
+#### ConstructionFunctions
 * NTSOctagonalEnvelope(@geom)
 * NTSMinimumDiameter(@geom)
 * NTSMinimumDiameterLength(@geom)
@@ -85,11 +112,15 @@ For details, study code comments [here](https://github.com/NetTopologySuite/NetT
 * NTSInteriorPoint(@geom)
 * NTSDensify(@geom, @distance)
 * NTSExtractLines(@geom)
+
+#### ConversionFunctions
 * NTSPointsToLine(@geom)
 * NTSLineToPolygon(@geom)
 * NTSToPoints(@geom1, @geom2)
 * NTSToLines(@geom1, @geom2)
 * NTSToGeometryCollection(@geom, @geom2)
+
+#### CreateRandomGeometryFunctions
 * NTSRandomPointsInGrid(@geom, @nPts)
 * NTSRandomPoints(@geom, @nPts)
 * NTSRandomRadialPoints(@geom, @nPts)
@@ -100,6 +131,8 @@ For details, study code comments [here](https://github.com/NetTopologySuite/NetT
 * NTSRandomSegmentsInGrid(@geom, @nPts)
 * NTSRandomLineString(@geom, @nPts)
 * NTSRandomRectilinearWalk(@geom, @nPts)
+
+#### CreateShapeFunctions
 * NTSGrid(@geom, @nCells)
 * NTSGridPoints(@geom, @nCells)
 * NTSSupercircle3(@geom, @nPts)
@@ -109,13 +142,19 @@ For details, study code comments [here](https://github.com/NetTopologySuite/NetT
 * NTSSupercircle(@geom, @nPts, @pow)
 * NTSPointFieldCentroidStar(@geomptsGeom)
 * NTSPointFieldStar(@geomptsGeom, @geomcentrePt)
+
+#### DiffFunctions
 * NTSDiffVerticesBoth(@geoma, @geomb)
 * NTSDiffVertices(@geoma, @geomb)
 * NTSDiffSegments(@geoma, @geomb)
 * NTSDiffSegmentsBoth(@geoma, @geomb)
 * NTSDuplicateSegments(@geoma)
 * NTSSingleSegments(@geoma)
+
+#### DissolveFunctions
 * NTSDissolve(@geom)
+
+#### DistanceFunctions
 * NTSDistance(@geoma, @geomb)
 * NTSIsWithinDistance(@geoma, @geomb, @dist)
 * NTSNearestPoints(@geoma, @geomb)
@@ -127,7 +166,11 @@ For details, study code comments [here](https://github.com/NetTopologySuite/NetT
 * NTSDistanceIndexed(@geoma, @geomb)
 * NTSNearestPointsIndexed(@geoma, @geomb)
 * NTSNearestPointsIndexedAll(@geoma, @geomb)
+
+#### EditFunctions
 * NTSAddHole(@geompolyGeom, @geomhole)
+
+#### GeometryFunctions
 * NTSLength(@geom)
 * NTSArea(@geom)
 * NTSIsCCW(@geom)
@@ -144,10 +187,14 @@ For details, study code comments [here](https://github.com/NetTopologySuite/NetT
 * NTSGetPolygonHoles(@geom)
 * NTSGetPolygonHoleN(@geom, @i)
 * NTSGetCoordinates(@geom)
+
+#### LinearReferencingFunctions
 * NTSExtractPoint(@geom, @index)
 * NTSExtractLine(@geom, @start, @end)
 * NTSProject(@geom, @geom2)
 * NTSProjectIndex(@geom, @geom2)
+
+#### 
 * NTSMergeLines(@geom)
 * NTSSequenceLines(@geom)
 * NTSExtractLines(@geom)

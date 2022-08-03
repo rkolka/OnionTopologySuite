@@ -1,7 +1,5 @@
 ﻿using NetTopologySuite.Algorithm.Construct;
 using NetTopologySuite.Geometries;
-using NetTopologySuite.Hull;
-
 
 
 /// <summary>
@@ -18,30 +16,7 @@ public static class OnionTopologySuite
 
     // to write wkb, use Geometry.ToBinary(), but for some geometry types (GeometryCollection) it is not available.
 
-    public static byte[] WKBMaximumInscribedCircle(byte[] geomwkb, double tolerance)
-    {
-        Geometry geometry = wKBReader.Read(geomwkb);
-        return new MaximumInscribedCircle(geometry, tolerance).GetRadiusLine().ToBinary();
-    }
-
-    public static byte[] WKBLargestEmptyCircle(byte[] geomwkb, double tolerance)
-    {
-        Geometry geometry = wKBReader.Read(geomwkb);
-        return new LargestEmptyCircle(geometry, tolerance).GetRadiusLine().ToBinary();
-    }
-
-    public static byte[] WKBConcaveHull(byte[] geomwkb, double tolerance)
-    {
-        Geometry geometry = wKBReader.Read(geomwkb);
-        //return new ConcaveHull(geometry, tolerance).GetResult().ToBinary();
-        return null; // not implemented in NTS
-    }
-
-    public static byte[] WKBChiShape(byte[] geomwkb, double tolerance)
-    {
-        Geometry geometry = wKBReader.Read(geomwkb);
-        return new ChiShape(geometry, tolerance).GetResult().ToBinary();
-    }
+    // Everything is in WKB....Functions.cs 
 
 
 }
