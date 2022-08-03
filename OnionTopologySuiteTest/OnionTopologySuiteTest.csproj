@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="extnet">
-      <HintPath>C:\Program Files\Manifold\v9.0\bin64\extnet.dll</HintPath>
+      <HintPath>C:\Program Files\Manifold\v9.0\extnet.dll</HintPath>
     </Reference>
     <Reference Include="NetTopologySuite, Version=2.0.0.0, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
       <HintPath>..\packages\NetTopologySuite.2.4.0\lib\netstandard2.0\NetTopologySuite.dll</HintPath>
