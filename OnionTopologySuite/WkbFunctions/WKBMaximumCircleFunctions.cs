@@ -1,5 +1,5 @@
 ﻿using NetTopologySuite.Geometries;
-using NetTopologySuite.Shape;
+using NetTopologySuite.Algorithm.Construct;
 
 public static class WKBMaximumCircleFunctions
 {

@@ -1,5 +1,6 @@
 ﻿using NetTopologySuite.Geometries;
 using NetTopologySuite.Algorithm.Hull;
+using NetTopologySuite.Simplify;
 
 public static class WKBHullFunctions
 {
@@ -19,16 +20,16 @@ public static class WKBHullFunctions
         return ConcaveHull.ConcaveHullByLengthRatio(geometry, lengthRatio, isHolesAllowed).ToBinary();
     }
 
-    public static byte[] WKBPolygonHull(byte[] geomwkb, double vertexNumFraction)
+    public static byte[] WKBPolygonHull(byte[] geomwkb, bool isOuter, double vertexNumFraction)
     {
         Geometry geometry = wKBReader.Read(geomwkb);
-        return PolygonHull.Hull(geometry, vertexNumFraction).ToBinary();
+        return PolygonHullSimplifier.Hull(geometry, isOuter, vertexNumFraction).ToBinary();
     }
 
-    public static byte[] WKBPolygonHullByAreaDelta(byte[] geomwkb, double areaDeltaRatio)
+    public static byte[] WKBPolygonHullByAreaDelta(byte[] geomwkb, bool isOuter, double areaDeltaRatio)
     {
         Geometry geometry = wKBReader.Read(geomwkb);
-        return PolygonHull.HullByAreaDelta(geometry, areaDeltaRatio).ToBinary();
+        return PolygonHullSimplifier.HullByAreaDelta(geometry, isOuter, areaDeltaRatio).ToBinary();
     }
 
 }

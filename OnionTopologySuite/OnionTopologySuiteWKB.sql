@@ -11,8 +11,8 @@ FUNCTION WKBBezierCurveWithControlPoints(@wKBGeom VARBINARY, @controlPoints VARB
 -- WKBHullFunctions
 FUNCTION WKBConcaveHullByLength(@wKBGeom VARBINARY, @maxLength FLOAT64, @isHolesAllowed BOOLEAN) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBHullFunctions.WKBConcaveHullByLength';
 FUNCTION WKBConcaveHullByLengthRatio(@wKBGeom VARBINARY, @lengthRatio FLOAT64, @isHolesAllowed BOOLEAN) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBHullFunctions.WKBConcaveHullByLengthRatio';
-FUNCTION WKBPolygonHull(@wKBGeom VARBINARY, @vertexNumFraction FLOAT64) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBHullFunctions.WKBPolygonHull';
-FUNCTION WKBPolygonHullByAreaDelta(@wKBGeom VARBINARY, @areaDeltaRatio FLOAT64) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBHullFunctions.WKBPolygonHullByAreaDelta';
+FUNCTION WKBPolygonHull(@wKBGeom VARBINARY, @isOuter BOOLEAN, @vertexNumFraction FLOAT64) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBHullFunctions.WKBPolygonHull';
+FUNCTION WKBPolygonHullByAreaDelta(@wKBGeom VARBINARY, @isOuter BOOLEAN, @areaDeltaRatio FLOAT64) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBHullFunctions.WKBPolygonHullByAreaDelta';
  
 -- WKBAffineTransformationFunctions
 FUNCTION WKBTransformByVectors(@wKBGeom VARBINARY, @wKBcontrol VARBINARY) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBAffineTransformationFunctions.WKBTransformByVectors';
