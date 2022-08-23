@@ -125,6 +125,7 @@ INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveWithCont
 -- WKBHullFunctions
 VALUE @maxLength          FLOAT64 = 3.3;  -- The target maximum edge length
 VALUE @isHolesAllowed     BOOLEAN = FALSE; -- A flag whether holes are allowed in the result
+VALUE @isOuter            BOOLEAN = FALSE; -- A flag whether Hull is outer. 
 VALUE @lengthRatio        FLOAT64 = 0.4;   -- The edge length ratio 
 	-- is a fraction of the length difference between the longest and shortest edges 
 	-- in the Delaunay Triangulation of the input points.
@@ -143,8 +144,8 @@ VALUE @areaDeltaRatio     FLOAT64 = 0.5;  -- The target ratio of area difference
 
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSConcaveHullByLength(@geom, @maxLength, @isHolesAllowed)', NTSConcaveHullByLength(@geom, @maxLength, @isHolesAllowed) FROM (VALUES (1));
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSConcaveHullByLengthRatio(@geom, @lengthRatio, @isHolesAllowed)', NTSConcaveHullByLengthRatio(@geom, @lengthRatio, @isHolesAllowed) FROM (VALUES (1));
-INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSPolygonHull(@geom, @vertexNumFraction)', NTSPolygonHull(@geom, @vertexNumFraction) FROM (VALUES (1));
-INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSPolygonHullByAreaDelta(@geom, @areaDeltaRatio)', NTSPolygonHullByAreaDelta(@geom, @areaDeltaRatio) FROM (VALUES (1));
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSPolygonHull(@geom, @isOuter, @vertexNumFraction)', NTSPolygonHull(@geom, @isOuter, @vertexNumFraction) FROM (VALUES (1));
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSPolygonHullByAreaDelta(@geom, @isOuter, @areaDeltaRatio)', NTSPolygonHullByAreaDelta(@geom, @isOuter, @areaDeltaRatio) FROM (VALUES (1));
 
 
 
