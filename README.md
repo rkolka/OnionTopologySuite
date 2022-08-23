@@ -49,8 +49,8 @@ For details, study code comments [here](https://github.com/NetTopologySuite/NetT
 #### HullFunctions
 * NTSConcaveHullByLength(@geom, @maxLength, @isHolesAllowed)
 * NTSConcaveHullByLengthRatio(@geom, @lengthRatio, @isHolesAllowed)
-* NTSPolygonHull(@geom, @vertexNumFraction)
-* NTSPolygonHullByAreaDelta(@geom, @areaDeltaRatio)
+* NTSPolygonHull(@geom, @isOuter, @vertexNumFraction)
+* NTSPolygonHullByAreaDelta(@geom, @isOuter, @areaDeltaRatio)
 
 #### AffineTransformationFunctions
 * NTSTransformByVectors(@geom, @geomcontrol)
