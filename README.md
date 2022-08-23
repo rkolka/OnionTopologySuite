@@ -12,7 +12,7 @@ Because it has layers. Starting from user facing (top) layer:
 
 
 ## Using
-Download add-in [(link)](https://raw.githubusercontent.com/rkolka/OnionTopologySuite/master/OnionTopologySuite.zip) and unpack it under ~\shared\.
+Download add-in [(link)](https://raw.githubusercontent.com/rkolka/OnionTopologySuite/master/OnionTopologySuite.zip) and unpack it under ~\extras\.
 
 These files are imported into your project if you run it from Tools->Add-ins->OnionTopologySuite:
 * OnionTopologySuiteWKB.sql
@@ -49,8 +49,8 @@ For details, study code comments [here](https://github.com/NetTopologySuite/NetT
 #### HullFunctions
 * NTSConcaveHullByLength(@geom, @maxLength, @isHolesAllowed)
 * NTSConcaveHullByLengthRatio(@geom, @lengthRatio, @isHolesAllowed)
-* NTSPolygonHull(@geom, @vertexNumFraction)
-* NTSPolygonHullByAreaDelta(@geom, @areaDeltaRatio)
+* NTSPolygonHull(@geom, @isOuter, @vertexNumFraction)
+* NTSPolygonHullByAreaDelta(@geom, @isOuter, @areaDeltaRatio)
 
 #### AffineTransformationFunctions
 * NTSTransformByVectors(@geom, @geomcontrol)
