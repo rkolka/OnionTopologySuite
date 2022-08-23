@@ -12,7 +12,7 @@ Because it has layers. Starting from user facing (top) layer:
 
 
 ## Using
-Download add-in [(link)](https://raw.githubusercontent.com/rkolka/OnionTopologySuite/master/OnionTopologySuite.zip) and unpack it under ~\shared\.
+Download add-in [(link)](https://raw.githubusercontent.com/rkolka/OnionTopologySuite/master/OnionTopologySuite.zip) and unpack it under ~\extras\.
 
 These files are imported into your project if you run it from Tools->Add-ins->OnionTopologySuite:
 * OnionTopologySuiteWKB.sql
