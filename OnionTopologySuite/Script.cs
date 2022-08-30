@@ -8,7 +8,7 @@ public class Script
     private static readonly string AddinName = "OnionTopologySuite";
     private static readonly string AddinCodeFolder = "Code\\OnionTopologySuite";
 
-    private static readonly string[] CodeFiles = { "OnionTopologySuiteWKB.sql", "OnionTopologySuiteGEOM.sql", "OnionTopologySuiteTest.sql" };
+    private static readonly string[] FilesToImport = { "OnionTopologySuiteWKB.sql", "OnionTopologySuiteGEOM.sql", "OnionTopologySuiteTest.sql", "OnionTopologySuiteTryWKB.sql", "OnionTopologySuiteTryGEOM.sql" };
 
 
     private static Context Manifold;
@@ -24,7 +24,7 @@ public class Script
         // Import CodeFiles
         using (Database db = app.GetDatabaseRoot())
         {
-            foreach (string fname in CodeFiles)
+            foreach (string fname in FilesToImport)
             {
                 // if not existing or user wants to overwrite
                 bool overwrite = true;
