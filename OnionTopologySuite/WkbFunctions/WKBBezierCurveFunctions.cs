@@ -1,5 +1,6 @@
 ﻿using NetTopologySuite.Geometries;
 using NetTopologySuite.Shape;
+using System;
 
 public static class WKBBezierCurveFunctions
 {
@@ -37,6 +38,43 @@ public static class WKBBezierCurveFunctions
         Geometry geometry = wKBReader.Read(geomwkb);
         Geometry _controlPoints = wKBReader.Read(controlPoints);
         return CubicBezierCurve.Create(geometry, _controlPoints).ToBinary();
+
+    }
+
+
+    /* 
+     * System.IndexOutOfRangeException
+  HResult=0x80131508
+  Message=Index was outside the bounds of the array.
+  Source=NetTopologySuite
+  StackTrace:
+   at NetTopologySuite.Shape.CubicBezierCurve.BezierCurve(Coordinate[] coords, Boolean isRing)
+   at NetTopologySuite.Shape.CubicBezierCurve.BezierRing(LinearRing ring)
+   at NetTopologySuite.Shape.CubicBezierCurve.BezierPolygon(Polygon poly)
+   at NetTopologySuite.Geometries.Utilities.GeometryMapper.FlatMap(Geometry geom, IMapOp op, List`1 mapped)
+   at NetTopologySuite.Geometries.Utilities.GeometryMapper.FlatMap(Geometry geom, Dimension emptyDim, IMapOp op)
+   at NetTopologySuite.Shape.CubicBezierCurve.Create(Geometry geom, Geometry controlPoints)
+   at WKBBezierCurveFunctions.TryWKBBezierCurveWithControlPoints(Byte[] geomwkb, Byte[] controlPoints) in C:\Code\cs\OnionTopologySuite\OnionTopologySuite\WkbFunctions\WKBBezierCurveFunctions.cs:line 50
+
+  This exception was originally thrown at this call stack:
+    [External Code]
+    WKBBezierCurveFunctions.TryWKBBezierCurveWithControlPoints(byte[], byte[]) in WKBBezierCurveFunctions.cs
+     */
+    public static string TryWKBBezierCurveWithControlPoints(byte[] geomwkb, byte[] controlPoints)
+    {
+        try
+        {
+            Geometry geometry = wKBReader.Read(geomwkb);
+            Geometry _controlPoints = wKBReader.Read(controlPoints);
+            byte[] _dummy = CubicBezierCurve.Create(geometry, _controlPoints).ToBinary();
+            return "OK";
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
+
     }
 }
 

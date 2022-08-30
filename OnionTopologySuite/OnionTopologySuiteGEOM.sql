@@ -10,11 +10,14 @@ FUNCTION NTSBezierCurveByAlpha(@geom GEOM, @alpha FLOAT64) GEOM AS BinaryWkbGeom
 FUNCTION NTSBezierCurveByAlphaAndSkew(@geom GEOM, @alpha FLOAT64, @skew FLOAT64) GEOM AS BinaryWkbGeom(WKBBezierCurveByAlphaAndSkew(GeomWkb(@geom), @alpha, @skew)) END ;
 FUNCTION NTSBezierCurveWithControlPoints(@geom GEOM, @controlPoints GEOM) GEOM AS BinaryWkbGeom(WKBBezierCurveWithControlPoints(GeomWkb(@geom), GeomWkb(@controlPoints))) END ;
 
+FUNCTION TryNTSBezierCurveWithControlPoints(@geom GEOM, @controlPoints GEOM) NVARCHAR AS TryWKBBezierCurveWithControlPoints(GeomWkb(@geom), GeomWkb(@controlPoints)) END ;
+
+
 -- HullFunctions
-FUNCTION NTSConcaveHullByLength(@geom GEOM, @maxLength FLOAT64, @isHolesAllowed BOOLEAN) GEOM AS BinaryWkbGeom(WKBConcaveHullByLength(GeomWkb(@geom), @maxLength, @isHolesAllowed)) END ;
-FUNCTION NTSConcaveHullByLengthRatio(@geom GEOM, @lengthRatio FLOAT64, @isHolesAllowed BOOLEAN) GEOM AS BinaryWkbGeom(WKBConcaveHullByLengthRatio(GeomWkb(@geom), @lengthRatio, @isHolesAllowed)) END ;
-FUNCTION NTSPolygonHull(@geom GEOM, @isOuter BOOLEAN, @vertexNumFraction FLOAT64) GEOM AS BinaryWkbGeom(WKBPolygonHull(GeomWkb(@geom), @isOuter, @vertexNumFraction)) END ;
-FUNCTION NTSPolygonHullByAreaDelta(@geom GEOM, @isOuter BOOLEAN, @areaDeltaRatio FLOAT64) GEOM AS BinaryWkbGeom(WKBPolygonHullByAreaDelta(GeomWkb(@geom), @isOuter, @areaDeltaRatio)) END ;
+FUNCTION NTSConcaveHullByLength(@geom GEOM, @maxLength FLOAT64, @isHolesAllowed BOOLEAN) GEOM AS BinaryWkbGeom(WKBConcaveHullByLength(GeomWkb(GeomNormalize(@geom, 0)), @maxLength, @isHolesAllowed)) END ;
+FUNCTION NTSConcaveHullByLengthRatio(@geom GEOM, @lengthRatio FLOAT64, @isHolesAllowed BOOLEAN) GEOM AS BinaryWkbGeom(WKBConcaveHullByLengthRatio(GeomWkb(GeomNormalize(@geom, 0)), @lengthRatio, @isHolesAllowed)) END ;
+FUNCTION NTSPolygonHull(@geom GEOM, @isOuter BOOLEAN, @vertexNumFraction FLOAT64) GEOM AS BinaryWkbGeom(WKBPolygonHull(GeomWkb(GeomNormalize(@geom, 0)), @isOuter, @vertexNumFraction)) END ;
+FUNCTION NTSPolygonHullByAreaDelta(@geom GEOM, @isOuter BOOLEAN, @areaDeltaRatio FLOAT64) GEOM AS BinaryWkbGeom(WKBPolygonHullByAreaDelta(GeomWkb(GeomNormalize(@geom, 0)), @isOuter, @areaDeltaRatio)) END ;
 
 -- AffineTransformationFunctions
 FUNCTION NTSTransformByVectors(@geom GEOM, @control GEOM) GEOM AS BinaryWkbGeom(WKBTransformByVectors(GeomWkb(@geom), GeomWkb(@control))) END ;
