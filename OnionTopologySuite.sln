@@ -1,26 +1,46 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31205.134
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionTopologySuite", "OnionTopologySuite\OnionTopologySuite.csproj", "{B746C4A6-0B3C-4FD8-ACBB-F94A094F9963}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionTopologySuiteTest", "OnionTopologySuiteTest\OnionTopologySuiteTest.csproj", "{CE95021B-7828-4A44-B3DF-EE17946FCD96}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetTopologySuite", "NetTopologySuite\src\NetTopologySuite\NetTopologySuite.csproj", "{FF8A3AD2-9B33-4F56-BBED-C0F4525357E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B746C4A6-0B3C-4FD8-ACBB-F94A094F9963}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{B746C4A6-0B3C-4FD8-ACBB-F94A094F9963}.Debug|Any CPU.Build.0 = Debug|x64
 		{B746C4A6-0B3C-4FD8-ACBB-F94A094F9963}.Debug|x64.ActiveCfg = Debug|x64
 		{B746C4A6-0B3C-4FD8-ACBB-F94A094F9963}.Debug|x64.Build.0 = Debug|x64
+		{B746C4A6-0B3C-4FD8-ACBB-F94A094F9963}.Release|Any CPU.ActiveCfg = Release|x64
+		{B746C4A6-0B3C-4FD8-ACBB-F94A094F9963}.Release|Any CPU.Build.0 = Release|x64
 		{B746C4A6-0B3C-4FD8-ACBB-F94A094F9963}.Release|x64.ActiveCfg = Release|x64
 		{B746C4A6-0B3C-4FD8-ACBB-F94A094F9963}.Release|x64.Build.0 = Release|x64
+		{CE95021B-7828-4A44-B3DF-EE17946FCD96}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{CE95021B-7828-4A44-B3DF-EE17946FCD96}.Debug|Any CPU.Build.0 = Debug|x64
 		{CE95021B-7828-4A44-B3DF-EE17946FCD96}.Debug|x64.ActiveCfg = Debug|x64
 		{CE95021B-7828-4A44-B3DF-EE17946FCD96}.Debug|x64.Build.0 = Debug|x64
+		{CE95021B-7828-4A44-B3DF-EE17946FCD96}.Release|Any CPU.ActiveCfg = Release|x64
+		{CE95021B-7828-4A44-B3DF-EE17946FCD96}.Release|Any CPU.Build.0 = Release|x64
 		{CE95021B-7828-4A44-B3DF-EE17946FCD96}.Release|x64.ActiveCfg = Release|x64
 		{CE95021B-7828-4A44-B3DF-EE17946FCD96}.Release|x64.Build.0 = Release|x64
+		{FF8A3AD2-9B33-4F56-BBED-C0F4525357E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF8A3AD2-9B33-4F56-BBED-C0F4525357E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF8A3AD2-9B33-4F56-BBED-C0F4525357E9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FF8A3AD2-9B33-4F56-BBED-C0F4525357E9}.Debug|x64.Build.0 = Debug|Any CPU
+		{FF8A3AD2-9B33-4F56-BBED-C0F4525357E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF8A3AD2-9B33-4F56-BBED-C0F4525357E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF8A3AD2-9B33-4F56-BBED-C0F4525357E9}.Release|x64.ActiveCfg = Release|Any CPU
+		{FF8A3AD2-9B33-4F56-BBED-C0F4525357E9}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

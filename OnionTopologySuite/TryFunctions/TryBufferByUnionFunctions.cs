@@ -2,18 +2,18 @@ using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 
-public static class WKBBufferByUnionFunctions
+public static class TryBufferByUnionFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
-    public static byte[] WKBComponentBuffers(byte[] wKBGeom, double distance)
+    public static byte[] TryComponentBuffers(byte[] wKBGeom, double distance)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = BufferByUnionFunctions.ComponentBuffers(g, distance);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBBufferByComponents(byte[] wKBGeom, double distance)
+    public static byte[] TryBufferByComponents(byte[] wKBGeom, double distance)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = BufferByUnionFunctions.BufferByComponents(g, distance);
@@ -27,14 +27,14 @@ public static class WKBBufferByUnionFunctions
     /// <param name="g"></param>
     /// <param name="distance"></param>
     /// <returns>The buffer geometry</returns>
-    public static byte[] WKBBufferBySegments(byte[] wKBGeom, double distance)
+    public static byte[] TryBufferBySegments(byte[] wKBGeom, double distance)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = BufferByUnionFunctions.BufferBySegments(g, distance);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBBufferByChains(byte[] wKBGeom, double distance, int maxChainSize)
+    public static byte[] TryBufferByChains(byte[] wKBGeom, double distance, int maxChainSize)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = BufferByUnionFunctions.BufferByChains(g, distance, maxChainSize);

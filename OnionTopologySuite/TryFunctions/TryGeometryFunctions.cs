@@ -6,76 +6,76 @@ using Open.Topology.TestRunner.Functions;
 /// Implementations for various geometry functions.
 /// </summary>
 /// <author>Martin Davis</author>
-public static class WKBGeometryFunctions
+public static class wKBGeometryFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static double WKBLength(byte[] wKBGeom)
+    public static double TryLength(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         double result = GeometryFunctions.Length(g);
         return result;
     }
-    public static double WKBArea(byte[] wKBGeom)
+    public static double TryArea(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         double result = GeometryFunctions.Area(g);
         return result;
     }
 
-    public static bool WKBIsCCW(byte[] wKBGeom)
+    public static bool TryIsCCW(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         bool result = GeometryFunctions.IsCCW(g);
         return result;
     }
 
-    public static bool WKBIsSimple(byte[] wKBGeom)
+    public static bool TryIsSimple(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         bool result = GeometryFunctions.IsSimple(g);
         return result;
     }
-    public static bool WKBIsValid(byte[] wKBGeom)
+    public static bool TryIsValid(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         bool result = GeometryFunctions.IsValid(g);
         return result;
     }
-    public static bool WKBIsRectangle(byte[] wKBGeom)
+    public static bool TryIsRectangle(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         bool result = GeometryFunctions.IsRectangle(g);
         return result;
     }
-    public static bool WKBIsClosed(byte[] wKBGeom)
+    public static bool TryIsClosed(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         bool result = GeometryFunctions.IsClosed(g);
         return result;
     }
 
-    public static byte[] WKBEnvelope(byte[] wKBGeom)
+    public static byte[] TryEnvelope(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = GeometryFunctions.Envelope(g);
         return wKBWriter.Write(result);
     }
-    public static byte[] WKBReverse(byte[] wKBGeom)
+    public static byte[] TryReverse(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = GeometryFunctions.Reverse(g);
         return wKBWriter.Write(result);
     }
-    public static byte[] WKBNormalize(byte[] wKBGeom)
+    public static byte[] TryNormalize(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = GeometryFunctions.Normalize(g);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBSnap(byte[] wKBGeom, byte[] wKBGeom2, double distance)
+    public static byte[] TrySnap(byte[] wKBGeom, byte[] wKBGeom2, double distance)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry g2 = wKBReader.Read(wKBGeom2);
@@ -83,14 +83,14 @@ public static class WKBGeometryFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBGetGeometryN(byte[] wKBGeom, int i)
+    public static byte[] TryGetGeometryN(byte[] wKBGeom, int i)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = GeometryFunctions.GetGeometryN(g, i);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBGetPolygonShell(byte[] wKBGeom)
+    public static byte[] TryGetPolygonShell(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = GeometryFunctions.GetPolygonShell(g);
@@ -98,21 +98,21 @@ public static class WKBGeometryFunctions
     }
 
 
-    public static byte[] WKBGetPolygonHoles(byte[] wKBGeom)
+    public static byte[] TryGetPolygonHoles(byte[] wKBGeom)
     {
         Geometry geom = wKBReader.Read(wKBGeom);
         Geometry result = GeometryFunctions.GetPolygonHoles(geom);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBGetPolygonHoleN(byte[] wKBGeom, int i)
+    public static byte[] TryGetPolygonHoleN(byte[] wKBGeom, int i)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = GeometryFunctions.GetPolygonHoleN(g, i);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBGetCoordinates(byte[] wKBGeom)
+    public static byte[] TryGetCoordinates(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = GeometryFunctions.GetCoordinates(g);

@@ -2,12 +2,12 @@
 
 using Open.Topology.TestRunner.Functions;
 
-public class WKBSpatialIndexFunctions
+public class TrySpatialIndexFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static byte[] WKBKdTreeQuery(byte[] wKBpts, byte[] wKBquery, double tolerance)
+    public static byte[] TryKdTreeQuery(byte[] wKBpts, byte[] wKBquery, double tolerance)
     {
         Geometry pts = wKBReader.Read(wKBpts);
         Geometry query = wKBReader.Read(wKBquery);
@@ -15,7 +15,7 @@ public class WKBSpatialIndexFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBKdTreeQueryRepeated(byte[] wKBpts, byte[] wKBqueryEnv, double tolerance)
+    public static byte[] TryKdTreeQueryRepeated(byte[] wKBpts, byte[] wKBqueryEnv, double tolerance)
     {
         Geometry pts = wKBReader.Read(wKBpts);
         Geometry queryEnv = wKBReader.Read(wKBqueryEnv);
@@ -23,14 +23,14 @@ public class WKBSpatialIndexFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBSTRtreeBounds(byte[] wKBGeoms)
+    public static byte[] TrySTRtreeBounds(byte[] wKBGeoms)
     {
         Geometry geoms = wKBReader.Read(wKBGeoms);
         Geometry result = SpatialIndexFunctions.STRtreeBounds(geoms);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBSTRtreeQuery(byte[] wKBGeoms, byte[] wKBqueryEnv)
+    public static byte[] TrySTRtreeQuery(byte[] wKBGeoms, byte[] wKBqueryEnv)
     {
         Geometry geoms = wKBReader.Read(wKBGeoms);
         Geometry queryEnv = wKBReader.Read(wKBqueryEnv);
@@ -38,7 +38,7 @@ public class WKBSpatialIndexFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBStrTreeNN(byte[] wKBGeoms, byte[] wKBGeom)
+    public static byte[] TryStrTreeNN(byte[] wKBGeoms, byte[] wKBGeom)
     {
         Geometry geoms = wKBReader.Read(wKBGeoms);
         Geometry geom = wKBReader.Read(wKBGeom);
@@ -46,14 +46,14 @@ public class WKBSpatialIndexFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBStrTreeNNInSet(byte[] wKBGeoms)
+    public static byte[] TryStrTreeNNInSet(byte[] wKBGeoms)
     {
         Geometry geoms = wKBReader.Read(wKBGeoms);
         Geometry result = SpatialIndexFunctions.StrTreeNNInSet(geoms);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBStrTreeNNk(byte[] wKBGeoms, byte[] wKBGeom, int k)
+    public static byte[] TryStrTreeNNk(byte[] wKBGeoms, byte[] wKBGeom, int k)
     {
         Geometry geoms = wKBReader.Read(wKBGeoms);
         Geometry geom = wKBReader.Read(wKBGeom);
@@ -61,7 +61,7 @@ public class WKBSpatialIndexFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBQuadTreeQuery(byte[] wKBGeoms, byte[] wKBqueryEnv)
+    public static byte[] TryQuadTreeQuery(byte[] wKBGeoms, byte[] wKBqueryEnv)
     {
         Geometry geoms = wKBReader.Read(wKBGeoms);
         Geometry queryEnv = wKBReader.Read(wKBqueryEnv);
@@ -69,7 +69,7 @@ public class WKBSpatialIndexFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBMonotoneChains(byte[] wKBGeom)
+    public static byte[] TryMonotoneChains(byte[] wKBGeom)
     {
         Geometry geom = wKBReader.Read(wKBGeom);
         Geometry result = SpatialIndexFunctions.MonotoneChains(geom);

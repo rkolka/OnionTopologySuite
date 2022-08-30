@@ -2,12 +2,12 @@ using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 
-public static class WKBOverlayFunctions
+public static class TryOverlayFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static byte[] WKBIntersection(byte[] wKBa, byte[] wKBb)
+    public static byte[] TryIntersection(byte[] wKBa, byte[] wKBb)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);
@@ -15,7 +15,7 @@ public static class WKBOverlayFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBUnion(byte[] wKBa, byte[] wKBb)
+    public static byte[] TryUnion(byte[] wKBa, byte[] wKBb)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);
@@ -23,7 +23,7 @@ public static class WKBOverlayFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBSymDifference(byte[] wKBa, byte[] wKBb)
+    public static byte[] TrySymDifference(byte[] wKBa, byte[] wKBb)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);
@@ -31,7 +31,7 @@ public static class WKBOverlayFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBDifference(byte[] wKBa, byte[] wKBb)
+    public static byte[] TryDifference(byte[] wKBa, byte[] wKBb)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);
@@ -39,7 +39,7 @@ public static class WKBOverlayFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBDifferenceBa(byte[] wKBa, byte[] wKBb)
+    public static byte[] TryDifferenceBa(byte[] wKBa, byte[] wKBb)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);
@@ -47,14 +47,14 @@ public static class WKBOverlayFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBUnaryUnion(byte[] wKBa)
+    public static byte[] TryUnaryUnion(byte[] wKBa)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry result = OverlayFunctions.UnaryUnion(a);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBUnionUsingGeometryCollection(byte[] wKBa, byte[] wKBb)
+    public static byte[] TryUnionUsingGeometryCollection(byte[] wKBa, byte[] wKBb)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);
@@ -62,7 +62,7 @@ public static class WKBOverlayFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBClip(byte[] wKBa, byte[] wKBmask)
+    public static byte[] TryClip(byte[] wKBa, byte[] wKBmask)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry mask = wKBReader.Read(wKBmask);

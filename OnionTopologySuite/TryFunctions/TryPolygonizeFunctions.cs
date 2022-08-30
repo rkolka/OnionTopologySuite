@@ -2,47 +2,47 @@ using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 
-public static class WKBPolygonizeFunctions
+public static class TryPolygonizeFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static byte[] WKBPolygonize(byte[] wKBGeom)
+    public static byte[] TryPolygonize(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = PolygonizeFunctions.Polygonize(g);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBPolygonizeValidPolygonal(byte[] wKBGeom)
+    public static byte[] TryPolygonizeValidPolygonal(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = PolygonizeFunctions.PolygonizeValidPolygonal(g);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBPolygonizeDangles(byte[] wKBGeom)
+    public static byte[] TryPolygonizeDangles(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = PolygonizeFunctions.PolygonizeDangles(g);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBPolygonizeCutEdges(byte[] wKBGeom)
+    public static byte[] TryPolygonizeCutEdges(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = PolygonizeFunctions.PolygonizeCutEdges(g);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBPolygonizeInvalidRingLines(byte[] wKBGeom)
+    public static byte[] TryPolygonizeInvalidRingLines(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = PolygonizeFunctions.PolygonizeInvalidRingLines(g);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBPolygonizeAllErrors(byte[] wKBGeom)
+    public static byte[] TryPolygonizeAllErrors(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = PolygonizeFunctions.PolygonizeAllErrors(g);

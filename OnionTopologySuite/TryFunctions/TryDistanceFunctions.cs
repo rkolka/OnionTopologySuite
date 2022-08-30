@@ -2,12 +2,12 @@
 
 using Open.Topology.TestRunner.Functions;
 
-public static class WKBDistanceFunctions
+public static class TryDistanceFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static double WKBDistance(byte[] wKBa, byte[] wKBb)
+    public static double TryDistance(byte[] wKBa, byte[] wKBb)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);
@@ -15,7 +15,7 @@ public static class WKBDistanceFunctions
         return result;
     }
 
-    public static bool WKBIsWithinDistance(byte[] wKBa, byte[] wKBb, double dist)
+    public static bool TryIsWithinDistance(byte[] wKBa, byte[] wKBb, double dist)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);
@@ -23,7 +23,7 @@ public static class WKBDistanceFunctions
         return result;
     }
 
-    public static byte[] WKBNearestPoints(byte[] wKBa, byte[] wKBb)
+    public static byte[] TryNearestPoints(byte[] wKBa, byte[] wKBb)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);
@@ -31,7 +31,7 @@ public static class WKBDistanceFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBDiscreteHausdorffDistanceLine(byte[] wKBa, byte[] wKBb)
+    public static byte[] TryDiscreteHausdorffDistanceLine(byte[] wKBa, byte[] wKBb)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);
@@ -39,7 +39,7 @@ public static class WKBDistanceFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBDensifiedDiscreteHausdorffDistanceLine(byte[] wKBa, byte[] wKBb, double frac)
+    public static byte[] TryDensifiedDiscreteHausdorffDistanceLine(byte[] wKBa, byte[] wKBb, double frac)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);
@@ -47,7 +47,7 @@ public static class WKBDistanceFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBDiscreteOrientedHausdorffDistanceLine(byte[] wKBa, byte[] wKBb)
+    public static byte[] TryDiscreteOrientedHausdorffDistanceLine(byte[] wKBa, byte[] wKBb)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);
@@ -55,7 +55,7 @@ public static class WKBDistanceFunctions
         return wKBWriter.Write(result);
     }
 
-    public static double WKBDiscreteHausdorffDistance(byte[] wKBa, byte[] wKBb)
+    public static double TryDiscreteHausdorffDistance(byte[] wKBa, byte[] wKBb)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);
@@ -63,7 +63,7 @@ public static class WKBDistanceFunctions
         return result;
     }
 
-    public static double WKBDiscreteOrientedHausdorffDistance(byte[] wKBa, byte[] wKBb)
+    public static double TryDiscreteOrientedHausdorffDistance(byte[] wKBa, byte[] wKBb)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);
@@ -71,7 +71,7 @@ public static class WKBDistanceFunctions
         return result;
     }
 
-    public static double WKBDistanceIndexed(byte[] wKBa, byte[] wKBb)
+    public static double TryDistanceIndexed(byte[] wKBa, byte[] wKBb)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);
@@ -79,7 +79,7 @@ public static class WKBDistanceFunctions
         return result;
     }
 
-    public static byte[] WKBNearestPointsIndexed(byte[] wKBa, byte[] wKBb)
+    public static byte[] TryNearestPointsIndexed(byte[] wKBa, byte[] wKBb)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);
@@ -87,7 +87,7 @@ public static class WKBDistanceFunctions
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBNearestPointsIndexedAll(byte[] wKBa, byte[] wKBb)
+    public static byte[] TryNearestPointsIndexedAll(byte[] wKBa, byte[] wKBb)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry b = wKBReader.Read(wKBb);

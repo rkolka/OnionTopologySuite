@@ -2,40 +2,40 @@
 
 using Open.Topology.TestRunner.Functions;
 
-public class WKBTriangleFunctions
+public class TryTriangleFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static byte[] WKBCircumcentre(byte[] wKBGeom)
+    public static byte[] TryCircumcentre(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = TriangleFunctions.Circumcentre(g);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBCircumcentreDD(byte[] wKBGeom)
+    public static byte[] TryCircumcentreDD(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = TriangleFunctions.CircumcentreDD(g);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBPerpendicularBisectors(byte[] wKBGeom)
+    public static byte[] TryPerpendicularBisectors(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = TriangleFunctions.PerpendicularBisectors(g);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBInCentre(byte[] wKBGeom)
+    public static byte[] TryInCentre(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = TriangleFunctions.InCentre(g);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBAngleBisectors(byte[] wKBGeom)
+    public static byte[] TryAngleBisectors(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = TriangleFunctions.AngleBisectors(g);

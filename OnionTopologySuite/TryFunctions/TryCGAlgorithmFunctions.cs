@@ -2,13 +2,13 @@
 
 using Open.Topology.TestRunner.Functions;
 
-public static class WKBCGAlgorithmFunctions
+public static class TryCGAlgorithmFunctions
 {
 
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static int WKBOrientationIndex(byte[] wKBsegment, byte[] wKBptGeom)
+    public static int TryOrientationIndex(byte[] wKBsegment, byte[] wKBptGeom)
     {
         Geometry segment = wKBReader.Read(wKBsegment);
         Geometry ptGeom = wKBReader.Read(wKBptGeom);
@@ -16,7 +16,7 @@ public static class WKBCGAlgorithmFunctions
         return result;
     }
 
-    public static int WKBOrientationIndexDd(byte[] wKBsegment, byte[] wKBptGeom)
+    public static int TryOrientationIndexDd(byte[] wKBsegment, byte[] wKBptGeom)
     {
         Geometry segment = wKBReader.Read(wKBsegment);
         Geometry ptGeom = wKBReader.Read(wKBptGeom);

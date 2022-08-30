@@ -52,21 +52,19 @@ public static class TryBezierCurveFunctions
     }
 
 
-    public static string TryWKBBezierCurveWithControlPoints(byte[] geomwkb, byte[] controlPoints)
+    public static string TryBezierCurveDefaultControlPoints(byte[] geomwkb, double alpha, double skew)
     {
         try
         {
             Geometry geometry = wKBReader.Read(geomwkb);
-            Geometry _controlPoints = wKBReader.Read(controlPoints);
-            byte[] _dummy = CubicBezierCurve.Create(geometry, _controlPoints).ToBinary();
+            
             return "OK";
         }
         catch (System.Exception e)
         {
             return e.ToString();
         }
-
-
     }
+
 }
 

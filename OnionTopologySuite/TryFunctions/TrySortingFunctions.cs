@@ -2,12 +2,12 @@
 
 using Open.Topology.TestRunner.Functions;
 
-public static class WKBSortingFunctions
+public static class TrySortingFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static byte[] WKBSortByLength(byte[] wKBGeom)
+    public static byte[] TrySortByLength(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = SortingFunctions.SortByLength(g);
@@ -15,7 +15,7 @@ public static class WKBSortingFunctions
     }
 
 
-    public static byte[] WKBSortByArea(byte[] wKBGeom)
+    public static byte[] TrySortByArea(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = SortingFunctions.SortByArea(g);
@@ -23,14 +23,14 @@ public static class WKBSortingFunctions
     }
 
 
-    public static byte[] WKBSortByHilbertCode(byte[] wKBGeom)
+    public static byte[] TrySortByHilbertCode(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = SortingFunctions.SortByHilbertCode(g);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBSortByMortonCode(byte[] wKBGeom)
+    public static byte[] TrySortByMortonCode(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = SortingFunctions.SortByMortonCode(g);

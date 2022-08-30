@@ -1,7 +1,7 @@
 ﻿using NetTopologySuite.Geometries;
 using NetTopologySuite.Shape;
 
-public static class WKBAngleFunctions
+public static class TryAngleFunctions
 {
 
 

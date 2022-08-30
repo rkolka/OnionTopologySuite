@@ -2,7 +2,7 @@
 
 using Open.Topology.TestRunner.Functions;
 
-public class WKBValidationFunctions
+public class TryValidationFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
@@ -13,14 +13,14 @@ public class WKBValidationFunctions
     /// </summary>
     /// <param name="g"></param>
     /// <returns>the invalid locations, if any</returns>
-    public static byte[] WKBInvalidLocations(byte[] wKBGeom)
+    public static byte[] TryInvalidLocations(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = ValidationFunctions.InvalidLocations(g);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBInvalidGeoms(byte[] wKBGeom)
+    public static byte[] TryInvalidGeoms(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = ValidationFunctions.InvalidGeoms(g);

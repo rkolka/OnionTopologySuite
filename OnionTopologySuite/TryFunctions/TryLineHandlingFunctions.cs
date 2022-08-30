@@ -2,39 +2,39 @@ using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 
-public static class WKBLineHandlingFunctions
+public static class TryLineHandlingFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static byte[] WKBMergeLines(byte[] wKBGeom)
+    public static byte[] TryMergeLines(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = LineHandlingFunctions.MergeLines(g);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBSequenceLines(byte[] wKBGeom)
+    public static byte[] TrySequenceLines(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = LineHandlingFunctions.SequenceLines(g);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBExtractLines(byte[] wKBGeom)
+    public static byte[] TryExtractLines(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = LineHandlingFunctions.ExtractLines(g);
         return wKBWriter.Write(result);
     }
 
-    public static byte[] WKBExtractSegments(byte[] wKBGeom)
+    public static byte[] TryExtractSegments(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = LineHandlingFunctions.ExtractSegments(g);
         return wKBWriter.Write(result);
     }
-    public static byte[] WKBExtractChains(byte[] wKBGeom, int maxChainSize)
+    public static byte[] TryExtractChains(byte[] wKBGeom, int maxChainSize)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = LineHandlingFunctions.ExtractChains(g, maxChainSize);
@@ -42,7 +42,7 @@ public static class WKBLineHandlingFunctions
     }
 
 
-    public static byte[] WKBDissolve(byte[] wKBGeom)
+    public static byte[] TryDissolve(byte[] wKBGeom)
     {
         Geometry geom = wKBReader.Read(wKBGeom);
         Geometry result = LineHandlingFunctions.Dissolve(geom);

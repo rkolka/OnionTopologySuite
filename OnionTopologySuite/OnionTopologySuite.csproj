@@ -43,24 +43,9 @@
       <HintPath>C:\Program Files\Manifold\v9.0\extnet.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="NetTopologySuite, Version=2.0.0.0, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NetTopologySuite.2.5.0\lib\netstandard2.0\NetTopologySuite.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
-    </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
-    </Reference>
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -108,6 +93,38 @@
     <Compile Include="NetTopologySuite.TestRunner.Functions\ValidationFunctions.cs" />
     <Compile Include="Script.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TryFunctions\TryAffineTransformationFunctions.cs" />
+    <Compile Include="TryFunctions\TryAngleFunctions.cs" />
+    <Compile Include="TryFunctions\TryBezierCurveFunctions.cs" />
+    <Compile Include="TryFunctions\TryBoundaryFunctions.cs" />
+    <Compile Include="TryFunctions\TryBufferByUnionFunctions.cs" />
+    <Compile Include="TryFunctions\TryBufferFunctions.cs" />
+    <Compile Include="TryFunctions\TryCGAlgorithmFunctions.cs" />
+    <Compile Include="TryFunctions\TryConstructionFunctions.cs" />
+    <Compile Include="TryFunctions\TryConversionFunctions.cs" />
+    <Compile Include="TryFunctions\TryCreateRandomGeometries.cs" />
+    <Compile Include="TryFunctions\TryCreateShapeFunctions.cs" />
+    <Compile Include="TryFunctions\TryDiffFunctions.cs" />
+    <Compile Include="TryFunctions\TryDistanceFunctions.cs" />
+    <Compile Include="TryFunctions\TryEditFunctions.cs" />
+    <Compile Include="TryFunctions\TryGeometryFunctions.cs" />
+    <Compile Include="TryFunctions\TryHullFunctions.cs" />
+    <Compile Include="TryFunctions\TryLinearReferencingFunctions.cs" />
+    <Compile Include="TryFunctions\TryLineHandlingFunctions.cs" />
+    <Compile Include="TryFunctions\TryLineSegmentFunctions.cs" />
+    <Compile Include="TryFunctions\TryMaximumCircleFunctions.cs" />
+    <Compile Include="TryFunctions\TryNodingFunctions.cs" />
+    <Compile Include="TryFunctions\TryNTSFunctions.cs" />
+    <Compile Include="TryFunctions\TryOffsetCurveFunctions.cs" />
+    <Compile Include="TryFunctions\TryOverlayFunctions.cs" />
+    <Compile Include="TryFunctions\TryPolygonizeFunctions.cs" />
+    <Compile Include="TryFunctions\TryPrecisionFunctions.cs" />
+    <Compile Include="TryFunctions\TrySelectionFunctions.cs" />
+    <Compile Include="TryFunctions\TrySimplificationFunctions.cs" />
+    <Compile Include="TryFunctions\TrySortingFunctions.cs" />
+    <Compile Include="TryFunctions\TrySpatialIndexFunctions.cs" />
+    <Compile Include="TryFunctions\TryTriangleFunctions.cs" />
+    <Compile Include="TryFunctions\TryValidationFunctions.cs" />
     <Compile Include="WkbFunctions\WKBMaximumCircleFunctions.cs" />
     <Compile Include="WkbFunctions\WKBAngleFunctions.cs" />
     <Compile Include="WkbFunctions\WKBBezierCurveFunctions.cs" />
@@ -164,7 +181,6 @@
     <Content Include="OnionTopologySuite.md.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="packages.config" />
     <None Include="Problems.md" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +194,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\NetTopologySuite\src\NetTopologySuite\NetTopologySuite.csproj">
+      <Project>{ff8a3ad2-9b33-4f56-bbed-c0f4525357e9}</Project>
+      <Name>NetTopologySuite</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
