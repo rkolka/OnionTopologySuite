@@ -1,7 +1,7 @@
 ﻿using NetTopologySuite.Geometries;
 using NetTopologySuite.Algorithm.Construct;
 
-public static class TryMaximumCircleFunctions
+public static class WKTMaximumCircleFunctions
 {
 
 
@@ -25,16 +25,16 @@ public static class TryMaximumCircleFunctions
      * public int CompareTo(Cell o)
      */
 
-    public static byte[] TryMaximumInscribedCircle(byte[] geomwkb, double tolerance)
+    public static string WKTMaximumInscribedCircle(byte[] geomwkb, double tolerance)
     {
         Geometry geometry = wKBReader.Read(geomwkb);
-        return new MaximumInscribedCircle(geometry, tolerance).GetRadiusLine().ToBinary();
+        return new MaximumInscribedCircle(geometry, tolerance).GetRadiusLine().ToString();
     }
 
-    public static byte[] TryLargestEmptyCircle(byte[] geomwkb, double tolerance)
+    public static string WKTLargestEmptyCircle(byte[] geomwkb, double tolerance)
     {
         Geometry geometry = wKBReader.Read(geomwkb);
-        return new LargestEmptyCircle(geometry, tolerance).GetRadiusLine().ToBinary();
+        return new LargestEmptyCircle(geometry, tolerance).GetRadiusLine().ToString();
     }
 }
 

@@ -2,7 +2,7 @@
 using Open.Topology.TestRunner.Functions;
 using System;
 
-public static class TryCreateRandomGeometryFunctions
+public static class WKTCreateRandomGeometryFunctions
 {
     private static Random RND = new Random();
 
@@ -10,46 +10,80 @@ public static class TryCreateRandomGeometryFunctions
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static byte[] TryRandomPointsInGrid(byte[] wKBGeom, int nPts)
+    public static string WKTRandomPointsInGrid(byte[] wKBGeom, int nPts)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateRandomGeometryFunctions.RandomPointsInGrid(g, nPts);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateRandomGeometryFunctions.RandomPointsInGrid(g, nPts);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TryRandomPoints(byte[] wKBGeom, int nPts)
+    public static string WKTRandomPoints(byte[] wKBGeom, int nPts)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateRandomGeometryFunctions.RandomPoints(g, nPts);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateRandomGeometryFunctions.RandomPoints(g, nPts);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TryRandomRadialPoints(byte[] wKBGeom, int nPts)
+    public static string WKTRandomRadialPoints(byte[] wKBGeom, int nPts)
     {
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateRandomGeometryFunctions.RandomRadialPoints(g, nPts);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
 
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateRandomGeometryFunctions.RandomRadialPoints(g, nPts);
-        return wKBWriter.Write(result);
     }
 
     /// <summary>
     /// Create Halton points using bases 2 and 3.
     /// </summary>
-    public static byte[] TryHaltonPoints(byte[] wKBGeom, int nPts)
+    public static string WKTHaltonPoints(byte[] wKBGeom, int nPts)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateRandomGeometryFunctions.HaltonPoints(g, nPts);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateRandomGeometryFunctions.HaltonPoints(g, nPts);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
     /// <summary>
     /// Create Halton points using bases 5 and 7.
     /// </summary>
-    public static byte[] TryHaltonPoints57(byte[] wKBGeom, int nPts)
+    public static string WKTHaltonPoints57(byte[] wKBGeom, int nPts)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateRandomGeometryFunctions.HaltonPoints57(g, nPts);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateRandomGeometryFunctions.HaltonPoints57(g, nPts);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
     /// <summary>
@@ -57,39 +91,74 @@ public static class TryCreateRandomGeometryFunctions
     /// </summary>
     /// <param name="basei">Base 1</param>
     /// <param name="basej">Base 2</param>
-    public static byte[] TryHaltonPointsWithBases(byte[] wKBGeom, int nPts, int basei, int basej)
+    public static string WKTHaltonPointsWithBases(byte[] wKBGeom, int nPts, int basei, int basej)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateRandomGeometryFunctions.HaltonPointsWithBases(g, nPts, basei, basej);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateRandomGeometryFunctions.HaltonPointsWithBases(g, nPts, basei, basej);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TryRandomSegments(byte[] wKBGeom, int nPts)
+    public static string WKTRandomSegments(byte[] wKBGeom, int nPts)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateRandomGeometryFunctions.RandomSegments(g, nPts);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateRandomGeometryFunctions.RandomSegments(g, nPts);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TryRandomSegmentsInGrid(byte[] wKBGeom, int nPts)
+    public static string WKTRandomSegmentsInGrid(byte[] wKBGeom, int nPts)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateRandomGeometryFunctions.RandomSegmentsInGrid(g, nPts);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateRandomGeometryFunctions.RandomSegmentsInGrid(g, nPts);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TryRandomLineString(byte[] wKBGeom, int nPts)
+    public static string WKTRandomLineString(byte[] wKBGeom, int nPts)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateRandomGeometryFunctions.RandomLineString(g, nPts);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateRandomGeometryFunctions.RandomLineString(g, nPts);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TryRandomRectilinearWalk(byte[] wKBGeom, int nPts)
+    public static string WKTRandomRectilinearWalk(byte[] wKBGeom, int nPts)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateRandomGeometryFunctions.RandomRectilinearWalk(g, nPts);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateRandomGeometryFunctions.RandomRectilinearWalk(g, nPts);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
 }

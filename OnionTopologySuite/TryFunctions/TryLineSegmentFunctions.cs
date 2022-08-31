@@ -7,51 +7,93 @@ public class TryLineSegmentFunctions
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static bool TrySegmentIntersects(byte[] wKBGeom1, byte[] wKBGeom2)
+    public static string WKTSegmentIntersects(byte[] wKBGeom1, byte[] wKBGeom2)
     {
-        Geometry g1 = wKBReader.Read(wKBGeom1);
-        Geometry g2 = wKBReader.Read(wKBGeom2);
-        bool result = LineSegmentFunctions.SegmentIntersects(g1, g2);
-        return result;
+        try
+        {
+            Geometry g1 = wKBReader.Read(wKBGeom1);
+            Geometry g2 = wKBReader.Read(wKBGeom2);
+            bool result = LineSegmentFunctions.SegmentIntersects(g1, g2);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TrySegmentIntersection(byte[] wKBGeom1, byte[] wKBGeom2)
+    public static string WKTSegmentIntersection(byte[] wKBGeom1, byte[] wKBGeom2)
     {
-        Geometry g1 = wKBReader.Read(wKBGeom1);
-        Geometry g2 = wKBReader.Read(wKBGeom2);
-        Geometry result = LineSegmentFunctions.SegmentIntersection(g1, g2);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g1 = wKBReader.Read(wKBGeom1);
+            Geometry g2 = wKBReader.Read(wKBGeom2);
+            Geometry result = LineSegmentFunctions.SegmentIntersection(g1, g2);
+            return result.ToString();
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TrySegmentIntersectionDd(byte[] wKBGeom1, byte[] wKBGeom2)
+    public static string WKTSegmentIntersectionDd(byte[] wKBGeom1, byte[] wKBGeom2)
     {
-        Geometry g1 = wKBReader.Read(wKBGeom1);
-        Geometry g2 = wKBReader.Read(wKBGeom2);
-        Geometry result = LineSegmentFunctions.SegmentIntersectionDd(g1, g2);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g1 = wKBReader.Read(wKBGeom1);
+            Geometry g2 = wKBReader.Read(wKBGeom2);
+            Geometry result = LineSegmentFunctions.SegmentIntersectionDd(g1, g2);
+            return result.ToString();
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TryLineIntersection(byte[] wKBGeom1, byte[] wKBGeom2)
+    public static string WKTLineIntersection(byte[] wKBGeom1, byte[] wKBGeom2)
     {
-        Geometry g1 = wKBReader.Read(wKBGeom1);
-        Geometry g2 = wKBReader.Read(wKBGeom2);
-        Geometry result = LineSegmentFunctions.LineIntersection(g1, g2);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g1 = wKBReader.Read(wKBGeom1);
+            Geometry g2 = wKBReader.Read(wKBGeom2);
+            Geometry result = LineSegmentFunctions.LineIntersection(g1, g2);
+            return result.ToString();
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TryLineIntersectionDD(byte[] wKBGeom1, byte[] wKBGeom2)
+    public static string WKTLineIntersectionDD(byte[] wKBGeom1, byte[] wKBGeom2)
     {
-        Geometry g1 = wKBReader.Read(wKBGeom1);
-        Geometry g2 = wKBReader.Read(wKBGeom2);
-        Geometry result = LineSegmentFunctions.LineIntersectionDD(g1, g2);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g1 = wKBReader.Read(wKBGeom1);
+            Geometry g2 = wKBReader.Read(wKBGeom2);
+            Geometry result = LineSegmentFunctions.LineIntersectionDD(g1, g2);
+            return result.ToString();
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
-    public static byte[] TryReflectPoint(byte[] wKBGeom1, byte[] wKBGeom2)
+    public static string WKTReflectPoint(byte[] wKBGeom1, byte[] wKBGeom2)
     {
-        Geometry g1 = wKBReader.Read(wKBGeom1);
-        Geometry g2 = wKBReader.Read(wKBGeom2);
-        Geometry result = LineSegmentFunctions.ReflectPoint(g1, g2);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g1 = wKBReader.Read(wKBGeom1);
+            Geometry g2 = wKBReader.Read(wKBGeom2);
+            Geometry result = LineSegmentFunctions.ReflectPoint(g1, g2);
+            return result.ToString();
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 }
 

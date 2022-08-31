@@ -37,7 +37,7 @@ public class Script
                 {
                     overwrite = false;
 
-                    string message = $"{db.GetComponentType(fname).ToUpper()} {fname} already exists. DROP?";
+                    string message = $"{db.GetComponentType(fname).ToUpper()} {fname} already exists. Overwrite?";
 
                     System.Windows.Forms.MessageBoxButtons buttons = System.Windows.Forms.MessageBoxButtons.YesNo;
                     System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show(message, AddinName, buttons);

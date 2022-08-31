@@ -13,17 +13,17 @@ public class TryValidationFunctions
     /// </summary>
     /// <param name="g"></param>
     /// <returns>the invalid locations, if any</returns>
-    public static byte[] TryInvalidLocations(byte[] wKBGeom)
+    public static string WKTInvalidLocations(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = ValidationFunctions.InvalidLocations(g);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
-    public static byte[] TryInvalidGeoms(byte[] wKBGeom)
+    public static string WKTInvalidGeoms(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = ValidationFunctions.InvalidGeoms(g);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 }

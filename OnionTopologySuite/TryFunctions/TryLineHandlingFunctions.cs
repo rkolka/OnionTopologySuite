@@ -2,50 +2,92 @@ using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 
-public static class TryLineHandlingFunctions
+public static class WKTLineHandlingFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static byte[] TryMergeLines(byte[] wKBGeom)
+    public static string WKTMergeLines(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = LineHandlingFunctions.MergeLines(g);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = LineHandlingFunctions.MergeLines(g);
+            return result.ToString();
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TrySequenceLines(byte[] wKBGeom)
+    public static string WKTSequenceLines(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = LineHandlingFunctions.SequenceLines(g);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = LineHandlingFunctions.SequenceLines(g);
+            return result.ToString();
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TryExtractLines(byte[] wKBGeom)
+    public static string WKTExtractLines(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = LineHandlingFunctions.ExtractLines(g);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = LineHandlingFunctions.ExtractLines(g);
+            return result.ToString();
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TryExtractSegments(byte[] wKBGeom)
+    public static string WKTExtractSegments(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = LineHandlingFunctions.ExtractSegments(g);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = LineHandlingFunctions.ExtractSegments(g);
+            return result.ToString();
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
-    public static byte[] TryExtractChains(byte[] wKBGeom, int maxChainSize)
+    public static string WKTExtractChains(byte[] wKBGeom, int maxChainSize)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = LineHandlingFunctions.ExtractChains(g, maxChainSize);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = LineHandlingFunctions.ExtractChains(g, maxChainSize);
+            return result.ToString();
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
 
-    public static byte[] TryDissolve(byte[] wKBGeom)
+    public static string WKTDissolve(byte[] wKBGeom)
     {
-        Geometry geom = wKBReader.Read(wKBGeom);
-        Geometry result = LineHandlingFunctions.Dissolve(geom);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry geom = wKBReader.Read(wKBGeom);
+            Geometry result = LineHandlingFunctions.Dissolve(geom);
+            return result.ToString();
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 }

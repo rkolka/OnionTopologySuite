@@ -1,20 +1,22 @@
-﻿using NetTopologySuite.Geometries;
+﻿using NetTopologySuite.Algorithm;
+using NetTopologySuite.Geometries;
+using NetTopologySuite.Geometries.Implementation;
 using NetTopologySuite.Shape;
 using System;
+using System.Windows.Forms;
 
-public static class TryBezierCurveFunctions
+public static class WKTBezierCurveFunctions
 {
 
 
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
 
-    public static string TryBezierCurveByAlpha(byte[] geomwkb, double alpha)
+    public static string WKTBezierCurveByAlpha(byte[] geomwkb, double alpha)
     {
         try
         {
             Geometry geometry = wKBReader.Read(geomwkb);
-            byte[] _dummy = CubicBezierCurve.Create(geometry, alpha).ToBinary();
-            return "OK";
+            return CubicBezierCurve.Create(geometry, alpha).ToString();
         }
         catch (System.Exception e)
         {
@@ -22,28 +24,26 @@ public static class TryBezierCurveFunctions
         }
     }
 
-    public static string TryBezierCurveByAlphaAndSkew(byte[] geomwkb, double alpha, double skew)
+    public static string WKTBezierCurveByAlphaAndSkew(byte[] geomwkb, double alpha, double skew)
     {
         try
         {
             Geometry geometry = wKBReader.Read(geomwkb);
-            byte[] _dummy = CubicBezierCurve.Create(geometry, alpha, skew).ToBinary();
-            return "OK";
+            return CubicBezierCurve.Create(geometry, alpha, skew).ToString();
         }
         catch (System.Exception e)
         {
             return e.ToString();
         }
     }
-		
-    public static string TryBezierCurveWithControlPoints(byte[] geomwkb, byte[] controlPoints)
+
+    public static string WKTBezierCurveWithControlPoints(byte[] geomwkb, byte[] controlPoints)
     {
         try
         {
             Geometry geometry = wKBReader.Read(geomwkb);
             Geometry _controlPoints = wKBReader.Read(controlPoints);
-            byte[] _dummy = CubicBezierCurve.Create(geometry, _controlPoints).ToBinary();
-            return "OK";
+            return CubicBezierCurve.Create(geometry, _controlPoints).ToString();
         }
         catch (System.Exception e)
         {
@@ -52,13 +52,14 @@ public static class TryBezierCurveFunctions
     }
 
 
-    public static string TryBezierCurveDefaultControlPoints(byte[] geomwkb, double alpha, double skew)
+    public static string WKTBezierCurveDefaultControlPoints(byte[] geomwkb, double alpha, double skew)
     {
         try
         {
             Geometry geometry = wKBReader.Read(geomwkb);
-            
-            return "OK";
+            Coordinate[] coordArray = CubicBezierCurve.ControlPoints(geometry.Coordinates, false, alpha, skew);
+            Geometry result = geometry.Factory.CreateLinearRing(coordArray);
+            return result.ToString();
         }
         catch (System.Exception e)
         {

@@ -2,7 +2,7 @@
 
 using Open.Topology.TestRunner.Functions;
 
-public static class TryNodingFunctions
+public static class WKTNodingFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
@@ -21,7 +21,7 @@ public static class TryNodingFunctions
         return result;
     }
 
-    public static byte[] TryFindOneNode(byte[] wKBGeom)
+    public static string WKTFindOneNode(byte[] wKBGeom)
     {
         Geometry geom = wKBReader.Read(wKBGeom);
         Geometry result = NodingFunctions.FindOneNode(geom);
@@ -34,22 +34,22 @@ public static class TryNodingFunctions
    at NetTopologySuite.IO.WKBWriter.Write(Geometry geometry)
    at TryNodingFunctions.WKBFindOneNode(Byte[] wKBGeom) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\WkbFunctions\WKBNodingFunctions.cs:line 36
 */
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
-    public static byte[] TryFindNodes(byte[] wKBGeom)
+    public static string WKTFindNodes(byte[] wKBGeom)
     {
         Geometry geom = wKBReader.Read(wKBGeom);
         Geometry result = NodingFunctions.FindNodes(geom);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
 
-    public static byte[] TryFindInteriorNodes(byte[] wKBGeom)
+    public static string WKTFindInteriorNodes(byte[] wKBGeom)
     {
         Geometry geom = wKBReader.Read(wKBGeom);
         Geometry result = NodingFunctions.FindInteriorNodes(geom);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
     public static int TryIntersectionCount(byte[] wKBGeom)
@@ -65,18 +65,18 @@ public static class TryNodingFunctions
         return result;
     }
 
-    public static byte[] TryMCIndexNodingWithPrecision(byte[] wKBGeom, double scaleFactor)
+    public static string WKTMCIndexNodingWithPrecision(byte[] wKBGeom, double scaleFactor)
     {
         Geometry geom = wKBReader.Read(wKBGeom);
         Geometry result = NodingFunctions.MCIndexNodingWithPrecision(geom, scaleFactor);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
-    public static byte[] TryMCIndexNoding(byte[] wKBGeom)
+    public static string WKTMCIndexNoding(byte[] wKBGeom)
     {
         Geometry geom = wKBReader.Read(wKBGeom);
         Geometry result = NodingFunctions.MCIndexNoding(geom);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
     /// <summary>
@@ -88,11 +88,11 @@ public static class TryNodingFunctions
     /// <param name="geom">A geometry containing linework to node</param>
     /// <param name="scaleFactor">The precision model scale factor to use</param>
     /// <returns>The noded, snap-rounded linework</returns>
-    public static byte[] TrySnapRoundWithPrecision(byte[] wKBGeom, double scaleFactor)
+    public static string WKTSnapRoundWithPrecision(byte[] wKBGeom, double scaleFactor)
     {
         Geometry geom = wKBReader.Read(wKBGeom);
         Geometry result = NodingFunctions.MCIndexNodingWithPrecision(geom, scaleFactor);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
     /// <summary>
@@ -102,11 +102,11 @@ public static class TryNodingFunctions
     /// <param name="geom"></param>
     /// <param name="scaleFactor"></param>
     /// <returns>The noded geometry</returns>
-    public static byte[] TryScaledNoding(byte[] wKBGeom, double scaleFactor)
+    public static string WKTScaledNoding(byte[] wKBGeom, double scaleFactor)
     {
         Geometry geom = wKBReader.Read(wKBGeom);
         Geometry result = NodingFunctions.ScaledNoding(geom, scaleFactor);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
 }

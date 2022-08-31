@@ -1,7 +1,7 @@
 ﻿using NetTopologySuite.Geometries;
 using Open.Topology.TestRunner.Functions;
 
-public static class TryAffineTransformationFunctions
+public static class WKTAffineTransformationFunctions
 {
 
 
@@ -12,67 +12,125 @@ public static class TryAffineTransformationFunctions
     /// <summary>
     /// Transforms a geometry using one to three control vectors.
     /// </summary>
-    public static byte[] TryTransformByVectors(byte[] wKBGeom, byte[] wKBcontrol)
+    public static string WKTTransformByVectors(byte[] wKBGeom, byte[] wKBcontrol)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry control = wKBReader.Read(wKBcontrol);
-        Geometry result = AffineTransformationFunctions.TransformByVectors(g, control);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry control = wKBReader.Read(wKBcontrol);
+            Geometry result = AffineTransformationFunctions.TransformByVectors(g, control);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
     /// <summary>
     /// Transforms a geometry by mapping envelope baseline to target vector.
     /// </summary>
-    public static byte[] TryTransformByBaseline(byte[] wKBGeom, byte[] wKBdestBaseline)
+    public static string WKTTransformByBaseline(byte[] wKBGeom, byte[] wKBdestBaseline)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry destBaseline = wKBReader.Read(wKBdestBaseline);
-        Geometry result = AffineTransformationFunctions.TransformByBaseline(g, destBaseline);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry destBaseline = wKBReader.Read(wKBdestBaseline);
+            Geometry result = AffineTransformationFunctions.TransformByBaseline(g, destBaseline);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
 
-    public static byte[] TryScale(byte[] wKBGeom, double scale)
+    public static string WKTScale(byte[] wKBGeom, double scale)
     {
 
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = AffineTransformationFunctions.Scale(g, scale);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = AffineTransformationFunctions.Scale(g, scale);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TryReflectInX(byte[] wKBGeom)
+    public static string WKTReflectInX(byte[] wKBGeom)
     {
 
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = AffineTransformationFunctions.ReflectInX(g);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = AffineTransformationFunctions.ReflectInX(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TryReflectInY(byte[] wKBGeom)
+    public static string WKTReflectInY(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = AffineTransformationFunctions.ReflectInY(g);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = AffineTransformationFunctions.ReflectInY(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TryRotate(byte[] wKBGeom, double multipleOfPi)
+    public static string WKTRotate(byte[] wKBGeom, double multipleOfPi)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = AffineTransformationFunctions.Rotate(g, multipleOfPi);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = AffineTransformationFunctions.Rotate(g, multipleOfPi);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TryTranslateCentreToOrigin(byte[] wKBGeom)
+    public static string WKTTranslateCentreToOrigin(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = AffineTransformationFunctions.TranslateCentreToOrigin(g);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = AffineTransformationFunctions.TranslateCentreToOrigin(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
-    public static byte[] TryTranslateToOrigin(byte[] wKBGeom)
+    public static string WKTTranslateToOrigin(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = AffineTransformationFunctions.TranslateToOrigin(g);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = AffineTransformationFunctions.TranslateToOrigin(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 }
 

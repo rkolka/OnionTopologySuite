@@ -2,7 +2,7 @@
 
 using Open.Topology.TestRunner.Functions;
 
-public static class TryNTSFunctions
+public static class WKTNTSFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
@@ -16,18 +16,18 @@ public static class TryNTSFunctions
 
     private static readonly double T_WIDTH = WIDTH - 2 * S_RADIUS - J_WIDTH;
 
-    public static byte[] TryLogoLines(byte[] wKBGeom)
+    public static string WKTLogoLines(byte[] wKBGeom)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = NTSFunctions.LogoLines(g);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
-    public static byte[] TryLogoBuffer(byte[] wKBGeom, double distance)
+    public static string WKTLogoBuffer(byte[] wKBGeom, double distance)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = NTSFunctions.LogoBuffer(g, distance);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
 }

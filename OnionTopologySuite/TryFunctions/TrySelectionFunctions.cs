@@ -2,108 +2,108 @@ using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 
-public static class TrySelectionFunctions
+public static class WKTSelectionFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static byte[] TryIntersects(byte[] wKBa, byte[] wKBmask)
+    public static string WKTIntersects(byte[] wKBa, byte[] wKBmask)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry mask = wKBReader.Read(wKBmask);
         Geometry result = SelectionFunctions.Intersects(a, mask);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
-    public static byte[] TryCovers(byte[] wKBa, byte[] wKBmask)
+    public static string WKTCovers(byte[] wKBa, byte[] wKBmask)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry mask = wKBReader.Read(wKBmask);
         Geometry result = SelectionFunctions.Covers(a, mask);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
-    public static byte[] TryCoveredBy(byte[] wKBa, byte[] wKBmask)
+    public static string WKTCoveredBy(byte[] wKBa, byte[] wKBmask)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry mask = wKBReader.Read(wKBmask);
         Geometry result = SelectionFunctions.CoveredBy(a, mask);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
-    public static byte[] TryDisjoint(byte[] wKBa, byte[] wKBmask)
+    public static string WKTDisjoint(byte[] wKBa, byte[] wKBmask)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry mask = wKBReader.Read(wKBmask);
         Geometry result = SelectionFunctions.Disjoint(a, mask);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
-    public static byte[] TryValid(byte[] wKBa)
+    public static string WKTValid(byte[] wKBa)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry result = SelectionFunctions.Valid(a);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
-    public static byte[] TryInvalid(byte[] wKBa)
+    public static string WKTInvalid(byte[] wKBa)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry result = SelectionFunctions.Invalid(a);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
-    public static byte[] TryAreaGreater(byte[] wKBa, double minArea)
+    public static string WKTAreaGreater(byte[] wKBa, double minArea)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry result = SelectionFunctions.AreaGreater(a, minArea);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
-    public static byte[] TryAreaZero(byte[] wKBa)
+    public static string WKTAreaZero(byte[] wKBa)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry result = SelectionFunctions.AreaZero(a);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
-    public static byte[] TryWithin(byte[] wKBa, byte[] wKBmask)
+    public static string WKTWithin(byte[] wKBa, byte[] wKBmask)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry mask = wKBReader.Read(wKBmask);
         Geometry result = SelectionFunctions.Within(a, mask);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
-    public static byte[] TryInteriorPointWithin(byte[] wKBa, byte[] wKBmask)
+    public static string WKTInteriorPointWithin(byte[] wKBa, byte[] wKBmask)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry mask = wKBReader.Read(wKBmask);
         Geometry result = SelectionFunctions.InteriorPointWithin(a, mask);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
-    public static byte[] TrywithinDistance(byte[] wKBa, byte[] wKBmask, double maximumDistance)
+    public static string WKTwithinDistance(byte[] wKBa, byte[] wKBmask, double maximumDistance)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry mask = wKBReader.Read(wKBmask);
         Geometry result = SelectionFunctions.withinDistance(a, mask, maximumDistance);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
-    public static byte[] TrywithinDistanceIndexed(byte[] wKBa, byte[] wKBmask, double maximumDistance)
+    public static string WKTwithinDistanceIndexed(byte[] wKBa, byte[] wKBmask, double maximumDistance)
     {
         Geometry a = wKBReader.Read(wKBa);
         Geometry mask = wKBReader.Read(wKBmask);
         Geometry result = SelectionFunctions.withinDistanceIndexed(a, mask, maximumDistance);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 
-    public static byte[] TryFirstNComponents(byte[] wKBGeom, int n)
+    public static string WKTFirstNComponents(byte[] wKBGeom, int n)
     {
         Geometry g = wKBReader.Read(wKBGeom);
         Geometry result = SelectionFunctions.FirstNComponents(g, n);
-        return wKBWriter.Write(result);
+        return result.ToString();
     }
 }
 

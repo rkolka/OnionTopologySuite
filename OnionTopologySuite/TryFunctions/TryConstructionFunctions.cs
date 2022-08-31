@@ -2,88 +2,184 @@
 
 using Open.Topology.TestRunner.Functions;
 
-public static class TryConstructionFunctions
+public static class WKTConstructionFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static byte[] TryOctagonalEnvelope(byte[] wKBGeom)
+    public static string WKTOctagonalEnvelope(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = ConstructionFunctions.OctagonalEnvelope(g);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = ConstructionFunctions.OctagonalEnvelope(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TryMinimumDiameter(byte[] wKBGeom)
+    public static string WKTMinimumDiameter(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = ConstructionFunctions.MinimumDiameter(g);
-        return wKBWriter.Write(result);
+        try
+        {
+
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = ConstructionFunctions.MinimumDiameter(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
-    public static double TryMinimumDiameterLength(byte[] wKBGeom)
+    public static string WKTMinimumDiameterLength(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        double result = ConstructionFunctions.MinimumDiameterLength(g);
-        return result;
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            double result = ConstructionFunctions.MinimumDiameterLength(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TryMinimumRectangle(byte[] wKBGeom)
+    public static string WKTMinimumRectangle(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = ConstructionFunctions.MinimumRectangle(g);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = ConstructionFunctions.MinimumRectangle(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TryMinimumBoundingCircle(byte[] wKBGeom)
+    public static string WKTMinimumBoundingCircle(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = ConstructionFunctions.MinimumBoundingCircle(g);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = ConstructionFunctions.MinimumBoundingCircle(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
-    public static double TryMinimumBoundingCircleDiameterLength(byte[] wKBGeom)
+    public static string WKTMinimumBoundingCircleDiameterLength(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        double result = ConstructionFunctions.MinimumBoundingCircleDiameterLength(g);
-        return result;
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            double result = ConstructionFunctions.MinimumBoundingCircleDiameterLength(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TryMaximumDiameter(byte[] wKBGeom)
+    public static string WKTMaximumDiameter(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = ConstructionFunctions.MaximumDiameter(g);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = ConstructionFunctions.MaximumDiameter(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
-    public static double TryMaximumDiameterLength(byte[] wKBGeom)
+    public static string WKTMaximumDiameterLength(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        double result = ConstructionFunctions.MaximumDiameterLength(g);
-        return result;
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            double result = ConstructionFunctions.MaximumDiameterLength(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TryConvexHull(byte[] wKBGeom)
+    public static string WKTConvexHull(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = ConstructionFunctions.ConvexHull(g);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = ConstructionFunctions.ConvexHull(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
-    public static byte[] TryCentroid(byte[] wKBGeom)
+    public static string WKTCentroid(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = ConstructionFunctions.Centroid(g);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = ConstructionFunctions.Centroid(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
-    public static byte[] TryInteriorPoint(byte[] wKBGeom)
+    public static string WKTInteriorPoint(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = ConstructionFunctions.InteriorPoint(g);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = ConstructionFunctions.InteriorPoint(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TryDensify(byte[] wKBGeom, double distance)
+    public static string WKTDensify(byte[] wKBGeom, double distance)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = ConstructionFunctions.Densify(g, distance);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = ConstructionFunctions.Densify(g, distance);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
 }

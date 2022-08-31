@@ -2,34 +2,62 @@
 using NetTopologySuite.Algorithm.Hull;
 using NetTopologySuite.Simplify;
 
-public static class TryHullFunctions
+public static class WKTHullFunctions
 {
 
 
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
 
-    public static byte[] TryConcaveHullByLength(byte[] geomwkb, double maxLength, bool isHolesAllowed)
+    public static string WKTConcaveHullByLength(byte[] geomwkb, double maxLength, bool isHolesAllowed)
     {
-        Geometry geometry = wKBReader.Read(geomwkb);
-        return ConcaveHull.ConcaveHullByLength(geometry, maxLength, isHolesAllowed).ToBinary();
+        try
+        {
+            Geometry geometry = wKBReader.Read(geomwkb);
+            return ConcaveHull.ConcaveHullByLength(geometry, maxLength, isHolesAllowed).ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TryConcaveHullByLengthRatio(byte[] geomwkb, double lengthRatio, bool isHolesAllowed)
+    public static string WKTConcaveHullByLengthRatio(byte[] geomwkb, double lengthRatio, bool isHolesAllowed)
     {
-        Geometry geometry = wKBReader.Read(geomwkb);
-        return ConcaveHull.ConcaveHullByLengthRatio(geometry, lengthRatio, isHolesAllowed).ToBinary();
+        try
+        {
+            Geometry geometry = wKBReader.Read(geomwkb);
+            return ConcaveHull.ConcaveHullByLengthRatio(geometry, lengthRatio, isHolesAllowed).ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TryPolygonHull(byte[] geomwkb, bool isOuter, double vertexNumFraction)
+    public static string WKTPolygonHull(byte[] geomwkb, bool isOuter, double vertexNumFraction)
     {
-        Geometry geometry = wKBReader.Read(geomwkb);
-        return PolygonHullSimplifier.Hull(geometry, isOuter, vertexNumFraction).ToBinary();
+        try
+        {
+            Geometry geometry = wKBReader.Read(geomwkb);
+            return PolygonHullSimplifier.Hull(geometry, isOuter, vertexNumFraction).ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TryPolygonHullByAreaDelta(byte[] geomwkb, bool isOuter, double areaDeltaRatio)
+    public static string WKTPolygonHullByAreaDelta(byte[] geomwkb, bool isOuter, double areaDeltaRatio)
     {
-        Geometry geometry = wKBReader.Read(geomwkb);
-        return PolygonHullSimplifier.HullByAreaDelta(geometry, isOuter, areaDeltaRatio).ToBinary();
+        try
+        {
+            Geometry geometry = wKBReader.Read(geomwkb);
+            return PolygonHullSimplifier.HullByAreaDelta(geometry, isOuter, areaDeltaRatio).ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
 }

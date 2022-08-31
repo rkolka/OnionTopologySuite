@@ -7,12 +7,19 @@ public class TryDiffFunctions
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static byte[] TryDiffVerticesBoth(byte[] wKBa, byte[] wKBb)
+    public static string WKTDiffVerticesBoth(byte[] wKBa, byte[] wKBb)
     {
-        Geometry a = wKBReader.Read(wKBa);
-        Geometry b = wKBReader.Read(wKBb);
-        GeometryCollection result = DiffFunctions.DiffVerticesBoth(a, b);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry a = wKBReader.Read(wKBa);
+            Geometry b = wKBReader.Read(wKBb);
+            GeometryCollection result = DiffFunctions.DiffVerticesBoth(a, b);
+            return result.ToString(); 
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
     /// <summary>
@@ -22,43 +29,77 @@ public class TryDiffFunctions
     /// <param name="a">A geometry</param>
     /// <param name="b">A geometry</param>
     /// <returns>The vertices in A which are not in B</returns>
-    public static byte[] DiffVertices(byte[] wKBa, byte[] wKBb)
+    public static string WKTDiffVertices(byte[] wKBa, byte[] wKBb)
     {
-
-        Geometry a = wKBReader.Read(wKBa);
-        Geometry b = wKBReader.Read(wKBb);
-        GeometryCollection result = DiffFunctions.DiffVertices(a, b);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry a = wKBReader.Read(wKBa);
+            Geometry b = wKBReader.Read(wKBb);
+            GeometryCollection result = DiffFunctions.DiffVertices(a, b);
+            return result.ToString(); 
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TryDiffSegments(byte[] wKBa, byte[] wKBb)
+    public static string WKTDiffSegments(byte[] wKBa, byte[] wKBb)
     {
-        Geometry a = wKBReader.Read(wKBa);
-        Geometry b = wKBReader.Read(wKBb);
-        GeometryCollection result = DiffFunctions.DiffSegments(a, b);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry a = wKBReader.Read(wKBa);
+            Geometry b = wKBReader.Read(wKBb);
+            GeometryCollection result = DiffFunctions.DiffSegments(a, b);
+            return result.ToString(); 
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TryDiffSegmentsBoth(byte[] wKBa, byte[] wKBb)
+    public static string WKTDiffSegmentsBoth(byte[] wKBa, byte[] wKBb)
     {
-        Geometry a = wKBReader.Read(wKBa);
-        Geometry b = wKBReader.Read(wKBb);
-        GeometryCollection result = DiffFunctions.DiffSegmentsBoth(a, b);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry a = wKBReader.Read(wKBa);
+            Geometry b = wKBReader.Read(wKBb);
+            GeometryCollection result = DiffFunctions.DiffSegmentsBoth(a, b);
+            return result.ToString(); 
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TryDuplicateSegments(byte[] wKBa)
+    public static string WKTDuplicateSegments(byte[] wKBa)
     {
-        Geometry a = wKBReader.Read(wKBa);
-        GeometryCollection result = DiffFunctions.DuplicateSegments(a);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry a = wKBReader.Read(wKBa);
+            GeometryCollection result = DiffFunctions.DuplicateSegments(a);
+            return result.ToString();
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
-    public static byte[] TrySingleSegments(byte[] wKBa)
+    public static string WKTSingleSegments(byte[] wKBa)
     {
-        Geometry a = wKBReader.Read(wKBa);
-        GeometryCollection result = DiffFunctions.SingleSegments(a);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry a = wKBReader.Read(wKBa);
+            GeometryCollection result = DiffFunctions.SingleSegments(a);
+            return result.ToString(); 
+                    }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
 }

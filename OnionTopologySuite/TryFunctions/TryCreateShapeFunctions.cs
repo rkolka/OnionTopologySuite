@@ -2,75 +2,138 @@
 
 using Open.Topology.TestRunner.Functions;
 
-public static class TryCreateShapeFunctions
+public static class WKTCreateShapeFunctions
 {
 
 
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
-    public static byte[] TryGrid(byte[] wKBGeom, int nCells)
+    public static string WKTGrid(byte[] wKBGeom, int nCells)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateShapeFunctions.Grid(g, nCells);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateShapeFunctions.Grid(g, nCells);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TryGridPoints(byte[] wKBGeom, int nCells)
+    public static string WKTGridPoints(byte[] wKBGeom, int nCells)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateShapeFunctions.GridPoints(g, nCells);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateShapeFunctions.GridPoints(g, nCells);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TrySupercircle3(byte[] wKBGeom, int nPts)
+    public static string WKTSupercircle3(byte[] wKBGeom, int nPts)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateShapeFunctions.Supercircle3(g, nPts);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateShapeFunctions.Supercircle3(g, nPts);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TrySquircle(byte[] wKBGeom, int nPts)
+    public static string WKTSquircle(byte[] wKBGeom, int nPts)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateShapeFunctions.Squircle(g, nPts);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateShapeFunctions.Squircle(g, nPts);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TrySupercircle5(byte[] wKBGeom, int nPts)
+    public static string WKTSupercircle5(byte[] wKBGeom, int nPts)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateShapeFunctions.Supercircle5(g, nPts);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateShapeFunctions.Supercircle5(g, nPts);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TrySupercirclePoint5(byte[] wKBGeom, int nPts)
+    public static string WKTSupercirclePoint5(byte[] wKBGeom, int nPts)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateShapeFunctions.SupercirclePoint5(g, nPts);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateShapeFunctions.SupercirclePoint5(g, nPts);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TrySupercircle(byte[] wKBGeom, int nPts, double pow)
+    public static string WKTSupercircle(byte[] wKBGeom, int nPts, double pow)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = CreateShapeFunctions.Supercircle(g, nPts, pow);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = CreateShapeFunctions.Supercircle(g, nPts, pow);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TryPointFieldCentroidStar(byte[] wKBptsGeom)
+    public static string WKTPointFieldCentroidStar(byte[] wKBptsGeom)
     {
-        Geometry ptsGeom = wKBReader.Read(wKBptsGeom);
-        Geometry result = CreateShapeFunctions.PointFieldCentroidStar(ptsGeom);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry ptsGeom = wKBReader.Read(wKBptsGeom);
+            Geometry result = CreateShapeFunctions.PointFieldCentroidStar(ptsGeom);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
-    public static byte[] TryPointFieldStar(byte[] wKBptsGeom, byte[] wKBcentrePt)
+    public static string WKTPointFieldStar(byte[] wKBptsGeom, byte[] wKBcentrePt)
     {
-        Geometry ptsGeom = wKBReader.Read(wKBptsGeom);
-        Geometry centrePt = wKBReader.Read(wKBcentrePt);
-        Geometry result = CreateShapeFunctions.PointFieldStar(ptsGeom, centrePt);
-        return wKBWriter.Write(result);
+        try
+        {
+            Geometry ptsGeom = wKBReader.Read(wKBptsGeom);
+            Geometry centrePt = wKBReader.Read(wKBcentrePt);
+            Geometry result = CreateShapeFunctions.PointFieldStar(ptsGeom, centrePt);
+            return result.ToString();         }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
 }

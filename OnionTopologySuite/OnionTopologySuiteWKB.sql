@@ -8,8 +8,6 @@ FUNCTION WKBBezierCurveByAlpha(@wKBGeom VARBINARY, @alpha FLOAT64) VARBINARY AS 
 FUNCTION WKBBezierCurveByAlphaAndSkew(@wKBGeom VARBINARY, @alpha FLOAT64, @skew FLOAT64) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBBezierCurveFunctions.WKBBezierCurveByAlphaAndSkew';
 FUNCTION WKBBezierCurveWithControlPoints(@wKBGeom VARBINARY, @controlPoints VARBINARY) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBBezierCurveFunctions.WKBBezierCurveWithControlPoints';
  
-FUNCTION TryWKBBezierCurveWithControlPoints(@wKBGeom VARBINARY, @controlPoints VARBINARY) NVARCHAR AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBBezierCurveFunctions.TryWKBBezierCurveWithControlPoints';
- 
 
 -- WKBHullFunctions
 FUNCTION WKBConcaveHullByLength(@wKBGeom VARBINARY, @maxLength FLOAT64, @isHolesAllowed BOOLEAN) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBHullFunctions.WKBConcaveHullByLength';

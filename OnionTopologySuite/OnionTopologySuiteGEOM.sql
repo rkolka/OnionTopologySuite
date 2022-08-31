@@ -10,8 +10,6 @@ FUNCTION NTSBezierCurveByAlpha(@geom GEOM, @alpha FLOAT64) GEOM AS BinaryWkbGeom
 FUNCTION NTSBezierCurveByAlphaAndSkew(@geom GEOM, @alpha FLOAT64, @skew FLOAT64) GEOM AS BinaryWkbGeom(WKBBezierCurveByAlphaAndSkew(GeomWkb(@geom), @alpha, @skew)) END ;
 FUNCTION NTSBezierCurveWithControlPoints(@geom GEOM, @controlPoints GEOM) GEOM AS BinaryWkbGeom(WKBBezierCurveWithControlPoints(GeomWkb(@geom), GeomWkb(@controlPoints))) END ;
 
-FUNCTION TryNTSBezierCurveWithControlPoints(@geom GEOM, @controlPoints GEOM) NVARCHAR AS TryWKBBezierCurveWithControlPoints(GeomWkb(@geom), GeomWkb(@controlPoints)) END ;
-
 
 -- HullFunctions
 FUNCTION NTSConcaveHullByLength(@geom GEOM, @maxLength FLOAT64, @isHolesAllowed BOOLEAN) GEOM AS BinaryWkbGeom(WKBConcaveHullByLength(GeomWkb(GeomNormalize(@geom, 0)), @maxLength, @isHolesAllowed)) END ;
