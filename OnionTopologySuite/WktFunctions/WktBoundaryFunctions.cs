@@ -2,7 +2,7 @@
 
 using Open.Topology.TestRunner.Functions;
 
-public class TryBoundaryFunctions
+public class WKTBoundaryFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();

@@ -2,7 +2,7 @@
 
 using Open.Topology.TestRunner.Functions;
 
-public class TryLineSegmentFunctions
+public class WKTLineSegmentFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
@@ -30,7 +30,7 @@ public class TryLineSegmentFunctions
             Geometry g2 = wKBReader.Read(wKBGeom2);
             Geometry result = LineSegmentFunctions.SegmentIntersection(g1, g2);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -45,7 +45,7 @@ public class TryLineSegmentFunctions
             Geometry g2 = wKBReader.Read(wKBGeom2);
             Geometry result = LineSegmentFunctions.SegmentIntersectionDd(g1, g2);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -60,7 +60,7 @@ public class TryLineSegmentFunctions
             Geometry g2 = wKBReader.Read(wKBGeom2);
             Geometry result = LineSegmentFunctions.LineIntersection(g1, g2);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -75,7 +75,7 @@ public class TryLineSegmentFunctions
             Geometry g2 = wKBReader.Read(wKBGeom2);
             Geometry result = LineSegmentFunctions.LineIntersectionDD(g1, g2);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -89,7 +89,7 @@ public class TryLineSegmentFunctions
             Geometry g2 = wKBReader.Read(wKBGeom2);
             Geometry result = LineSegmentFunctions.ReflectPoint(g1, g2);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();

@@ -16,7 +16,8 @@ public static class WKTCreateRandomGeometryFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateRandomGeometryFunctions.RandomPointsInGrid(g, nPts);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -30,7 +31,8 @@ public static class WKTCreateRandomGeometryFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateRandomGeometryFunctions.RandomPoints(g, nPts);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -44,7 +46,8 @@ public static class WKTCreateRandomGeometryFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateRandomGeometryFunctions.RandomRadialPoints(g, nPts);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -61,7 +64,8 @@ public static class WKTCreateRandomGeometryFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateRandomGeometryFunctions.HaltonPoints(g, nPts);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -78,7 +82,8 @@ public static class WKTCreateRandomGeometryFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateRandomGeometryFunctions.HaltonPoints57(g, nPts);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -97,7 +102,8 @@ public static class WKTCreateRandomGeometryFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateRandomGeometryFunctions.HaltonPointsWithBases(g, nPts, basei, basej);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -111,7 +117,8 @@ public static class WKTCreateRandomGeometryFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateRandomGeometryFunctions.RandomSegments(g, nPts);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -125,7 +132,8 @@ public static class WKTCreateRandomGeometryFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateRandomGeometryFunctions.RandomSegmentsInGrid(g, nPts);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -139,7 +147,8 @@ public static class WKTCreateRandomGeometryFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateRandomGeometryFunctions.RandomLineString(g, nPts);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -153,7 +162,8 @@ public static class WKTCreateRandomGeometryFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateRandomGeometryFunctions.RandomRectilinearWalk(g, nPts);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();

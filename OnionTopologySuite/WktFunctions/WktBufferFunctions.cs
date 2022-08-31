@@ -16,7 +16,7 @@ public static class WKTBufferFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = BufferFunctions.Buffer(g, distance);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -33,7 +33,7 @@ public static class WKTBufferFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = BufferFunctions.BufferWithParams(g, distance, quadrantSegments, capStyle, joinStyle, mitreLimit);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -48,7 +48,7 @@ public static class WKTBufferFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = BufferFunctions.BufferWithSimplify(g, distance, simplifyFactor);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -63,7 +63,7 @@ public static class WKTBufferFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = BufferFunctions.BufferOffsetCurve(g, distance);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -79,7 +79,7 @@ public static class WKTBufferFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = BufferFunctions.BufferOffsetCurveWithParams(g, distance, quadrantSegments, capStyle, joinStyle, mitreLimit);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -94,7 +94,7 @@ public static class WKTBufferFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = BufferFunctions.BufferLineSimplifier(g, distance);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -110,7 +110,7 @@ public static class WKTBufferFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = BufferFunctions.BufferValidated(g, distance);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -125,7 +125,7 @@ public static class WKTBufferFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = BufferFunctions.BufferValidatedGeom(g, distance);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -140,7 +140,7 @@ public static class WKTBufferFunctions
             Geometry geom = wKBReader.Read(wKBgeom);
             Geometry result = BufferFunctions.SingleSidedBufferCurve(geom, distance);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -155,7 +155,7 @@ public static class WKTBufferFunctions
             Geometry geom = wKBReader.Read(wKBgeom);
             Geometry result = BufferFunctions.SingleSidedBuffer(geom, distance);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -170,7 +170,7 @@ public static class WKTBufferFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = BufferFunctions.BufferEach(g, distance);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -187,7 +187,7 @@ public static class WKTBufferFunctions
             Geometry g = wKBReader.Read(wKBline);
             Geometry result = BufferFunctions.VariableBuffer(g, startDist, endDist);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -204,7 +204,7 @@ public static class WKTBufferFunctions
             Geometry g = wKBReader.Read(wKBline);
             Geometry result = BufferFunctions.VariableBuffer(g, startDist, midDist);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();

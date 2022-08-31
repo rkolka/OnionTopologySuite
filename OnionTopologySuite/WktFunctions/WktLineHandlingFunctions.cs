@@ -14,7 +14,7 @@ public static class WKTLineHandlingFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = LineHandlingFunctions.MergeLines(g);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -28,7 +28,7 @@ public static class WKTLineHandlingFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = LineHandlingFunctions.SequenceLines(g);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -42,7 +42,7 @@ public static class WKTLineHandlingFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = LineHandlingFunctions.ExtractLines(g);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -56,7 +56,7 @@ public static class WKTLineHandlingFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = LineHandlingFunctions.ExtractSegments(g);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -69,7 +69,7 @@ public static class WKTLineHandlingFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = LineHandlingFunctions.ExtractChains(g, maxChainSize);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -84,7 +84,7 @@ public static class WKTLineHandlingFunctions
             Geometry geom = wKBReader.Read(wKBGeom);
             Geometry result = LineHandlingFunctions.Dissolve(geom);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();

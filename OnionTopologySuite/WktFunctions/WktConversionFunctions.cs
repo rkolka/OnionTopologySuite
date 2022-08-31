@@ -13,7 +13,8 @@ public static class WKTConversionFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = ConversionFunctions.PointsToLine(g);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -26,7 +27,8 @@ public static class WKTConversionFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = ConversionFunctions.LineToPolygon(g);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -40,7 +42,8 @@ public static class WKTConversionFunctions
             Geometry g1 = wKBReader.Read(wKBGeom1);
             Geometry g2 = wKBReader.Read(wKBGeom2);
             Geometry result = ConversionFunctions.ToPoints(g1, g2);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -54,7 +57,8 @@ public static class WKTConversionFunctions
             Geometry g1 = wKBReader.Read(wKBGeom1);
             Geometry g2 = wKBReader.Read(wKBGeom2);
             Geometry result = ConversionFunctions.ToLines(g1, g2);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -68,7 +72,8 @@ public static class WKTConversionFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry g2 = wKBReader.Read(wKBGeom2);
             Geometry result = ConversionFunctions.ToGeometryCollection(g, g2);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();

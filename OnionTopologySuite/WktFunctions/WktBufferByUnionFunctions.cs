@@ -13,7 +13,7 @@ public static class WKTBufferByUnionFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = BufferByUnionFunctions.ComponentBuffers(g, distance);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -28,7 +28,7 @@ public static class WKTBufferByUnionFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = BufferByUnionFunctions.BufferByComponents(g, distance);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -49,7 +49,7 @@ public static class WKTBufferByUnionFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = BufferByUnionFunctions.BufferBySegments(g, distance);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -64,7 +64,7 @@ public static class WKTBufferByUnionFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = BufferByUnionFunctions.BufferByChains(g, distance, maxChainSize);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();

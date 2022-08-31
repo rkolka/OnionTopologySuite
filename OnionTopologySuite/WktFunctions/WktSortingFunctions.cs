@@ -9,32 +9,60 @@ public static class WKTSortingFunctions
 
     public static string WKTSortByLength(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = SortingFunctions.SortByLength(g);
-        return result.ToString();
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = SortingFunctions.SortByLength(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
 
     public static string WKTSortByArea(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = SortingFunctions.SortByArea(g);
-        return result.ToString();
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = SortingFunctions.SortByArea(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
 
     public static string WKTSortByHilbertCode(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = SortingFunctions.SortByHilbertCode(g);
-        return result.ToString();
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = SortingFunctions.SortByHilbertCode(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
     public static string WKTSortByMortonCode(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = SortingFunctions.SortByMortonCode(g);
-        return result.ToString();
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = SortingFunctions.SortByMortonCode(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
 }

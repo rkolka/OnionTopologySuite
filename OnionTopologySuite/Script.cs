@@ -8,7 +8,13 @@ public class Script
     private static readonly string AddinName = "OnionTopologySuite";
     private static readonly string AddinCodeFolder = "Code\\OnionTopologySuite";
 
-    private static readonly string[] FilesToImport = { "OnionTopologySuiteWKB.sql", "OnionTopologySuiteGEOM.sql", "OnionTopologySuiteTest.sql", "OnionTopologySuiteWktWKB.sql", "OnionTopologySuiteWktGEOM.sql" };
+    private static readonly string[] FilesToImport = { 
+        "OnionTopologySuiteWKB.sql", 
+        "OnionTopologySuiteGEOM.sql", 
+        "OnionTopologySuiteTest.sql", 
+        "OnionTopologySuiteWktWKB.sql", 
+        "OnionTopologySuiteWktGEOM.sql", 
+        "OnionTopologySuiteWktTest.sql" };
 
 
     private static Context Manifold;

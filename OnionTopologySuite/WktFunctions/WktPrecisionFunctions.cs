@@ -9,8 +9,15 @@ public static class WKTPrecisionFunctions
 
     public static string WKTReducePrecisionPointwise(byte[] wKBGeom, double scaleFactor)
     {
-        Geometry geom = wKBReader.Read(wKBGeom);
-        Geometry result = PrecisionFunctions.ReducePrecisionPointwise(geom, scaleFactor);
-        return result.ToString();
+        try
+        {
+            Geometry geom = wKBReader.Read(wKBGeom);
+            Geometry result = PrecisionFunctions.ReducePrecisionPointwise(geom, scaleFactor);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 }

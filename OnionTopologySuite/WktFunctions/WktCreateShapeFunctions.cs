@@ -15,7 +15,8 @@ public static class WKTCreateShapeFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateShapeFunctions.Grid(g, nCells);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -29,7 +30,8 @@ public static class WKTCreateShapeFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateShapeFunctions.GridPoints(g, nCells);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -43,7 +45,8 @@ public static class WKTCreateShapeFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateShapeFunctions.Supercircle3(g, nPts);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -57,7 +60,8 @@ public static class WKTCreateShapeFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateShapeFunctions.Squircle(g, nPts);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -71,7 +75,8 @@ public static class WKTCreateShapeFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateShapeFunctions.Supercircle5(g, nPts);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -85,7 +90,8 @@ public static class WKTCreateShapeFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateShapeFunctions.SupercirclePoint5(g, nPts);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -99,7 +105,8 @@ public static class WKTCreateShapeFunctions
         {
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = CreateShapeFunctions.Supercircle(g, nPts, pow);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -113,7 +120,8 @@ public static class WKTCreateShapeFunctions
         {
             Geometry ptsGeom = wKBReader.Read(wKBptsGeom);
             Geometry result = CreateShapeFunctions.PointFieldCentroidStar(ptsGeom);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -128,7 +136,8 @@ public static class WKTCreateShapeFunctions
             Geometry ptsGeom = wKBReader.Read(wKBptsGeom);
             Geometry centrePt = wKBReader.Read(wKBcentrePt);
             Geometry result = CreateShapeFunctions.PointFieldStar(ptsGeom, centrePt);
-            return result.ToString();         }
+            return result.ToString();
+        }
         catch (System.Exception e)
         {
             return e.ToString();

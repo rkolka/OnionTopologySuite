@@ -9,44 +9,92 @@ public static class WKTPolygonizeFunctions
 
     public static string WKTPolygonize(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = PolygonizeFunctions.Polygonize(g);
-        return result.ToString();
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = PolygonizeFunctions.Polygonize(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
     public static string WKTPolygonizeValidPolygonal(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = PolygonizeFunctions.PolygonizeValidPolygonal(g);
-        return result.ToString();
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = PolygonizeFunctions.PolygonizeValidPolygonal(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
     public static string WKTPolygonizeDangles(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = PolygonizeFunctions.PolygonizeDangles(g);
-        return result.ToString();
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = PolygonizeFunctions.PolygonizeDangles(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
     public static string WKTPolygonizeCutEdges(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = PolygonizeFunctions.PolygonizeCutEdges(g);
-        return result.ToString();
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = PolygonizeFunctions.PolygonizeCutEdges(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
     public static string WKTPolygonizeInvalidRingLines(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = PolygonizeFunctions.PolygonizeInvalidRingLines(g);
-        return result.ToString();
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = PolygonizeFunctions.PolygonizeInvalidRingLines(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
     public static string WKTPolygonizeAllErrors(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = PolygonizeFunctions.PolygonizeAllErrors(g);
-        return result.ToString();
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = PolygonizeFunctions.PolygonizeAllErrors(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 }
 

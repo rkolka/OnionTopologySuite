@@ -6,10 +6,9 @@ using Open.Topology.TestRunner.Functions;
 /// Implementations for various geometry functions.
 /// </summary>
 /// <author>Martin Davis</author>
-public static class wKBGeometryFunctions
+public static class WKTGeometryFunctions
 {
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
-    private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
     public static string WKTLength(byte[] wKBGeom)
     {
@@ -112,7 +111,7 @@ public static class wKBGeometryFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = GeometryFunctions.Envelope(g);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -125,7 +124,7 @@ public static class wKBGeometryFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = GeometryFunctions.Reverse(g);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -138,7 +137,7 @@ public static class wKBGeometryFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = GeometryFunctions.Normalize(g);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -153,7 +152,7 @@ public static class wKBGeometryFunctions
             Geometry g2 = wKBReader.Read(wKBGeom2);
             Geometry result = GeometryFunctions.Snap(g, g2, distance);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -167,7 +166,7 @@ public static class wKBGeometryFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = GeometryFunctions.GetGeometryN(g, i);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -181,7 +180,7 @@ public static class wKBGeometryFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = GeometryFunctions.GetPolygonShell(g);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -196,7 +195,7 @@ public static class wKBGeometryFunctions
             Geometry geom = wKBReader.Read(wKBGeom);
             Geometry result = GeometryFunctions.GetPolygonHoles(geom);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -210,7 +209,7 @@ public static class wKBGeometryFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = GeometryFunctions.GetPolygonHoleN(g, i);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -224,7 +223,7 @@ public static class wKBGeometryFunctions
             Geometry g = wKBReader.Read(wKBGeom);
             Geometry result = GeometryFunctions.GetCoordinates(g);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();

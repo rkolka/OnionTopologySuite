@@ -27,14 +27,32 @@ public static class WKTMaximumCircleFunctions
 
     public static string WKTMaximumInscribedCircle(byte[] geomwkb, double tolerance)
     {
-        Geometry geometry = wKBReader.Read(geomwkb);
-        return new MaximumInscribedCircle(geometry, tolerance).GetRadiusLine().ToString();
+        try
+        {
+            Geometry geometry = wKBReader.Read(geomwkb);
+            return new MaximumInscribedCircle(geometry, tolerance).GetRadiusLine().ToString();
+
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 
     public static string WKTLargestEmptyCircle(byte[] geomwkb, double tolerance)
     {
-        Geometry geometry = wKBReader.Read(geomwkb);
-        return new LargestEmptyCircle(geometry, tolerance).GetRadiusLine().ToString();
+        try
+        {
+            Geometry geometry = wKBReader.Read(geomwkb);
+            return new LargestEmptyCircle(geometry, tolerance).GetRadiusLine().ToString();
+
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+
     }
 }
 

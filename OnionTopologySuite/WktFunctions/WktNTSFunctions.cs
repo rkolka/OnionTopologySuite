@@ -18,16 +18,30 @@ public static class WKTNTSFunctions
 
     public static string WKTLogoLines(byte[] wKBGeom)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = NTSFunctions.LogoLines(g);
-        return result.ToString();
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = NTSFunctions.LogoLines(g);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
     public static string WKTLogoBuffer(byte[] wKBGeom, double distance)
     {
-        Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = NTSFunctions.LogoBuffer(g, distance);
-        return result.ToString();
+        try
+        {
+            Geometry g = wKBReader.Read(wKBGeom);
+            Geometry result = NTSFunctions.LogoBuffer(g, distance);
+            return result.ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
     }
 
 }

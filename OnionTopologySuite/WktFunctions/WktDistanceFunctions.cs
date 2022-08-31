@@ -45,7 +45,7 @@ public static class WKTDistanceFunctions
             Geometry b = wKBReader.Read(wKBb);
             Geometry result = DistanceFunctions.NearestPoints(a, b);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -60,7 +60,7 @@ public static class WKTDistanceFunctions
             Geometry b = wKBReader.Read(wKBb);
             Geometry result = DistanceFunctions.DiscreteHausdorffDistanceLine(a, b);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -75,7 +75,7 @@ public static class WKTDistanceFunctions
             Geometry b = wKBReader.Read(wKBb);
             Geometry result = DistanceFunctions.DensifiedDiscreteHausdorffDistanceLine(a, b, frac);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -90,7 +90,7 @@ public static class WKTDistanceFunctions
             Geometry b = wKBReader.Read(wKBb);
             Geometry result = DistanceFunctions.DiscreteOrientedHausdorffDistanceLine(a, b);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -150,7 +150,7 @@ public static class WKTDistanceFunctions
             Geometry b = wKBReader.Read(wKBb);
             Geometry result = DistanceFunctions.NearestPointsIndexed(a, b);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
@@ -165,7 +165,7 @@ public static class WKTDistanceFunctions
             Geometry b = wKBReader.Read(wKBb);
             Geometry result = DistanceFunctions.NearestPointsIndexedAll(a, b);
             return result.ToString();
-                    }
+        }
         catch (System.Exception e)
         {
             return e.ToString();
