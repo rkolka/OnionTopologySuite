@@ -10,14 +10,6 @@ namespace Open.Topology.TestRunner.Functions
         {
             if (segment.NumPoints != 2 || ptGeom.NumPoints != 1)
             {
-                /*System.ArgumentException
-  HResult=0x80070057
-  Message=A must have two points and B must have one
-  Source=OnionTopologySuite
-  StackTrace:
-   at Open.Topology.TestRunner.Functions.CGAlgorithmFunctions.OrientationIndex(Geometry segment, Geometry ptGeom) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\NetTopologySuite.TestRunner.Functions\CGAlgorithmFunctions.cs:line 15
-   at WKBCGAlgorithmFunctions.WKBOrientationIndex(Byte[] wKBsegment, Byte[] wKBptGeom) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\WkbFunctions\WKBCGAlgorithmFunctions.cs:line 17
-*/
                 throw new ArgumentException("A must have two points and B must have one");
             }
             var segPt = segment.Coordinates;
@@ -30,14 +22,7 @@ namespace Open.Topology.TestRunner.Functions
         public static int OrientationIndexDd(Geometry segment, Geometry ptGeom)
         {
             if (segment.NumPoints != 2 || ptGeom.NumPoints != 1)
-            {/*System.ArgumentException
-  HResult=0x80070057
-  Message=A must have two points and B must have one
-  Source=OnionTopologySuite
-  StackTrace:
-   at Open.Topology.TestRunner.Functions.CGAlgorithmFunctions.OrientationIndexDd(Geometry segment, Geometry ptGeom) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\NetTopologySuite.TestRunner.Functions\CGAlgorithmFunctions.cs:line 36
-   at WKBCGAlgorithmFunctions.WKBOrientationIndexDd(Byte[] wKBsegment, Byte[] wKBptGeom) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\WkbFunctions\WKBCGAlgorithmFunctions.cs:line 25
-*/
+            {
                 throw new ArgumentException("A must have two points and B must have one");
             }
             var segPt = segment.Coordinates;

@@ -9,15 +9,6 @@ namespace Open.Topology.TestRunner.Functions
     {
         public static Geometry ComponentBuffers(Geometry g, double distance)
         {
-            /*
-             * System.InvalidCastException
-  HResult=0x80004002
-  Message=Unable to cast object of type 'NetTopologySuite.Geometries.Polygon' to type 'NetTopologySuite.Geometries.GeometryCollection'.
-  Source=OnionTopologySuite
-  StackTrace:
-   at Open.Topology.TestRunner.Functions.BufferByUnionFunctions.ComponentBuffers(Geometry g, Double distance) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\NetTopologySuite.TestRunner.Functions\BufferByUnionFunctions.cs:line 13
-   at WKBBufferByUnionFunctions.WKBComponentBuffers(Byte[] wKBGeom, Double distance) in D:\Code\cs\OnionTopologySuite\OnionTopologySuite\WkbFunctions\WKBBufferByUnionFunctions.cs:line 15
-*/
             var bufs = new List<Geometry>();
             foreach (var comp in new GeometryCollectionEnumerator((GeometryCollection)g))
             {
