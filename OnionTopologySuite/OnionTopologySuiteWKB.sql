@@ -103,7 +103,7 @@ FUNCTION WKBPointFieldStar(@wKBptsGeom VARBINARY, @wKBcentrePt VARBINARY) VARBIN
   
 -- WKBDiffFunctions
 FUNCTION WKBDiffVerticesBoth(@wKBa VARBINARY, @wKBb VARBINARY) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBDiffFunctions.WKBDiffVerticesBoth';
-FUNCTION WKBDiffVertices(@wKBa VARBINARY, @wKBb VARBINARY) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBDiffFunctions.DiffVertices';
+FUNCTION WKBDiffVertices(@wKBa VARBINARY, @wKBb VARBINARY) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBDiffFunctions.WKBDiffVertices';
 FUNCTION WKBDiffSegments(@wKBa VARBINARY, @wKBb VARBINARY) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBDiffFunctions.WKBDiffSegments';
 FUNCTION WKBDiffSegmentsBoth(@wKBa VARBINARY, @wKBb VARBINARY) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBDiffFunctions.WKBDiffSegmentsBoth';
 FUNCTION WKBDuplicateSegments(@wKBa VARBINARY) VARBINARY AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBDiffFunctions.WKBDuplicateSegments';

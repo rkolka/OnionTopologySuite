@@ -93,38 +93,38 @@
     <Compile Include="NetTopologySuite.TestRunner.Functions\ValidationFunctions.cs" />
     <Compile Include="Script.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TryFunctions\TryAffineTransformationFunctions.cs" />
-    <Compile Include="TryFunctions\TryAngleFunctions.cs" />
-    <Compile Include="TryFunctions\TryBezierCurveFunctions.cs" />
-    <Compile Include="TryFunctions\TryBoundaryFunctions.cs" />
-    <Compile Include="TryFunctions\TryBufferByUnionFunctions.cs" />
-    <Compile Include="TryFunctions\TryBufferFunctions.cs" />
-    <Compile Include="TryFunctions\TryCGAlgorithmFunctions.cs" />
-    <Compile Include="TryFunctions\TryConstructionFunctions.cs" />
-    <Compile Include="TryFunctions\TryConversionFunctions.cs" />
-    <Compile Include="TryFunctions\TryCreateRandomGeometries.cs" />
-    <Compile Include="TryFunctions\TryCreateShapeFunctions.cs" />
-    <Compile Include="TryFunctions\TryDiffFunctions.cs" />
-    <Compile Include="TryFunctions\TryDistanceFunctions.cs" />
-    <Compile Include="TryFunctions\TryEditFunctions.cs" />
-    <Compile Include="TryFunctions\TryGeometryFunctions.cs" />
-    <Compile Include="TryFunctions\TryHullFunctions.cs" />
-    <Compile Include="TryFunctions\TryLinearReferencingFunctions.cs" />
-    <Compile Include="TryFunctions\TryLineHandlingFunctions.cs" />
-    <Compile Include="TryFunctions\TryLineSegmentFunctions.cs" />
-    <Compile Include="TryFunctions\TryMaximumCircleFunctions.cs" />
-    <Compile Include="TryFunctions\TryNodingFunctions.cs" />
-    <Compile Include="TryFunctions\TryNTSFunctions.cs" />
-    <Compile Include="TryFunctions\TryOffsetCurveFunctions.cs" />
-    <Compile Include="TryFunctions\TryOverlayFunctions.cs" />
-    <Compile Include="TryFunctions\TryPolygonizeFunctions.cs" />
-    <Compile Include="TryFunctions\TryPrecisionFunctions.cs" />
-    <Compile Include="TryFunctions\TrySelectionFunctions.cs" />
-    <Compile Include="TryFunctions\TrySimplificationFunctions.cs" />
-    <Compile Include="TryFunctions\TrySortingFunctions.cs" />
-    <Compile Include="TryFunctions\TrySpatialIndexFunctions.cs" />
-    <Compile Include="TryFunctions\TryTriangleFunctions.cs" />
-    <Compile Include="TryFunctions\TryValidationFunctions.cs" />
+    <Compile Include="WktFunctions\WktAffineTransformationFunctions.cs" />
+    <Compile Include="WktFunctions\WktAngleFunctions.cs" />
+    <Compile Include="WktFunctions\WktBezierCurveFunctions.cs" />
+    <Compile Include="WktFunctions\WktBoundaryFunctions.cs" />
+    <Compile Include="WktFunctions\WktBufferByUnionFunctions.cs" />
+    <Compile Include="WktFunctions\WktBufferFunctions.cs" />
+    <Compile Include="WktFunctions\WktCGAlgorithmFunctions.cs" />
+    <Compile Include="WktFunctions\WktConstructionFunctions.cs" />
+    <Compile Include="WktFunctions\WktConversionFunctions.cs" />
+    <Compile Include="WktFunctions\WktCreateRandomGeometries.cs" />
+    <Compile Include="WktFunctions\WktCreateShapeFunctions.cs" />
+    <Compile Include="WktFunctions\WktDiffFunctions.cs" />
+    <Compile Include="WktFunctions\WktDistanceFunctions.cs" />
+    <Compile Include="WktFunctions\WktEditFunctions.cs" />
+    <Compile Include="WktFunctions\WktGeometryFunctions.cs" />
+    <Compile Include="WktFunctions\WktHullFunctions.cs" />
+    <Compile Include="WktFunctions\WktLinearReferencingFunctions.cs" />
+    <Compile Include="WktFunctions\WktLineHandlingFunctions.cs" />
+    <Compile Include="WktFunctions\WktLineSegmentFunctions.cs" />
+    <Compile Include="WktFunctions\WktMaximumCircleFunctions.cs" />
+    <Compile Include="WktFunctions\WktNodingFunctions.cs" />
+    <Compile Include="WktFunctions\WktNTSFunctions.cs" />
+    <Compile Include="WktFunctions\WktOffsetCurveFunctions.cs" />
+    <Compile Include="WktFunctions\WktOverlayFunctions.cs" />
+    <Compile Include="WktFunctions\WktPolygonizeFunctions.cs" />
+    <Compile Include="WktFunctions\WktPrecisionFunctions.cs" />
+    <Compile Include="WktFunctions\WktSelectionFunctions.cs" />
+    <Compile Include="WktFunctions\WktSimplificationFunctions.cs" />
+    <Compile Include="WktFunctions\WktSortingFunctions.cs" />
+    <Compile Include="WktFunctions\WktSpatialIndexFunctions.cs" />
+    <Compile Include="WktFunctions\WktTriangleFunctions.cs" />
+    <Compile Include="WktFunctions\WktValidationFunctions.cs" />
     <Compile Include="WkbFunctions\WKBMaximumCircleFunctions.cs" />
     <Compile Include="WkbFunctions\WKBAngleFunctions.cs" />
     <Compile Include="WkbFunctions\WKBBezierCurveFunctions.cs" />
@@ -162,7 +162,7 @@
     <Content Include="OnionTopologySuite.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="OnionTopologySuiteTryGEOM.sql">
+    <Content Include="OnionTopologySuiteWktGEOM.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="OnionTopologySuiteTest.sql">
@@ -174,7 +174,7 @@
     <Content Include="OnionTopologySuiteGEOM.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="OnionTopologySuiteTryWKB.sql">
+    <Content Include="OnionTopologySuiteWktWKB.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="OnionTopologySuiteWKB.sql">
