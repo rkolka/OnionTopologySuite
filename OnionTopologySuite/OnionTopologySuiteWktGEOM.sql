@@ -1,6 +1,12 @@
 ﻿-- $manifold$
 -- $include$ [OnionTopologySuiteWktWKB.sql]
 
+
+-- 
+FUNCTION NTSWKT(@geom GEOM) NVARCHAR AS StringReplace(WKBWKT(GeomWkb(@geom)), ' (', '(' ) END  ;
+FUNCTION NTSWKTGeomWKT(@geom GEOM) NVARCHAR AS GeomWkt(StringWktGeom(WKBWKT(GeomWkb(@geom)))) END  ;
+
+
 -- OffsetCurveFunctions
 FUNCTION NTSWKTOffsetCurve(@geom GEOM, @distance FLOAT64) NVARCHAR AS WktOffsetCurve(GeomWkb(@geom), @distance) END  ;
 FUNCTION NTSWKTOffsetCurveWithParams(@geom GEOM, @distance FLOAT64, @quadrantSegments INT32, @joinStyle INT32, @mitreLimit FLOAT64) NVARCHAR AS WktOffsetCurveWithParams(GeomWkb(@geom), @distance, @quadrantSegments, @joinStyle, @mitreLimit) END ;

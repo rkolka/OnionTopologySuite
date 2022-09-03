@@ -13,20 +13,27 @@
 --  PROPERTY 'FieldCoordSystem.Geom' '{ "Axes": "XY", "Base": "WGS 84 (EPSG:4326)", "CenterLat": 0, "CenterLon": 0, "Eccentricity": 0.08181919084262149, "MajorAxis": 6378137, "Name": "WGS 84 \\/ Pseudo-Mercator (EPSG:3857)", "System": "Pseudo Mercator", "Unit": "Meter", "UnitScale": 1, "UnitShort": "m" }'
 --);
 
+--DROP TABLE [Results];
+--DROP DRAWING [Results Drawing];
+--
 --CREATE TABLE [Results] (
 --  [mfd_id] INT64,
 --  [signature] NVARCHAR,
 --  [resultNumber] FLOAT64,
 --  [resultbOOLEAN] BOOLEAN,
 --  [resultGeom] GEOM,
+--  [resultNVARCHAR] NVARCHAR,
 --  INDEX [mfd_id_x] BTREE ([mfd_id]),
 --  INDEX [resultGeom_x] RTREE ([resultGeom])
 --);
 --CREATE DRAWING [Results Drawing] (
 --  PROPERTY 'FieldGeom' 'resultGeom',
+--  PROPERTY 'StyleArea' '{ "Value": { "Stroke": "0.5", "Style": "line" } }',
 --  PROPERTY 'StyleAreaColorBack' '{ "Value": -16777216 }',
+--  PROPERTY 'StyleAreaSize' '{ "Value": 1.25 }',
 --  PROPERTY 'Table' '[Results]'
 --);
+
 
 
 VALUE @area GEOM = ( SELECT First([Geom]) FROM [Drawing] where GeomIsArea([Geom]) );

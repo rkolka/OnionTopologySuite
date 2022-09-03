@@ -2,6 +2,15 @@
 -- $include$ [OnionTopologySuiteWKB.sql]
 
 -- OffsetCurveFunctions
+VALUE @offsetDistance     FLOAT64 = -1.1; -- In projection units (meter, degree, ...). Negative offset is left(?), positive right(?).
+
+
+VALUE @joinStyleRound     INT32 = 1;
+VALUE @joinStyleMitre     INT32 = 2;
+VALUE @joinStyleBevel     INT32 = 3;
+--        Round = 1,
+--        Mitre = 2,
+--        Bevel = 3
 FUNCTION NTSOffsetCurve(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBOffsetCurve(GeomWkb(@geom), @distance)) END  ;
 FUNCTION NTSOffsetCurveWithParams(@geom GEOM, @distance FLOAT64, @quadrantSegments INT32, @joinStyle INT32, @mitreLimit FLOAT64) GEOM AS BinaryWkbGeom(WKBOffsetCurveWithParams(GeomWkb(@geom), @distance, @quadrantSegments, @joinStyle, @mitreLimit)) END ;
 
@@ -41,17 +50,31 @@ FUNCTION NTSBufferBySegments(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeo
 FUNCTION NTSBufferByChains(@geom GEOM, @distance FLOAT64, @maxChainSize INT32) GEOM AS BinaryWkbGeom(WKBBufferByChains(GeomWkb(@geom), @distance, @maxChainSize)) END ;
  
 -- BufferFunctions
-FUNCTION NTSBuffer(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBBuffer(GeomWkb(@geom), @distance)) END ;
-FUNCTION NTSBufferWithParams(@geom GEOM, @distance FLOAT64, @quadrantSegments INT32, @capStyle INT32, @joinStyle INT32, @mitreLimit FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferWithParams(GeomWkb(@geom), @distance, @quadrantSegments, @capStyle, @joinStyle, @mitreLimit)) END ;
-FUNCTION NTSBufferWithSimplify(@geom GEOM, @distance FLOAT64, @simplifyFactor FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferWithSimplify(GeomWkb(@geom), @distance, @simplifyFactor)) END ;
-FUNCTION NTSBufferOffsetCurve(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferOffsetCurve(GeomWkb(@geom), @distance)) END ;
-FUNCTION NTSBufferOffsetCurveWithParams(@geom GEOM, @distance FLOAT64, @quadrantSegments INT32, @capStyle INT32, @joinStyle INT32, @mitreLimit FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferOffsetCurveWithParams(GeomWkb(@geom), @distance, @quadrantSegments, @capStyle, @joinStyle, @mitreLimit)) END ;
-FUNCTION NTSBufferLineSimplifier(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferLineSimplifier(GeomWkb(@geom), @distance)) END ;
-FUNCTION NTSBufferValidated(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferValidated(GeomWkb(@geom), @distance)) END ;
-FUNCTION NTSBufferValidatedGeom(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferValidatedGeom(GeomWkb(@geom), @distance)) END ;
-FUNCTION NTSSingleSidedBufferCurve(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBSingleSidedBufferCurve(GeomWkb(@geom), @distance)) END ;
-FUNCTION NTSSingleSidedBuffer(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBSingleSidedBuffer(GeomWkb(@geom), @distance)) END ;
-FUNCTION NTSBufferEach(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferEach(GeomWkb(@geom), @distance)) END ;
+VALUE @capStyleRound      INT32 = 1;
+VALUE @capStyleFlat       INT32 = 2;
+VALUE @capStyleSquare     INT32 = 3;
+--        Round = 1,
+--        Flat = 2,
+--        Square = 3
+
+VALUE @joinStyleRound     INT32 = 1;
+VALUE @joinStyleMitre     INT32 = 2;
+VALUE @joinStyleBevel     INT32 = 3;
+--        Round = 1,
+--        Mitre = 2,
+--        Bevel = 3
+
+FUNCTION NTSBuffer(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBBuffer(GeomWkb(GeomNormalize(@geom, 0)), @distance)) END ;
+FUNCTION NTSBufferWithParams(@geom GEOM, @distance FLOAT64, @quadrantSegments INT32, @capStyle INT32, @joinStyle INT32, @mitreLimit FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferWithParams(GeomWkb(GeomNormalize(@geom, 0)), @distance, @quadrantSegments, @capStyle, @joinStyle, @mitreLimit)) END ;
+FUNCTION NTSBufferWithSimplify(@geom GEOM, @distance FLOAT64, @simplifyFactor FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferWithSimplify(GeomWkb(GeomNormalize(@geom, 0)), @distance, @simplifyFactor)) END ;
+FUNCTION NTSBufferOffsetCurve(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferOffsetCurve(GeomWkb(GeomNormalize(@geom, 0)), @distance)) END ;
+FUNCTION NTSBufferOffsetCurveWithParams(@geom GEOM, @distance FLOAT64, @quadrantSegments INT32, @capStyle INT32, @joinStyle INT32, @mitreLimit FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferOffsetCurveWithParams(GeomWkb(GeomNormalize(@geom, 0)), @distance, @quadrantSegments, @capStyle, @joinStyle, @mitreLimit)) END ;
+FUNCTION NTSBufferLineSimplifier(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferLineSimplifier(GeomWkb(GeomNormalize(@geom, 0)), @distance)) END ;
+FUNCTION NTSBufferValidated(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferValidated(GeomWkb(GeomNormalize(@geom, 0)), @distance)) END ;
+FUNCTION NTSBufferValidatedGeom(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferValidatedGeom(GeomWkb(GeomNormalize(@geom, 0)), @distance)) END ;
+FUNCTION NTSSingleSidedBufferCurve(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBSingleSidedBufferCurve(GeomWkb(GeomNormalize(@geom, 0)), @distance)) END ;
+FUNCTION NTSSingleSidedBuffer(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBSingleSidedBuffer(GeomWkb(GeomNormalize(@geom, 0)), @distance)) END ;
+FUNCTION NTSBufferEach(@geom GEOM, @distance FLOAT64) GEOM AS BinaryWkbGeom(WKBBufferEach(GeomWkb(GeomNormalize(@geom, 0)), @distance)) END ;
 FUNCTION NTSVariableBuffer(@line GEOM, @startDist FLOAT64, @endDist FLOAT64) GEOM AS BinaryWkbGeom(WKBVariableBuffer(GeomWkb(@line), @startDist, @endDist)) END ;
 FUNCTION NTSVariableBufferMid(@line GEOM, @startDist FLOAT64, @midDist FLOAT64) GEOM AS BinaryWkbGeom(WKBVariableBufferMid(GeomWkb(@line), @startDist, @midDist)) END ;
  
@@ -67,8 +90,8 @@ FUNCTION NTSOctagonalEnvelope(@geom GEOM) GEOM AS BinaryWkbGeom(WKBOctagonalEnve
 FUNCTION NTSMinimumDiameter(@geom GEOM) GEOM AS BinaryWkbGeom(WKBMinimumDiameter(GeomWkb(@geom))) END ;
 FUNCTION NTSMinimumDiameterLength(@geom GEOM) FLOAT64 AS WKBMinimumDiameterLength(GeomWkb(@geom)) END ;
 FUNCTION NTSMinimumRectangle(@geom GEOM) GEOM AS BinaryWkbGeom(WKBMinimumRectangle(GeomWkb(@geom))) END ;
-FUNCTION NTSMinimumBoundingCircle(@geom GEOM) GEOM AS BinaryWkbGeom(WKBMinimumBoundingCircle(GeomWkb(@geom))) END ;
-FUNCTION NTSMinimumBoundingCircleDiameterLength(@geom GEOM) FLOAT64 AS WKBMinimumBoundingCircleDiameterLength(GeomWkb(@geom)) END ;
+FUNCTION NTSMinimumBoundingCircle(@geom GEOM) GEOM AS BinaryWkbGeom(WKBMinimumBoundingCircle(GeomWkb(GeomNormalize(@geom, 0)))) END ;
+FUNCTION NTSMinimumBoundingCircleDiameterLength(@geom GEOM) FLOAT64 AS WKBMinimumBoundingCircleDiameterLength(GeomWkb(GeomNormalize(@geom, 0))) END ;
 FUNCTION NTSMaximumDiameter(@geom GEOM) GEOM AS BinaryWkbGeom(WKBMaximumDiameter(GeomWkb(@geom))) END ;
 FUNCTION NTSMaximumDiameterLength(@geom GEOM) FLOAT64 AS WKBMaximumDiameterLength(GeomWkb(@geom)) END ;
 FUNCTION NTSBoundary(@geom GEOM) GEOM AS BinaryWkbGeom(WKBBoundary(GeomWkb(@geom))) END ;

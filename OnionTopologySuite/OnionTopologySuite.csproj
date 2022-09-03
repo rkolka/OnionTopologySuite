@@ -93,6 +93,7 @@
     <Compile Include="NetTopologySuite.TestRunner.Functions\ValidationFunctions.cs" />
     <Compile Include="Script.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WkbFunctions\WKBWKTFunctions.cs" />
     <Compile Include="WktFunctions\WktAffineTransformationFunctions.cs" />
     <Compile Include="WktFunctions\WktAngleFunctions.cs" />
     <Compile Include="WktFunctions\WktBezierCurveFunctions.cs" />
