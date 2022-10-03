@@ -30,7 +30,7 @@ Include [OnionTopologySuiteGEOM.sql] in your queries.
 
 You can also look at OnionTopologySuiteTest.sql and OnionTopologySuite.map
 
-## Developing
+## What functions?
 I almost mechanically converted all functions from NetTopologySuite\test\NetTopologySuite.TestRunner\Functions.
 Some are duplicates of, or don't even make much sense in Manifold. 
 
