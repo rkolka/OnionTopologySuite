@@ -26,9 +26,18 @@ public static class WKBBezierCurveFunctions
         Geometry geometry = wKBReader.Read(geomwkb);
         Geometry _controlPoints = wKBReader.Read(controlPoints);
         return CubicBezierCurve.Create(geometry, _controlPoints).ToBinary();
-
     }
 
+
+    public static byte[] WKBBezierCurveControlPoints(byte[] geomwkb, double alpha, double skew)
+    {
+        Geometry geometry = wKBReader.Read(geomwkb);
+        // TODO! for each branch, 
+        
+        Coordinate[] coordArray = CubicBezierCurve.ControlPoints(geometry.Coordinates, false, alpha, skew);
+        Geometry result = geometry.Factory.CreateLinearRing(coordArray);
+        return result.ToBinary();
+    }
 
 
 }

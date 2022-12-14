@@ -52,7 +52,7 @@ public static class WKTBezierCurveFunctions
     }
 
 
-    public static string WKTBezierCurveDefaultControlPoints(byte[] geomwkb, double alpha, double skew)
+    public static string WKTBezierCurveControlPoints(byte[] geomwkb, double alpha, double skew)
     {
         try
         {

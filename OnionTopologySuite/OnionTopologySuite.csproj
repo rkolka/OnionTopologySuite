@@ -56,41 +56,41 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="OnionTopologySuite.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\AffineTransformationFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\BoundaryFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\BufferByUnionFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\BufferFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\CGAlgorithmFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\ConstructionFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\ConversionFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\CreateRandomGeometries.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\CreateShapeFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\DiffFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\DissolveFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\DistanceFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\EditFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\GeometryFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\LinearReferencingFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\LineHandlingFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\LineSegmentFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\NodingFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\NTSFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\OverlayFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\PolygonizeFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\PrecisionFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\SelectionFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\SimplificationFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\SortingFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\SpatialIndexFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\TestCaseGeometryFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\TriangleFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\Utility\ClassUtility.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\Utility\DoubleKeyMap.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\Utility\GeometryDataUtil.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\Utility\IOUtility.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\Utility\MultiFormatReader.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\Utility\StringUtility.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\ValidationFunctions.cs" />
+    <Compile Include="NTSFunctions\AffineTransformationFunctions.cs" />
+    <Compile Include="NTSFunctions\BoundaryFunctions.cs" />
+    <Compile Include="NTSFunctions\BufferByUnionFunctions.cs" />
+    <Compile Include="NTSFunctions\BufferFunctions.cs" />
+    <Compile Include="NTSFunctions\CGAlgorithmFunctions.cs" />
+    <Compile Include="NTSFunctions\ConstructionFunctions.cs" />
+    <Compile Include="NTSFunctions\ConversionFunctions.cs" />
+    <Compile Include="NTSFunctions\CreateRandomGeometries.cs" />
+    <Compile Include="NTSFunctions\CreateShapeFunctions.cs" />
+    <Compile Include="NTSFunctions\DiffFunctions.cs" />
+    <Compile Include="NTSFunctions\DissolveFunctions.cs" />
+    <Compile Include="NTSFunctions\DistanceFunctions.cs" />
+    <Compile Include="NTSFunctions\EditFunctions.cs" />
+    <Compile Include="NTSFunctions\GeometryFunctions.cs" />
+    <Compile Include="NTSFunctions\LinearReferencingFunctions.cs" />
+    <Compile Include="NTSFunctions\LineHandlingFunctions.cs" />
+    <Compile Include="NTSFunctions\LineSegmentFunctions.cs" />
+    <Compile Include="NTSFunctions\NodingFunctions.cs" />
+    <Compile Include="NTSFunctions\NTSFunctions.cs" />
+    <Compile Include="NTSFunctions\OverlayFunctions.cs" />
+    <Compile Include="NTSFunctions\PolygonizeFunctions.cs" />
+    <Compile Include="NTSFunctions\PrecisionFunctions.cs" />
+    <Compile Include="NTSFunctions\SelectionFunctions.cs" />
+    <Compile Include="NTSFunctions\SimplificationFunctions.cs" />
+    <Compile Include="NTSFunctions\SortingFunctions.cs" />
+    <Compile Include="NTSFunctions\SpatialIndexFunctions.cs" />
+    <Compile Include="NTSFunctions\TestCaseGeometryFunctions.cs" />
+    <Compile Include="NTSFunctions\TriangleFunctions.cs" />
+    <Compile Include="NTSFunctions\Utility\ClassUtility.cs" />
+    <Compile Include="NTSFunctions\Utility\DoubleKeyMap.cs" />
+    <Compile Include="NTSFunctions\Utility\GeometryDataUtil.cs" />
+    <Compile Include="NTSFunctions\Utility\IOUtility.cs" />
+    <Compile Include="NTSFunctions\Utility\MultiFormatReader.cs" />
+    <Compile Include="NTSFunctions\Utility\StringUtility.cs" />
+    <Compile Include="NTSFunctions\ValidationFunctions.cs" />
     <Compile Include="Script.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WkbFunctions\WKBWKTFunctions.cs" />
@@ -160,6 +160,9 @@
     <Compile Include="WkbFunctions\WKBValidationFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="OnionTopologySuite.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="OnionTopologySuite.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -191,7 +194,7 @@
     <Content Include="OnionTopologySuite.md.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Problems.md" />
+    <None Include="DevAid\Problems.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OnionTopologySuite.map">
