@@ -6,17 +6,30 @@ using System.IO;
 
 public class Script
 {
+    /// <summary>
+    /// Add-in name inside Manifold
+    /// </summary>
     private static readonly string AddinName = "OnionTopologySuite";
+
+    /// <summary>
+    /// Add-in folder inside Manifold
+    /// </summary>
     private static readonly string AddinCodeFolder = "Code\\OnionTopologySuite";
 
+    /// <summary>
+    /// Filenames that are imported to Manifold
+    /// </summary>
     private static readonly string[] FilesToImport = {
         "OnionTopologySuite.sql",
         "OnionTopologySuiteWKB.sql", 
-        "OnionTopologySuiteGEOM.sql", 
+        "OnionTopologySuiteGEOM.sql",
+        "OnionTopologySuiteWktWKB.sql",
+        "OnionTopologySuiteWktGEOM.sql",
+        "OnionTopologySuiteUtils.sql",
         "OnionTopologySuiteTest.sql", 
-        "OnionTopologySuiteWktWKB.sql", 
-        "OnionTopologySuiteWktGEOM.sql", 
-        "OnionTopologySuiteWktTest.sql" };
+        "OnionTopologySuiteTestWkt.sql",
+        "OnionTopologySuiteTestUtils.sql",
+    };
 
 
     private static Context Manifold;
@@ -92,7 +105,7 @@ public class Script
 
     }
 
-    public static Geometry NTSGeometryFromMfdGeom(Manifold.Geom mg)
+    public static Geometry GeomMfdToNTS(Manifold.Geom mg)
     {
         //Geometry ng = null;
 
@@ -244,6 +257,11 @@ public class Script
         
     }
 
+    /// <summary>
+    /// Takes WKT string, converts it to NTS-geom and uses GeomMfdFromNTS to convert it to MFD-geom
+    /// </summary>
+    /// <param name="wkt">WKT string</param>
+    /// <returns>Geom</returns>
     public static Geom GeomWktNtsMfd(string wkt)
     {
         WKTReader reader = new WKTReader();
@@ -253,7 +271,12 @@ public class Script
     }
 
 
-
+    /// <summary>
+    /// Writes Geom bytes to file
+    /// </summary>
+    /// <param name="geom"></param>
+    /// <param name="path">folder path, filename is synthetic</param>
+    /// <returns></returns>
     public static int GeomBytesToFile(Geom geom, string path)
     {
         byte[] bytes = geom.GetBytes();
@@ -265,7 +288,12 @@ public class Script
 
     #region Private helpers
 
-
+    /// <summary>
+    /// To an open GeomBuilder add array of coordinates as 1 branch
+    /// 3D varinat
+    /// </summary>
+    /// <param name="builder">An open GeomBuilder in/out </param>
+    /// <param name="Coordinates"></param>
     static void AddBranch3(GeomBuilder builder, Coordinate[] Coordinates)
     {
         //only allowed when build started and any previous branches closed.
@@ -277,6 +305,12 @@ public class Script
         builder.EndBranch();
     }
 
+    /// <summary>
+    /// To an open GeomBuilder add array of coordinates as 1 branch
+    /// 2D varinat
+    /// </summary>
+    /// <param name="builder">An open GeomBuilder in/out </param>
+    /// <param name="Coordinates"></param>
     static void AddBranch(GeomBuilder builder, Coordinate[] Coordinates)
     {
         //only allowed when build started and any previous branches closed.
@@ -289,11 +323,12 @@ public class Script
     }
 
     /// <summary>
-    /// 
+    /// To an open GeomBuilder of existing type, add NTS-geom's branches as necessary.
+    /// In case of GeometryCollection calls itself recursively.
+    /// 3D variant.
     /// </summary>
-    /// <param name="builder">magical input-output parameter</param>
-    /// <param name="ng"></param>
-    /// <exception cref="ArgumentException"></exception>
+    /// <param name="builder">An open GeomBuilder in/out </param>
+    /// <param name="ng">NTS-geom</param>
     static void AddBranches3(GeomBuilder builder, Geometry ng)
     {
         if (!ng.IsEmpty)
@@ -346,11 +381,12 @@ public class Script
 
 
     /// <summary>
-    /// Given Manifold geom builder and NTS geometry, adds all branches to builder
+    /// To an open GeomBuilder of existing type, add NTS-geom's branches as necessary. 
+    /// In case of GeometryCollection calls itself recursively.
+    /// 2D variant.
     /// </summary>
-    /// <param name="builder">magical input-output parameter</param>
-    /// <param name="ng"></param>
-    /// <exception cref="ArgumentException"></exception>
+    /// <param name="builder">An open GeomBuilder in/out </param>
+    /// <param name="ng">NTS-geom</param>
     static void AddBranches(GeomBuilder builder, Geometry ng)
     {
         if (!ng.IsEmpty)
@@ -403,7 +439,7 @@ public class Script
 
     public static Dimension MinDimension(GeometryCollection gc)
     {
-        var dimension = Dimension.False;
+        var dimension = Dimension.A;
         for (int i = 0; i < gc.Geometries.Length; i++)
             dimension = (Dimension)Math.Min((int)dimension, (int)gc.Geometries[i].Dimension);
         return dimension;

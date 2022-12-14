@@ -166,6 +166,12 @@
     <Content Include="OnionTopologySuite.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="OnionTopologySuiteTestUtils.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OnionTopologySuiteUtils.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="OnionTopologySuiteWktGEOM.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -178,7 +184,7 @@
     <Content Include="OnionTopologySuiteGEOM.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="OnionTopologySuiteWktTest.sql">
+    <Content Include="OnionTopologySuiteTestWkt.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="OnionTopologySuiteWktWKB.sql">

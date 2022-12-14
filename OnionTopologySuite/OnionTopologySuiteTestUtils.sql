@@ -1,0 +1,21 @@
+﻿-- $manifold$
+
+-- $include$ [OnionTopologySuiteUtils.sql]
+-- Functions from Script from OnionTopologySuite.dll
+-- 
+--
+
+
+
+
+GeomWkt(
+	GeomWktNtsMfd('GEOMETRYCOLLECTION (POLYGON ((0 200, 20 180, 20 140, 60 140, 200 0, 0 0, 0 200)), 
+  POLYGON ((200 200, 0 200, 20 180, 60 180, 60 140, 200 0, 200 200)))')
+)
+
+
+--  POLYGON ((0 0, 0 200, 200 200, 200 0, 0 0),   (60 180, 20 180, 20 140, 60 140, 60 180),   (180 60, 140 60, 140 20, 180 20, 180 60))
+-- POLYGON ((0 0, 0 200, 200 200, 200 0, 0 0),   (60 180, 20 180, 20 140, 60 140, 60 180))
+-- GEOMETRYCOLLECTION (LINESTRING (80 0, 80 120, 120 120, 120 0),   MULTIPOINT ((20 60), (40 80), (60 60)))
+-- GEOMETRYCOLLECTION (POLYGON ((0 200, 20 180, 20 140, 60 140, 200 0, 0 0, 0 200)), POLYGON ((200 200, 0 200, 20 180, 60 180, 60 140, 200 0, 200 200))) 
+--
