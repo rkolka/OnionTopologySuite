@@ -1,8 +1,12 @@
 ﻿using Manifold;
+using NetTopologySuite;
 using NetTopologySuite.Geometries;
+using NetTopologySuite.Geometries.Implementation;
 using NetTopologySuite.IO;
 using System;
 using System.IO;
+using System.Reflection;
+using static Manifold.Schema;
 
 public class Script
 {
@@ -105,27 +109,79 @@ public class Script
 
     }
 
-    public static Geometry GeomMfdToNTS(Manifold.Geom mg)
+    public static Geometry GeomMfdWKBNTS(Manifold.Geom geom)
     {
-        //Geometry ng = null;
+        // mfd to WKB 
+        // Exrepssion GeomWKB..
+        Manifold.Application app = Manifold.Application;
+        using (Manifold.ExpressionParser parser = app.CreateExpressionParser())
+        {
+            Manifold.ValueSet source = app.CreateValueSet();
+            source.AddValueType("geom", typeof(Geom));
+            using (Manifold.Expression expression = parser.CreateExpression("GeomWkb()", source))
+            {
+                TryEvaluate(app, expression, 5, null);
+                TryEvaluate(app, expression, 5, 6);
 
-        //switch (mg.Type)
-        //{
-        //    case "Area":
+                // private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
+                // Geometry geometry = wKBReader.Read(geomwkb);
+            }
 
-        //        break;
-        //    case "Line":
-        //        break;
-        //    case "Point":
-        //        break;
-        //    default:
-        //        break;
-        //}
+    public static Geometry GeomMfdToNTS(Manifold.Geom geom)
+    {
+        Geometry ng = null;
 
-        //if (mg.Branches.Count)
-        //{
+        CoordinateSequenceFactory csFactory = CoordinateArraySequenceFactory.Instance;
 
-        //}
+        GeometryFactory factory = GeometryFactory.Default;
+
+
+
+        {
+            /*
+             * 
+             */
+            Geometry returned;
+
+            isStrict = false;
+            string type = geom.Type;
+
+            var ordinateFlags = Ordinates.XY;
+            if (geom.HasZ)
+            {
+                ordinateFlags = Ordinates.XYZ;
+            }
+
+            if (IsTypeName(tokens, type, WKTConstants.POINT))
+                returned = ReadPointText(tokens, factory, ordinateFlags);
+            else if (IsTypeName(tokens, type, WKTConstants.LINESTRING))
+                returned = ReadLineStringText(tokens, factory, ordinateFlags);
+            else if (IsTypeName(tokens, type, WKTConstants.LINEARRING))
+                returned = ReadLinearRingText(tokens, factory, ordinateFlags);
+            else if (IsTypeName(tokens, type, WKTConstants.POLYGON))
+                returned = ReadPolygonText(tokens, factory, ordinateFlags);
+            else if (IsTypeName(tokens, type, WKTConstants.MULTIPOINT))
+                returned = ReadMultiPointText(tokens, factory, ordinateFlags);
+            else if (IsTypeName(tokens, type, WKTConstants.MULTILINESTRING))
+                returned = ReadMultiLineStringText(tokens, factory, ordinateFlags);
+            else if (IsTypeName(tokens, type, WKTConstants.MULTIPOLYGON))
+                returned = ReadMultiPolygonText(tokens, factory, ordinateFlags);
+            else if (IsTypeName(tokens, type, WKTConstants.GEOMETRYCOLLECTION))
+                returned = ReadGeometryCollectionText(tokens, factory, ordinateFlags);
+            else throw new ParseException("Unknown type: " + type);
+
+            if (returned == null)
+                throw new NullReferenceException("Error reading geometry");
+
+            return returned;
+        }
+
+        { 
+                if (!IsStrict && !CoordinateSequences.IsRing(sequence))
+                sequence = CoordinateSequences.EnsureValidRing(factory.CoordinateSequenceFactory, sequence);
+                ng = factory.CreateLinearRing(sequence);
+        }
+
         return null;
     }
 
