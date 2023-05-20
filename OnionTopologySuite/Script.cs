@@ -38,6 +38,8 @@ public class Script
 
     private static Context Manifold;
 
+    private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
+
     public static void Main()
     {
         // The current application context 
@@ -109,84 +111,30 @@ public class Script
 
     }
 
-    public static Geometry GeomMfdWKBNTS(Manifold.Geom geom)
-    {
-        // mfd to WKB 
-        // Exrepssion GeomWKB..
-        Manifold.Application app = Manifold.Application;
-        using (Manifold.ExpressionParser parser = app.CreateExpressionParser())
-        {
-            Manifold.ValueSet source = app.CreateValueSet();
-            source.AddValueType("geom", typeof(Geom));
-            using (Manifold.Expression expression = parser.CreateExpression("GeomWkb()", source))
-            {
-                TryEvaluate(app, expression, 5, null);
-                TryEvaluate(app, expression, 5, 6);
-
-                // private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
-                // Geometry geometry = wKBReader.Read(geomwkb);
-            }
-
     public static Geometry GeomMfdToNTS(Manifold.Geom geom)
     {
-        Geometry ng = null;
+        //  Eval expression GeomWkb
+        //  Read WKB
 
-        CoordinateSequenceFactory csFactory = CoordinateArraySequenceFactory.Instance;
-
-        GeometryFactory factory = GeometryFactory.Default;
-
-
-
+        using (ExpressionParser parser = Manifold.Application.CreateExpressionParser())
         {
-            /*
-             * 
-             */
-            Geometry returned;
-
-            isStrict = false;
-            string type = geom.Type;
-
-            var ordinateFlags = Ordinates.XY;
-            if (geom.HasZ)
+            ValueSet source = Manifold.Application.CreateValueSet();
+            source.AddValueType("g", typeof(Geom));
+            using (Manifold.Expression expression = parser.CreateExpression("GeomWkb(g)", source))
             {
-                ordinateFlags = Ordinates.XYZ;
+                source[0].Data = geom;
+                Manifold.ValueSet result = expression.Evaluate(source);
+                byte[] wkb = (byte[]) result[0].Data;
+                return wKBReader.Read(wkb);
             }
-
-            if (IsTypeName(tokens, type, WKTConstants.POINT))
-                returned = ReadPointText(tokens, factory, ordinateFlags);
-            else if (IsTypeName(tokens, type, WKTConstants.LINESTRING))
-                returned = ReadLineStringText(tokens, factory, ordinateFlags);
-            else if (IsTypeName(tokens, type, WKTConstants.LINEARRING))
-                returned = ReadLinearRingText(tokens, factory, ordinateFlags);
-            else if (IsTypeName(tokens, type, WKTConstants.POLYGON))
-                returned = ReadPolygonText(tokens, factory, ordinateFlags);
-            else if (IsTypeName(tokens, type, WKTConstants.MULTIPOINT))
-                returned = ReadMultiPointText(tokens, factory, ordinateFlags);
-            else if (IsTypeName(tokens, type, WKTConstants.MULTILINESTRING))
-                returned = ReadMultiLineStringText(tokens, factory, ordinateFlags);
-            else if (IsTypeName(tokens, type, WKTConstants.MULTIPOLYGON))
-                returned = ReadMultiPolygonText(tokens, factory, ordinateFlags);
-            else if (IsTypeName(tokens, type, WKTConstants.GEOMETRYCOLLECTION))
-                returned = ReadGeometryCollectionText(tokens, factory, ordinateFlags);
-            else throw new ParseException("Unknown type: " + type);
-
-            if (returned == null)
-                throw new NullReferenceException("Error reading geometry");
-
-            return returned;
         }
-
-        { 
-                if (!IsStrict && !CoordinateSequences.IsRing(sequence))
-                sequence = CoordinateSequences.EnsureValidRing(factory.CoordinateSequenceFactory, sequence);
-                ng = factory.CreateLinearRing(sequence);
-        }
-
-        return null;
     }
 
 
-
+    public static Manifold.Geom GeomRoundtripNts(Geom mg)
+    {
+        return GeomMfdFromNTS(GeomMfdToNTS(mg));
+    }
 
     public static Manifold.Geom GeomMfdFromNTS(Geometry ng)
     {
@@ -196,6 +144,7 @@ public class Script
         {
             return mg;
         }
+
         GeomBuilder gb = Manifold.Application.CreateGeomBuilder();
 
         if (!double.IsNaN(ng.Coordinate.Z))  // 3d geoms
@@ -296,12 +245,23 @@ public class Script
         return mg;
     }
 
+ 
+    /// <summary>
+    /// Manifold geometry as bytes
+    /// </summary>
+    /// <param name="geom"></param>
+    /// <returns></returns>
     public static byte[] GeomToBytes(Geom geom)
     {
         byte[] bytes = geom.GetBytes();
         return bytes;
     }
-
+    
+    /// <summary>
+    /// From bytes to Manifold geometry
+    /// </summary>
+    /// <param name="bytes"></param>
+    /// <returns></returns>
     public static Geom GeomFromBytes(byte[] bytes)
     {
         Application app = Manifold.Application;
@@ -345,7 +305,7 @@ public class Script
     #region Private helpers
 
     /// <summary>
-    /// To an open GeomBuilder add array of coordinates as 1 branch
+    /// Add array of coordinates as a new branch to an open GeomBuilder 
     /// 3D varinat
     /// </summary>
     /// <param name="builder">An open GeomBuilder in/out </param>
@@ -362,7 +322,7 @@ public class Script
     }
 
     /// <summary>
-    /// To an open GeomBuilder add array of coordinates as 1 branch
+    /// Add array of coordinates as a new branch to an open GeomBuilder 
     /// 2D varinat
     /// </summary>
     /// <param name="builder">An open GeomBuilder in/out </param>
@@ -379,7 +339,7 @@ public class Script
     }
 
     /// <summary>
-    /// To an open GeomBuilder of existing type, add NTS-geom's branches as necessary.
+    /// Add NTS-geom's parts as branches to an open GeomBuilder of matching type.
     /// In case of GeometryCollection calls itself recursively.
     /// 3D variant.
     /// </summary>

@@ -18,3 +18,5 @@ FUNCTION GeomFromBytes(@geombytes VARBINARY) GEOM
 FUNCTION GeomBytesToFile(@geom GEOM, @path VARCHAR) VARBINARY
   AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'Script.GeomBytesToFile';
 
+FUNCTION GeomRoundtripNts(@geom GEOM) GEOM
+  AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'Script.GeomRoundtripNts';
