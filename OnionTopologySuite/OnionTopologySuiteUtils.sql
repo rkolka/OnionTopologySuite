@@ -4,10 +4,6 @@
 -- 
 --
 
---- Takes WKT string, converts it to NTS-geom and uses GeomMfdFromNTS to convert it to MFD-geom
-FUNCTION GeomWktNtsMfd(@wkt VARCHAR) GEOM
-  AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'Script.GeomWktNtsMfd';
-
 FUNCTION GeomToBytes(@geom GEOM) VARBINARY
   AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'Script.GeomToBytes';
 

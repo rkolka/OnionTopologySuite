@@ -111,7 +111,7 @@ public class Script
 
     }
 
-    public static Geometry GeomMfdToNTS(Manifold.Geom geom)
+    public static Geometry GeomToNTS(Manifold.Geom geom)
     {
         //  Eval expression GeomWkb
         //  Read WKB
@@ -133,10 +133,10 @@ public class Script
 
     public static Manifold.Geom GeomRoundtripNts(Geom mg)
     {
-        return GeomMfdFromNTS(GeomMfdToNTS(mg));
+        return GeomFromNTS(GeomToNTS(mg));
     }
 
-    public static Manifold.Geom GeomMfdFromNTS(Geometry ng)
+    public static Manifold.Geom GeomFromNTS(Geometry ng)
     {
         Geom mg = null;
 
@@ -271,19 +271,6 @@ public class Script
             return geom;
         }
         
-    }
-
-    /// <summary>
-    /// Takes WKT string, converts it to NTS-geom and uses GeomMfdFromNTS to convert it to MFD-geom
-    /// </summary>
-    /// <param name="wkt">WKT string</param>
-    /// <returns>Geom</returns>
-    public static Geom GeomWktNtsMfd(string wkt)
-    {
-        WKTReader reader = new WKTReader();
-        Geometry ng = reader.Read(wkt);
-        Geom geom = GeomMfdFromNTS(ng);
-        return geom;
     }
 
 
