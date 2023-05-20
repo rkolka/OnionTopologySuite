@@ -1,10 +1,11 @@
+using NetTopologySuite;
 using NetTopologySuite.Geometries;
 
 using Open.Topology.TestRunner.Functions;
 
 public static class WKBOverlayFunctions
 {
-    private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
+    private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader(new NtsGeometryServices(GeometryOverlay.NG));
     private static readonly NetTopologySuite.IO.WKBWriter wKBWriter = new NetTopologySuite.IO.WKBWriter();
 
     public static byte[] WKBIntersection(byte[] wKBa, byte[] wKBb)

@@ -1,0 +1,3 @@
+[submodule "NetTopologySuite"]
+	path = NetTopologySuite
+	url = https://github.com/rkolka/NetTopologySuite

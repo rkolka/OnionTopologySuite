@@ -22,7 +22,7 @@ public class WKBDiffFunctions
     /// <param name="a">A geometry</param>
     /// <param name="b">A geometry</param>
     /// <returns>The vertices in A which are not in B</returns>
-    public static byte[] DiffVertices(byte[] wKBa, byte[] wKBb)
+    public static byte[] WKBDiffVertices(byte[] wKBa, byte[] wKBb)
     {
 
         Geometry a = wKBReader.Read(wKBa);

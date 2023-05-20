@@ -43,24 +43,9 @@
       <HintPath>C:\Program Files\Manifold\v9.0\extnet.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="NetTopologySuite, Version=2.0.0.0, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NetTopologySuite.2.5.0\lib\netstandard2.0\NetTopologySuite.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
-    </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
-    </Reference>
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -71,43 +56,76 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="OnionTopologySuite.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\AffineTransformationFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\BoundaryFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\BufferByUnionFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\BufferFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\CGAlgorithmFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\ConstructionFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\ConversionFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\CreateRandomGeometries.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\CreateShapeFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\DiffFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\DissolveFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\DistanceFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\EditFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\GeometryFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\LinearReferencingFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\LineHandlingFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\LineSegmentFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\NodingFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\NTSFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\OverlayFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\PolygonizeFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\PrecisionFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\SelectionFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\SimplificationFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\SortingFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\SpatialIndexFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\TestCaseGeometryFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\TriangleFunctions.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\Utility\ClassUtility.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\Utility\DoubleKeyMap.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\Utility\GeometryDataUtil.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\Utility\IOUtility.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\Utility\MultiFormatReader.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\Utility\StringUtility.cs" />
-    <Compile Include="NetTopologySuite.TestRunner.Functions\ValidationFunctions.cs" />
+    <Compile Include="NTSFunctions\AffineTransformationFunctions.cs" />
+    <Compile Include="NTSFunctions\BoundaryFunctions.cs" />
+    <Compile Include="NTSFunctions\BufferByUnionFunctions.cs" />
+    <Compile Include="NTSFunctions\BufferFunctions.cs" />
+    <Compile Include="NTSFunctions\CGAlgorithmFunctions.cs" />
+    <Compile Include="NTSFunctions\ConstructionFunctions.cs" />
+    <Compile Include="NTSFunctions\ConversionFunctions.cs" />
+    <Compile Include="NTSFunctions\CreateRandomGeometries.cs" />
+    <Compile Include="NTSFunctions\CreateShapeFunctions.cs" />
+    <Compile Include="NTSFunctions\DiffFunctions.cs" />
+    <Compile Include="NTSFunctions\DissolveFunctions.cs" />
+    <Compile Include="NTSFunctions\DistanceFunctions.cs" />
+    <Compile Include="NTSFunctions\EditFunctions.cs" />
+    <Compile Include="NTSFunctions\GeometryFunctions.cs" />
+    <Compile Include="NTSFunctions\LinearReferencingFunctions.cs" />
+    <Compile Include="NTSFunctions\LineHandlingFunctions.cs" />
+    <Compile Include="NTSFunctions\LineSegmentFunctions.cs" />
+    <Compile Include="NTSFunctions\NodingFunctions.cs" />
+    <Compile Include="NTSFunctions\NTSFunctions.cs" />
+    <Compile Include="NTSFunctions\OverlayFunctions.cs" />
+    <Compile Include="NTSFunctions\PolygonizeFunctions.cs" />
+    <Compile Include="NTSFunctions\PrecisionFunctions.cs" />
+    <Compile Include="NTSFunctions\SelectionFunctions.cs" />
+    <Compile Include="NTSFunctions\SimplificationFunctions.cs" />
+    <Compile Include="NTSFunctions\SortingFunctions.cs" />
+    <Compile Include="NTSFunctions\SpatialIndexFunctions.cs" />
+    <Compile Include="NTSFunctions\TestCaseGeometryFunctions.cs" />
+    <Compile Include="NTSFunctions\TriangleFunctions.cs" />
+    <Compile Include="NTSFunctions\Utility\ClassUtility.cs" />
+    <Compile Include="NTSFunctions\Utility\DoubleKeyMap.cs" />
+    <Compile Include="NTSFunctions\Utility\GeometryDataUtil.cs" />
+    <Compile Include="NTSFunctions\Utility\IOUtility.cs" />
+    <Compile Include="NTSFunctions\Utility\MultiFormatReader.cs" />
+    <Compile Include="NTSFunctions\Utility\StringUtility.cs" />
+    <Compile Include="NTSFunctions\ValidationFunctions.cs" />
     <Compile Include="Script.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WkbFunctions\WKBWKTFunctions.cs" />
+    <Compile Include="WktFunctions\WktAffineTransformationFunctions.cs" />
+    <Compile Include="WktFunctions\WktAngleFunctions.cs" />
+    <Compile Include="WktFunctions\WktBezierCurveFunctions.cs" />
+    <Compile Include="WktFunctions\WktBoundaryFunctions.cs" />
+    <Compile Include="WktFunctions\WktBufferByUnionFunctions.cs" />
+    <Compile Include="WktFunctions\WktBufferFunctions.cs" />
+    <Compile Include="WktFunctions\WktCGAlgorithmFunctions.cs" />
+    <Compile Include="WktFunctions\WktConstructionFunctions.cs" />
+    <Compile Include="WktFunctions\WktConversionFunctions.cs" />
+    <Compile Include="WktFunctions\WktCreateRandomGeometries.cs" />
+    <Compile Include="WktFunctions\WktCreateShapeFunctions.cs" />
+    <Compile Include="WktFunctions\WktDiffFunctions.cs" />
+    <Compile Include="WktFunctions\WktDistanceFunctions.cs" />
+    <Compile Include="WktFunctions\WktEditFunctions.cs" />
+    <Compile Include="WktFunctions\WktGeometryFunctions.cs" />
+    <Compile Include="WktFunctions\WktHullFunctions.cs" />
+    <Compile Include="WktFunctions\WktLinearReferencingFunctions.cs" />
+    <Compile Include="WktFunctions\WktLineHandlingFunctions.cs" />
+    <Compile Include="WktFunctions\WktLineSegmentFunctions.cs" />
+    <Compile Include="WktFunctions\WktMaximumCircleFunctions.cs" />
+    <Compile Include="WktFunctions\WktNodingFunctions.cs" />
+    <Compile Include="WktFunctions\WktNTSFunctions.cs" />
+    <Compile Include="WktFunctions\WktOffsetCurveFunctions.cs" />
+    <Compile Include="WktFunctions\WktOverlayFunctions.cs" />
+    <Compile Include="WktFunctions\WktPolygonizeFunctions.cs" />
+    <Compile Include="WktFunctions\WktPrecisionFunctions.cs" />
+    <Compile Include="WktFunctions\WktSelectionFunctions.cs" />
+    <Compile Include="WktFunctions\WktSimplificationFunctions.cs" />
+    <Compile Include="WktFunctions\WktSortingFunctions.cs" />
+    <Compile Include="WktFunctions\WktSpatialIndexFunctions.cs" />
+    <Compile Include="WktFunctions\WktTriangleFunctions.cs" />
+    <Compile Include="WktFunctions\WktValidationFunctions.cs" />
     <Compile Include="WkbFunctions\WKBMaximumCircleFunctions.cs" />
     <Compile Include="WkbFunctions\WKBAngleFunctions.cs" />
     <Compile Include="WkbFunctions\WKBBezierCurveFunctions.cs" />
@@ -142,8 +160,20 @@
     <Compile Include="WkbFunctions\WKBValidationFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="OnionTopologySuite.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="OnionTopologySuite.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OnionTopologySuiteTestUtils.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OnionTopologySuiteUtils.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OnionTopologySuiteWktGEOM.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="OnionTopologySuiteTest.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -152,6 +182,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="OnionTopologySuiteGEOM.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OnionTopologySuiteTestWkt.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OnionTopologySuiteWktWKB.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="OnionTopologySuiteWKB.sql">
@@ -164,8 +200,7 @@
     <Content Include="OnionTopologySuite.md.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="packages.config" />
-    <None Include="Problems.md" />
+    <None Include="DevAid\Problems.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OnionTopologySuite.map">
@@ -178,6 +213,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\NetTopologySuite\src\NetTopologySuite\NetTopologySuite.csproj">
+      <Project>{ff8a3ad2-9b33-4f56-bbed-c0f4525357e9}</Project>
+      <Name>NetTopologySuite</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
