@@ -2,7 +2,6 @@ using NetTopologySuite.Densify;
 using NetTopologySuite.Geometries;
 using NetTopologySuite.Operation.Buffer;
 using NetTopologySuite.Triangulate;
-using Open.Topology.TestRunner.Utility;
 
 namespace Open.Topology.TestRunner.Functions
 {
@@ -52,23 +51,6 @@ namespace Open.Topology.TestRunner.Functions
                 builder.ClipEnvelope = g2.EnvelopeInternal;
             builder.Tolerance = TriangulationTolerance;
             Geometry diagram = builder.GetDiagram(geom.Factory);
-            return diagram;
-        }
-
-        public static Geometry VoronoiDiagramWithData(Geometry geom, Geometry g2)
-        {
-            GeometryDataUtil.SetComponentDataToIndex(geom);
-
-            var mapper = new VertexTaggedGeometryDataMapper();
-            mapper.LoadSourceGeometries(geom);
-
-            var builder = new VoronoiDiagramBuilder();
-            builder.SetSites(mapper.Coordinates);
-            if (g2 != null)
-                builder.ClipEnvelope = g2.EnvelopeInternal;
-            builder.Tolerance = TriangulationTolerance;
-            Geometry diagram = builder.GetDiagram(geom.Factory);
-            mapper.TransferData(diagram);
             return diagram;
         }
 

@@ -126,7 +126,10 @@ VALUE @controlPoints      GEOM = ( SELECT Last([Geom]) FROM [Drawing] where mfd_
 
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveByAlpha(@geom, @alpha)', NTSBezierCurveByAlpha(@geom, @alpha) FROM (VALUES (1));
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveByAlphaAndSkew(@geom, @alpha, @skew)', NTSBezierCurveByAlphaAndSkew(@geom, @alpha, @skew) FROM (VALUES (1));
-INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveWithControlPoints(@geom, @controlPoints)', NTSBezierCurveWithControlPoints(@geom, @controlPoints) FROM (VALUES (1));
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveGetControlPoints(@line, @alpha, @skew)', NTSBezierCurveGetControlPoints(@line, @alpha, @skew) FROM (VALUES (1));
+
+VALUE @controlPoints      GEOM = NTSBezierCurveGetControlPoints(@line, @alpha, @skew); 
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveWithControlPoints(@line, @controlPoints)', NTSBezierCurveWithControlPoints(@line, @controlPoints) FROM (VALUES (1));
 
 
 -- WKBHullFunctions

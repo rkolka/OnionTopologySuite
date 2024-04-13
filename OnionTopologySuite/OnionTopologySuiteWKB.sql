@@ -18,6 +18,8 @@ FUNCTION WKBBezierCurveByAlpha(@wKBGeom VARBINARY, @alpha FLOAT64) VARBINARY
   AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBBezierCurveFunctions.WKBBezierCurveByAlpha';
 FUNCTION WKBBezierCurveByAlphaAndSkew(@wKBGeom VARBINARY, @alpha FLOAT64, @skew FLOAT64) VARBINARY
   AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBBezierCurveFunctions.WKBBezierCurveByAlphaAndSkew';
+FUNCTION WKBBezierCurveGetControlPoints(@wKBGeom VARBINARY, @alpha FLOAT64, @skew FLOAT64) VARBINARY
+  AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBBezierCurveFunctions.WKBBezierCurveGetControlPoints';
 FUNCTION WKBBezierCurveWithControlPoints(@wKBGeom VARBINARY, @controlPoints VARBINARY) VARBINARY
   AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WKBBezierCurveFunctions.WKBBezierCurveWithControlPoints';
  

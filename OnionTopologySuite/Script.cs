@@ -35,7 +35,7 @@ public class Script
         "OnionTopologySuiteTestUtils.sql",
     };
 
-
+    // even if we try to use it outside of this class. It does not work.
     private static Context Manifold;
 
     private static readonly NetTopologySuite.IO.WKBReader wKBReader = new NetTopologySuite.IO.WKBReader();
@@ -111,31 +111,14 @@ public class Script
 
     }
 
-    public static Geometry GeomToNTS(Manifold.Geom geom)
-    {
-        //  Eval expression GeomWkb
-        //  Read WKB
 
-        using (ExpressionParser parser = Manifold.Application.CreateExpressionParser())
-        {
-            ValueSet source = Manifold.Application.CreateValueSet();
-            source.AddValueType("g", typeof(Geom));
-            using (Manifold.Expression expression = parser.CreateExpression("GeomWkb(g)", source))
-            {
-                source[0].Data = geom;
-                Manifold.ValueSet result = expression.Evaluate(source);
-                byte[] wkb = (byte[]) result[0].Data;
-                return wKBReader.Read(wkb);
-            }
-        }
-    }
-
-
-    public static Manifold.Geom GeomRoundtripNts(Geom mg)
-    {
-        return GeomFromNTS(GeomToNTS(mg));
-    }
-
+    #region Geom conversion  MFD <-> NTS
+    /// <summary>
+    /// Builds Manifold Geom from NTS Geometry
+    /// </summary>
+    /// <param name="ng"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
     public static Manifold.Geom GeomFromNTS(Geometry ng)
     {
         Geom mg = null;
@@ -245,51 +228,52 @@ public class Script
         return mg;
     }
 
- 
     /// <summary>
-    /// Manifold geometry as bytes
+    /// Takes Manifold geom, converts it to NTS geom
     /// </summary>
-    /// <param name="geom"></param>
-    /// <returns></returns>
-    public static byte[] GeomToBytes(Geom geom)
+    public static Geometry GeomToNTS(Manifold.Geom geom)
     {
-        byte[] bytes = geom.GetBytes();
-        return bytes;
-    }
-    
-    /// <summary>
-    /// From bytes to Manifold geometry
-    /// </summary>
-    /// <param name="bytes"></param>
-    /// <returns></returns>
-    public static Geom GeomFromBytes(byte[] bytes)
-    {
-        Application app = Manifold.Application;
-        using (Manifold.TypeConverter converter = app.CreateTypeConverter())
+        //  Eval expression GeomWkb
+        //  Read WKB
+
+        using (ExpressionParser parser = Manifold.Application.CreateExpressionParser())
         {
-            Geom geom = (Manifold.Geom)converter.Convert(bytes, typeof(Manifold.Geom));
-            return geom;
+            ValueSet source = Manifold.Application.CreateValueSet();
+            source.AddValueType("g", typeof(Geom));
+            using (Manifold.Expression expression = parser.CreateExpression("GeomWkb(g)", source))
+            {
+                source[0].Data = geom;
+                Manifold.ValueSet result = expression.Evaluate(source);
+                byte[] wkb = (byte[])result[0].Data;
+                return wKBReader.Read(wkb);
+            }
         }
-        
+    }
+
+
+    public static Manifold.Geom GeomRoundtripNts(Geom mg)
+    {
+        return GeomFromNTS(GeomToNTS(mg));
     }
 
 
     /// <summary>
-    /// Writes Geom bytes to file
+    /// Takes WKT string, Reads it to NTS Geometry and uses GeomFromNTS to convert it to MFD Geom
     /// </summary>
-    /// <param name="geom"></param>
-    /// <param name="path">folder path, filename is synthetic</param>
-    /// <returns></returns>
-    public static int GeomBytesToFile(Geom geom, string path)
+    /// <param name="wkt">WKT string</param>
+    /// <returns>Geom</returns>
+    public static Geom GeomFromWktNTS(string wkt)
     {
-        byte[] bytes = geom.GetBytes();
-        // write out to file.
-        string dirPath = System.IO.Path.GetDirectoryName(path);
-        File.WriteAllBytes($"{dirPath}\\{geom.Type}{(geom.HasZ ? "Z" : "")}{(geom.HasCurves ? "C" : "")}_o{geom.Opts}_b{geom.Branches.Count}_c{geom.Coords.Count}_{geom.GetHashCode()}.geom", bytes);
-        return bytes.Length;
+        WKTReader reader = new WKTReader();
+        Geometry ng = reader.Read(wkt);
+        Geom geom = GeomFromNTS(ng);
+        return geom;
     }
 
-    #region Private helpers
+
+    #endregion 
+
+    #region GeomBuilder private helpers
 
     /// <summary>
     /// Add array of coordinates as a new branch to an open GeomBuilder 
@@ -448,5 +432,53 @@ public class Script
         return dimension;
     }
     #endregion
+
+
+    #region geom bytes
+
+    /// <summary>
+    /// Manifold geometry as bytes
+    /// One of the few functions in .NET but not in SQL
+    /// </summary>
+    /// <param name="geom"></param>
+    /// <returns></returns>
+    public static byte[] GeomToBytes(Geom geom)
+    {
+        byte[] bytes = geom.GetBytes();
+        return bytes;
+    }
+
+    /// <summary>
+    /// From bytes to Manifold geometry
+    /// </summary>
+    /// <param name="bytes"></param>
+    /// <returns></returns>
+    public static Geom GeomFromBytes(byte[] bytes)
+    {
+        using (Manifold.TypeConverter converter = Manifold.Application.CreateTypeConverter())
+        {
+            Geom geom = (Manifold.Geom)converter.Convert(bytes, typeof(Manifold.Geom));
+            return geom;
+        }
+
+    }
+
+
+    /// <summary>
+    /// Writes Geom bytes to file
+    /// </summary>
+    /// <param name="geom"></param>
+    /// <param name="path">folder path, filename is synthetic</param>
+    /// <returns></returns>
+    public static int GeomBytesToFile(Geom geom, string path)
+    {
+        byte[] bytes = geom.GetBytes();
+        // write out to file.
+        string dirPath = System.IO.Path.GetDirectoryName(path);
+        File.WriteAllBytes($"{dirPath}\\{geom.Type}{(geom.HasZ ? "Z" : "")}{(geom.HasCurves ? "C" : "")}_o{geom.Opts}_b{geom.Branches.Count}_c{geom.Coords.Count}_{geom.GetHashCode()}.geom", bytes);
+        return bytes.Length;
+    }
+    #endregion
+
 }
 

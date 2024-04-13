@@ -14,11 +14,16 @@ public static class WKBBezierCurveFunctions
         Geometry geometry = wKBReader.Read(geomwkb);
         return CubicBezierCurve.Create(geometry, alpha).ToBinary();
     }
-
+    
     public static byte[] WKBBezierCurveByAlphaAndSkew(byte[] geomwkb, double alpha, double skew)
     {
         Geometry geometry = wKBReader.Read(geomwkb);
         return CubicBezierCurve.Create(geometry, alpha, skew).ToBinary();
+    }
+    public static byte[] WKBBezierCurveGetControlPoints(byte[] geomwkb, double alpha, double skew)
+    {
+        Geometry geometry = wKBReader.Read(geomwkb);
+        return CubicBezierCurve.CreateControls(geometry, alpha, skew).ToBinary();
     }
 
     public static byte[] WKBBezierCurveWithControlPoints(byte[] geomwkb, byte[] controlPoints)

@@ -6,7 +6,7 @@ namespace OnionTopologySuiteTest
     class Program
     {
 
-        [STAThread] // important
+        // [STAThread] // not needed since 9.0.180 (?)
         static void Main(string[] args)
         {
 

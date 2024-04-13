@@ -14,6 +14,7 @@ FUNCTION NTSWKTOffsetCurveWithParams(@geom GEOM, @distance FLOAT64, @quadrantSeg
 -- BezierCurveFunctions
 FUNCTION NTSWKTBezierCurveByAlpha(@geom GEOM, @alpha FLOAT64) NVARCHAR AS WktBezierCurveByAlpha(GeomWkb(@geom), @alpha) END ;
 FUNCTION NTSWKTBezierCurveByAlphaAndSkew(@geom GEOM, @alpha FLOAT64, @skew FLOAT64) NVARCHAR AS WktBezierCurveByAlphaAndSkew(GeomWkb(@geom), @alpha, @skew) END ;
+FUNCTION NTSWKTBezierCurveGetControlPoints(@geom GEOM, @alpha FLOAT64, @skew FLOAT64) NVARCHAR AS WktBezierCurveGetControlPoints(GeomWkb(@geom), @alpha, @skew) END;
 FUNCTION NTSWKTBezierCurveWithControlPoints(@geom GEOM, @controlPoints GEOM) NVARCHAR AS WktBezierCurveWithControlPoints(GeomWkb(@geom), GeomWkb(@controlPoints)) END ;
 
 

@@ -37,6 +37,19 @@ public static class WKTBezierCurveFunctions
         }
     }
 
+    public static string WKTBezierCurveGetControlPoints(byte[] geomwkb, double alpha, double skew)
+    {
+        try
+        {
+            Geometry geometry = wKBReader.Read(geomwkb);
+            return CubicBezierCurve.CreateControls(geometry, alpha, skew).ToString();
+        }
+        catch (System.Exception e)
+        {
+            return e.ToString();
+        }
+    }
+
     public static string WKTBezierCurveWithControlPoints(byte[] geomwkb, byte[] controlPoints)
     {
         try

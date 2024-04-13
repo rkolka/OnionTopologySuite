@@ -79,17 +79,10 @@
     <Compile Include="NTSFunctions\PolygonizeFunctions.cs" />
     <Compile Include="NTSFunctions\PrecisionFunctions.cs" />
     <Compile Include="NTSFunctions\SelectionFunctions.cs" />
-    <Compile Include="NTSFunctions\SimplificationFunctions.cs" />
     <Compile Include="NTSFunctions\SortingFunctions.cs" />
     <Compile Include="NTSFunctions\SpatialIndexFunctions.cs" />
     <Compile Include="NTSFunctions\TestCaseGeometryFunctions.cs" />
     <Compile Include="NTSFunctions\TriangleFunctions.cs" />
-    <Compile Include="NTSFunctions\Utility\ClassUtility.cs" />
-    <Compile Include="NTSFunctions\Utility\DoubleKeyMap.cs" />
-    <Compile Include="NTSFunctions\Utility\GeometryDataUtil.cs" />
-    <Compile Include="NTSFunctions\Utility\IOUtility.cs" />
-    <Compile Include="NTSFunctions\Utility\MultiFormatReader.cs" />
-    <Compile Include="NTSFunctions\Utility\StringUtility.cs" />
     <Compile Include="NTSFunctions\ValidationFunctions.cs" />
     <Compile Include="Script.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

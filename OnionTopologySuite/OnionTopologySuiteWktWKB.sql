@@ -15,6 +15,8 @@ FUNCTION WktBezierCurveByAlpha(@wKBGeom VARBINARY, @alpha FLOAT64) NVARCHAR
  AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WktBezierCurveFunctions.WktBezierCurveByAlpha';
 FUNCTION WktBezierCurveByAlphaAndSkew(@wKBGeom VARBINARY, @alpha FLOAT64, @skew FLOAT64) NVARCHAR
  AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WktBezierCurveFunctions.WktBezierCurveByAlphaAndSkew';
+FUNCTION WktBezierCurveGetControlPoints(@wKBGeom VARBINARY, @alpha FLOAT64, @skew FLOAT64) NVARCHAR
+  AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WktBezierCurveFunctions.WktBezierCurveGetControlPoints';
 FUNCTION WktBezierCurveWithControlPoints(@wKBGeom VARBINARY, @controlPoints VARBINARY) NVARCHAR
  AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'WktBezierCurveFunctions.WktBezierCurveWithControlPoints';
  

@@ -1,34 +1,63 @@
 ﻿-- $manifold$
 -- $include$ [OnionTopologySuiteWKB.sql]
 
--- OffsetCurveFunctions
-VALUE @offsetDistance     FLOAT64 = -1.1; -- In projection units (meter, degree, ...). Negative offset is left(?), positive right(?).
+-- # Offset Curve
+
+-- Offset in projection units (meter, degree, ...). positive for left, negative for right.
+VALUE @offsetDistance     FLOAT64 = -1.1; 
 
 
-VALUE @joinStyleRound     INT32 = 1;
-VALUE @joinStyleMitre     INT32 = 2;
-VALUE @joinStyleBevel     INT32 = 3;
+-- NTSOffsetCurve(@geom, @offsetDistance)
+FUNCTION NTSOffsetCurve(@geom GEOM, @offsetDistance FLOAT64) GEOM
+AS
+         BinaryWkbGeom(WKBOffsetCurve(GeomWkb(@geom), @offsetDistance)) 
+END;
+
+-- Join style
 --        Round = 1,
 --        Mitre = 2,
 --        Bevel = 3
-FUNCTION NTSOffsetCurve(@geom GEOM, @distance FLOAT64) GEOM
+VALUE @joinStyleRound       INT32 = 1;
+VALUE @joinStyleMitre       INT32 = 2;
+VALUE @joinStyleBevel       INT32 = 3;
+
+
+VALUE @joinStyle            INT32 = @joinStyleRound;
+VALUE @quadrantSegments     INT32 = 8;
+VALUE @mitreLimit         FLOAT64 = 5;
+
+-- NTSOffsetCurveWithParams(@geom, @offsetDistance, @quadrantSegments, @joinStyle, @mitreLimit)
+FUNCTION NTSOffsetCurveWithParams(@geom GEOM, @offsetDistance FLOAT64, @quadrantSegments INT32, @joinStyle INT32, @mitreLimit FLOAT64) GEOM
 AS
-         BinaryWkbGeom(WKBOffsetCurve(GeomWkb(@geom), @distance)) 
-END;
-FUNCTION NTSOffsetCurveWithParams(@geom GEOM, @distance FLOAT64, @quadrantSegments INT32, @joinStyle INT32, @mitreLimit FLOAT64) GEOM
-AS
-         BinaryWkbGeom(WKBOffsetCurveWithParams(GeomWkb(@geom), @distance, @quadrantSegments, @joinStyle, @mitreLimit)) 
+         BinaryWkbGeom(WKBOffsetCurveWithParams(GeomWkb(@geom), @offsetDistance, @quadrantSegments, @joinStyle, @mitreLimit)) 
 END;
 
--- BezierCurveFunctions
-FUNCTION (@geom GEOM, @alpha FLOAT64) GEOM
+-- # BezierCurveFunctions
+
+-- A curvedness parameter 0 is linear, 1 is round, >1 is increasingly curved
+VALUE @bezierAlpha     FLOAT64 = 1.1; 
+
+-- NTSBezierCurveByAlpha(@geom, @bezierAlpha)
+FUNCTION NTSBezierCurveByAlpha(@geom GEOM, @alpha FLOAT64) GEOM
 AS
          BinaryWkbGeom(WKBBezierCurveByAlpha(GeomWkb(@geom), @alpha)) 
 END;
+
+-- 0 is none, positive skews towards longer side, negative towards shorter
+VALUE @bezierSkew      FLOAT64 = 0; 
+
+-- NTSBezierCurveByAlphaAndSkew(@geom, @bezierAlpha, @bezierSkew)
 FUNCTION NTSBezierCurveByAlphaAndSkew(@geom GEOM, @alpha FLOAT64, @skew FLOAT64) GEOM
 AS
          BinaryWkbGeom(WKBBezierCurveByAlphaAndSkew(GeomWkb(@geom), @alpha, @skew)) 
 END;
+
+
+FUNCTION NTSBezierCurveGetControlPoints(@geom GEOM, @alpha FLOAT64, @skew FLOAT64) GEOM
+AS
+         BinaryWkbGeom(WKBBezierCurveGetControlPoints(GeomWkb(@geom), @alpha, @skew)) 
+END;
+
 FUNCTION NTSBezierCurveWithControlPoints(@geom GEOM, @controlPoints GEOM) GEOM
 AS
          BinaryWkbGeom(WKBBezierCurveWithControlPoints(GeomWkb(@geom), GeomWkb(@controlPoints))) 

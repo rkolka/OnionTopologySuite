@@ -1,6 +1,5 @@
 using NetTopologySuite.Geometries;
-
-using Open.Topology.TestRunner.Functions;
+using NetTopologySuite.Simplify;
 
 public static class WKBSimplificationFunctions
 {
@@ -10,21 +9,21 @@ public static class WKBSimplificationFunctions
     public static byte[] WKBSimplifyDp(byte[] wKBGeom, double distance)
     {
         Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = SimplificationFunctions.SimplifyDp(g, distance);
+        Geometry result = DouglasPeuckerSimplifier.Simplify(g, distance);
         return wKBWriter.Write(result);
     }
 
     public static byte[] WKBSimplifyTp(byte[] wKBGeom, double distance)
     {
         Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = SimplificationFunctions.SimplifyTp(g, distance);
+        Geometry result = TopologyPreservingSimplifier.Simplify(g, distance);
         return wKBWriter.Write(result);
     }
 
     public static byte[] WKBSimplifyVW(byte[] wKBGeom, double distance)
     {
         Geometry g = wKBReader.Read(wKBGeom);
-        Geometry result = SimplificationFunctions.SimplifyVW(g, distance);
+        Geometry result = VWSimplifier.Simplify(g, distance);
         return wKBWriter.Write(result);
     }
 }
