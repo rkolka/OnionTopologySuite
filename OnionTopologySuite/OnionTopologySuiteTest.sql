@@ -121,14 +121,14 @@ INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSOffsetCurveWithPara
 
 -- WKBBezierCurveFunctions
 VALUE @alpha	          FLOAT64 = 1.2;  -- A curvedness parameter (0 is linear, 1 is round, >1 is increasingly curved)
-VALUE @skew		          FLOAT64 = -1;  -- The skew parameter (0 is none, positive skews towards longer side, negative towards shorter
+VALUE @skew		          FLOAT64 = -0.1;  -- The skew parameter (0 is none, positive skews towards longer side, negative towards shorter
 VALUE @controlPoints      GEOM = ( SELECT Last([Geom]) FROM [Drawing] where mfd_id = 5 ); -- create a name field
 
-INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveByAlpha(@geom, @alpha)', NTSBezierCurveByAlpha(@geom, @alpha) FROM (VALUES (1));
-INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveByAlphaAndSkew(@geom, @alpha, @skew)', NTSBezierCurveByAlphaAndSkew(@geom, @alpha, @skew) FROM (VALUES (1));
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveByAlpha(@line, @alpha)', NTSBezierCurveByAlpha(@line, @alpha) FROM (VALUES (1));
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveByAlphaAndSkew(@line, @alpha, @skew)', NTSBezierCurveByAlphaAndSkew(@line, @alpha, @skew) FROM (VALUES (1));
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveGetControlPoints(@line, @alpha, @skew)', NTSBezierCurveGetControlPoints(@line, @alpha, @skew) FROM (VALUES (1));
 
-VALUE @controlPoints      GEOM = NTSBezierCurveGetControlPoints(@line, @alpha, @skew); 
+VALUE @controlPoints      GEOM = ( SELECT First([Geom]) FROM [Drawing] where [mfd_id] = 41 ); 
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveWithControlPoints(@line, @controlPoints)', NTSBezierCurveWithControlPoints(@line, @controlPoints) FROM (VALUES (1));
 
 
