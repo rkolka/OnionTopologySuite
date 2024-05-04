@@ -10,7 +10,7 @@ using NetTopologySuite.IO;
 /// Experiments using NTS directly
 /// Otherwise, look at folder WKBFunctions.
 /// </summary>
-public static class OnionTopologySuite
+public static class Onion
 {
 
 }

@@ -55,7 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OnionFunctions\BezierCurveFunctions.cs" />
+    <Compile Include="OnionFunctions\BezierFun.cs" />
+    <Compile Include="OnionFunctions\AngleFun.cs" />
+    <Compile Include="OnionFunctions\CoordFun.cs" />
     <Compile Include="OnionTopologySuite.cs" />
     <Compile Include="NTSFunctions\AffineTransformationFunctions.cs" />
     <Compile Include="NTSFunctions\BoundaryFunctions.cs" />
