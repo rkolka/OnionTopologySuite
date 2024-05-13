@@ -71,7 +71,7 @@ namespace OnionTopologySuite
 
         private static readonly double default_min_segment_length = 0.0;
         private static readonly int num_vertices_per_segment = 16;
-        private static readonly double[][] interpolation_params = ComputeIterpolationParameters(num_vertices_per_segment);
+        private static readonly double[,] interpolation_params = ComputeIterpolationParameters(num_vertices_per_segment);
 
         private static readonly double _alpha = -1;
         private static double _skew;
@@ -237,11 +237,11 @@ namespace OnionTopologySuite
             return curvePts;
         }
 
-        private Coord[] ControlPoints(Coord[] coords, bool isRing)
+        public string CheckControlPoints(Coord[] coords, Coord[] controls, bool isRing)
         {
-            if (_controlPoints != null)
+            if (controls != null)
             {
-                if (_controlPointIndex >= _controlPoints.NumGeometries)
+                if (_controlPointIndex >= controls.NumGeometries)
                 {
                     throw new InvalidOperationException("Too few control point elements");
                 }
@@ -260,7 +260,6 @@ namespace OnionTopologySuite
                 _controlPointIndex++;
                 return ctrlPts;
             }
-            return ControlPoints(coords, isRing, _alpha, _skew);
         }
 
         private static void AddCurve(
@@ -432,7 +431,7 @@ namespace OnionTopologySuite
             Coord p1,
             Coord ctrl1,
             Coord ctrl2,
-            double[][] param,
+            double[,] param,
             Coord[] curve)
         {
 
@@ -443,11 +442,8 @@ namespace OnionTopologySuite
             for (int i = 1; i < n - 1; i++)
             {
                 Coord c;
-                double sum = param[i][0] + param[i][1] + param[i][2] + param[i][3];
-                c.X = param[i][0] * p0.X + param[i][1] * ctrl1.X + param[i][2] * ctrl2.X + param[i][3] * p1.X;
-                c.X /= sum;
-                c.Y = param[i][0] * p0.Y + param[i][1] * ctrl1.Y + param[i][2] * ctrl2.Y + param[i][3] * p1.Y;
-                c.Y /= sum;
+                c.X = param[i, 0] * p0.X + param[i, 1] * ctrl1.X + param[i, 2] * ctrl2.X + param[i, 3] * p1.X;
+                c.Y = param[i, 0] * p0.Y + param[i, 1] * ctrl1.Y + param[i, 2] * ctrl2.Y + param[i, 3] * p1.Y;
 
                 curve[i] = c;
             }
@@ -458,20 +454,37 @@ namespace OnionTopologySuite
         /// given number of vertices.
         /// </summary>
         /// <param name="n">The number of vertices</param>
-        /// <returns>An array of double[4] holding the parameter values</returns>
-        private static double[][] ComputeIterpolationParameters(int n)
+        /// <returns>An array of double[n + 1, 4] holding the parameter values</returns>
+        private static double[,] ComputeIterpolationParameters(int n)
         {
-            double[][] param = new double[n][];
-            for (int i = 0; i < n; i++)
+            int iterations = (n >> 1) + 1;
+            double[,] param = new double[n + 1, 4];
+            for (int i = 0; i < iterations; i++)
             {
-                param[i] = new double[4];
-                double t = (double)i / (n - 1);
+                double t = (double)i / n;
                 double tc = 1.0 - t;
+                double remainder = 1;
 
-                param[i][0] = tc * tc * tc;
-                param[i][1] = 3.0 * tc * tc * t;
-                param[i][2] = 3.0 * tc * t * t;
-                param[i][3] = t * t * t;
+                double temp = tc * tc * tc;
+                param[i, 0] = temp;
+                param[n - i, 3] = temp;
+                remainder -= temp;
+
+                temp = 3.0 * tc * tc * t;
+                param[i, 1] = temp;
+                param[n - i, 2] = temp;
+                remainder -= temp;
+
+                temp = 3.0 * tc * t * t;
+                param[i, 2] = temp;
+                param[n - i, 1] = temp;
+                remainder -= temp;
+
+                param[i, 3] = remainder;
+                param[n - i, 0] = remainder;
+
+                //double diff = remainder - t * t * t;
+                //Console.WriteLine(diff.ToString("R"));
             }
             return param;
         }
