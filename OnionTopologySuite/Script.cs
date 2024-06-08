@@ -8,7 +8,7 @@ using System.IO;
 using System.Reflection;
 using static Manifold.Schema;
 
-public class Script
+public partial class Script
 {
     /// <summary>
     /// Add-in name inside Manifold
@@ -380,14 +380,10 @@ public class Script
         {
             switch (ng)
             {
-                case Point g:
-                    AddBranch(builder, g.Coordinates);
-                    break;
-                case MultiPoint g:
-                    AddBranch(builder, g.Coordinates);
-                    break;
-                case LineString g:
-                    AddBranch(builder, g.Coordinates);
+                case Point _p:
+                case MultiPoint _mp:
+                case LineString _ls:
+                    AddBranch(builder, ng.Coordinates);
                     break;
                 case MultiLineString g:
                     foreach (var l in g.Geometries)
