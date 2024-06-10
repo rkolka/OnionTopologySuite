@@ -7,6 +7,7 @@ public partial class Script
 
     static void AddBranches(GeomBuilder builder, Geom g)
     {
+        //only allowed when build started and any previous branches closed.
         for (int branch = 0; branch < g.Branches.Count; branch++)
         {
             AddBranch(builder, g.Branches[branch].Coords);
@@ -35,6 +36,16 @@ public partial class Script
         }
         builder.EndBranch();
     }
+
+    static void AddCoords(GeomBuilder builder, Coord[] coords)
+    {
+        //only allowed when build started and a branch opened.
+        foreach (var p in coords)
+        {
+            builder.AddCoord(p);
+        }
+    }
+
 
 }
 

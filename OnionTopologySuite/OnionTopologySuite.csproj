@@ -57,9 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="OnionFunctions\BezierFun.cs" />
-    <Compile Include="OnionFunctions\AngleFun.cs" />
     <Compile Include="OnionFunctions\CoordFun.cs" />
     <Compile Include="OnionFunctions\GeomFun.cs" />
+    <Compile Include="OnionFunctions\VectorFun.cs" />
     <Compile Include="OnionTopologySuite.cs" />
     <Compile Include="NTSFunctions\AffineTransformationFunctions.cs" />
     <Compile Include="NTSFunctions\BoundaryFunctions.cs" />

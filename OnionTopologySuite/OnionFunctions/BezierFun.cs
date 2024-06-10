@@ -1,22 +1,21 @@
 ﻿using System;
+using System.Numerics;
 using Manifold;
 
-
-//using OnionTopologySuite;
 using Coord = Manifold.Point<double>;
 
 public partial class Script
 {
 
     //-- chosen to make curve at right-angle corners roughly circular
-    private const double CIRCLE_LEN_FACTOR = 3.0 / 8.0;
+    private const float CIRCLE_LEN_FACTOR = (3.0f / 8.0f);
 
-    private static readonly double default_min_segment_length = 0.0;
+    private static readonly float default_min_segment_length = 0.0f;
     private static readonly int num_of_bezier_segments = 16;
-    private static readonly double[,] interpolation_params = ComputeIterpolationParameters(num_of_bezier_segments);
+    private static readonly float[,] interpolation_params = ComputeIterpolationParameters(num_of_bezier_segments);
 
-    private static readonly double default_alpha = -1;
-    private static double default_skew = 0;
+    private static readonly float default_alpha = -1;
+    private static float default_skew = 0;
 
 
 
@@ -32,12 +31,12 @@ public partial class Script
     /// <returns>The linearized curved geometry</returns>
 
     public static Geom GeomBezierControls(Geom geom) => GeomBezierControls(geom, default_alpha, default_skew);
-    public static Geom GeomBezierControlsAlpha(Geom geom, double alpha) => GeomBezierControls(geom, alpha, default_skew);
-    public static Geom GeomBezierControlsAlphaSkew(Geom geom, double alpha, double skew) => GeomBezierControls(geom, alpha, skew);
+    public static Geom GeomBezierControlsAlpha(Geom geom, double alpha) => GeomBezierControls(geom, (float)alpha, default_skew);
+    public static Geom GeomBezierControlsAlphaSkew(Geom geom, double alpha, double skew) => GeomBezierControls(geom, (float)alpha, (float)skew);
 
     public static Geom GeomBezier(Geom geom) => CubicBezier(geom, GeomBezierControls(geom, default_alpha, default_skew));
-    public static Geom GeomBezierAlpha(Geom geom, double alpha) => CubicBezier(geom, GeomBezierControls(geom, alpha, default_skew));
-    public static Geom GeomBezierAlphaSkew(Geom geom, double alpha, double skew) => CubicBezier(geom, GeomBezierControls(geom, alpha, skew));
+    public static Geom GeomBezierAlpha(Geom geom, double alpha) => CubicBezier(geom, GeomBezierControls(geom, (float)alpha, default_skew));
+    public static Geom GeomBezierAlphaSkew(Geom geom, double alpha, double skew) => CubicBezier(geom, GeomBezierControls(geom, (float)alpha, (float)skew));
 
     public static Geom GeomBezierWithControls(Geom geom, Geom controls) {
 
@@ -99,7 +98,7 @@ public partial class Script
     /// <param name="index">an integer</param>
     /// <param name="newCoord">a float64x2</param>
     /// <returns>New geom with one coordinate changed, or geom if index out of range.</returns>
-    public static Manifold.Geom GeomBezierControls(Manifold.Geom geom, double alpha, double skew)
+    public static Manifold.Geom GeomBezierControls(Manifold.Geom geom, float alpha, float skew)
     {
         if (geom == null || geom.Type == "point")
         {
@@ -108,7 +107,8 @@ public partial class Script
 
         Manifold.GeomBuilder builder = Manifold.Application.CreateGeomBuilder();
 
-        switch (geom.Type)
+        string type = geom.Type;
+        switch (type)
         {
             case "line":
                 builder.StartGeomLine();
@@ -121,19 +121,47 @@ public partial class Script
         }
 
 
-
+        // for every coord (and its prec and succ coord, make a line)
+        // for first and last one, there must be another way
+        // also depending if isRing
         for (int branch = 0; branch < geom.Branches.Count; ++branch)
-        {
+        { 
             Manifold.Geom.CoordSet coords = geom.Branches[branch].Coords;
-            for (int i = 1; i < coords.Count - 1; ++i)
+            if (coords.Count >= 3)
             {
-                builder.AddBranch();
-                ControlPoints(coords[i - 1], coords[i], coords[i + 1], alpha, skew);
-                builder.EndBranch();
+                Vector2 first = v2(coords[0]);
+                Vector2 last = v2(coords[coords.Count - 1]);
+                bool is_ring = (first == last);
+                // first and last are always special but different ways whether is_ring on not
+                if (is_ring)
+                {
+                    AddBranch(builder, ControlLine(coords[coords.Count - 2], coords[0], coords[1], alpha, skew, false));
+                } 
+                else
+                {
+                    //find the reflected == true 
+                    AddBranch(builder, ControlLine(coords[2], coords[1], coords[0], alpha, skew, true));
+                }
+
+                // middle ones are "standard"
+                for (int i = 1; i < coords.Count - 2; ++i)
+                {
+                    AddBranch(builder, ControlLine(coords[i + 1], coords[i], coords[i - 1], alpha, skew, false));
+                    AddBranch(builder, ControlLine(coords[i - 1], coords[i], coords[i + 1], alpha, skew, false));
+                }
+
+                // first and last are always special but different ways whether is_ring on not
+                if (is_ring)
+                {
+                    AddBranch(builder, ControlLine(coords[1], coords[coords.Count - 1], coords[coords.Count - 2], alpha, skew, false));
+                }
+                else
+                {
+                    AddBranch(builder, ControlLine(coords[coords.Count - 3], coords[coords.Count - 2], coords[coords.Count - 1], alpha, skew, true));
+                }
+
             }
         }
-
-
 
         return builder.EndGeom();
 
@@ -189,37 +217,40 @@ public partial class Script
         return segment_curve_buffer;
     }
 
-    /// <summary>
-    /// Control points for 
-    /// </summary>
-    /// <param name="v0"></param>
-    /// <param name="v1"></param>
-    /// <param name="v2"></param>
-    /// <returns></returns>
-    public static (Coord, Coord) ControlPoints(Coord v0, Coord v1, Coord v2, double alpha, double skew)
+
+    public static Coord[] ControlLine(Coord p0, Coord p1, Coord p2, float alpha, float skew, bool reflected)
     {
+        Vector2 v_0 = v2(p0);
+        Vector2 v_1 = v2(p1);
+        Vector2 v_2 = v2(p2);
 
-        double interiorAng = AngleBetweenOriented(v0, v1, v2);
-        double orient = Math.Sign(interiorAng);
-        double angBisect = Bisector(v0, v1, v2);
-        double ang0 = angBisect - orient * PiOver2;
-        double ang1 = angBisect + orient * PiOver2;
+        // vectors from middle point to previous and to next point
+        // their lengths
+        Vector2 v_10 = ab2(v_1, v_0);
+        Vector2 v_12 = ab2(v_1, v_2);
+        float len_10 = v_10.Length();
+        float len_12 = v_12.Length();
+        float lenBase = Math.Min(len_10, len_12);
 
-        double dist0 = Distance(v1, v0);
-        double dist1 = Distance(v1, v2);
-        double lenBase = Math.Min(dist0, dist1);
-        double intAngAbs = Math.Abs(interiorAng);
+        // unitvectors and the "tangent" unitvector
+        Vector2 v_10hat = hat2(v_10);
+        Vector2 v_12hat = hat2(v_12);
+        Vector2 tangent = hat2(-v_10hat + v_12hat);
 
         //-- make acute corners sharper by shortening tangent vectors
-        double sharpnessFactor = intAngAbs >= PiOver2 ? 1 : intAngAbs / PiOver2;
+        float intAngAbs = AngleBetweenAbs2(v_10, v_12);
+        float sharpnessFactor = intAngAbs >= TAU_OVER_4 ? 1 : intAngAbs / TAU_OVER_4;
 
-        double len = alpha * CIRCLE_LEN_FACTOR * sharpnessFactor * lenBase;
-        double stretch0 = 1;
-        double stretch1 = 1;
+        // 
+        float len = alpha * CIRCLE_LEN_FACTOR * sharpnessFactor * lenBase;
+
+        // 
+        float stretch0 = 1f;
+        float stretch1 = 1f;
         if (skew != 0)
         {
-            double stretch = Math.Abs(dist0 - dist1) / Math.Max(dist0, dist1);
-            int skewIndex = dist0 > dist1 ? 0 : 1;
+            float stretch = Math.Abs(len_10 - len_12) / Math.Max(len_10, len_12);
+            int skewIndex = len_10 > len_12 ? 0 : 1;
             if (skew < 0) skewIndex = 1 - skewIndex;
             if (skewIndex == 0)
             {
@@ -230,74 +261,23 @@ public partial class Script
                 stretch1 += Math.Abs(skew) * stretch;
             }
         }
-        var ctl0 = Project(v1, ang0, stretch0 * len);
-        var ctl1 = Project(v1, ang1, stretch1 * len);
+        
+        // find the control vector
+        var ctl = tangent * stretch1 * len;
 
-        return (ctl0, ctl1);
-    }
-
-    /// <summary>
-    /// Creates control points for each vertex of curve.
-    /// The control points are collinear with each vertex,
-    /// thus providing C1-continuity.
-    /// By default the control vectors are the same length,
-    /// which provides C2-continuity(same curvature on each
-    /// side of vertex.
-    /// The alpha parameter controls the length of the control vectors.
-    /// Alpha = 0 makes the vectors zero-length, and hence flattens the curves.
-    /// Alpha = 1 makes the curve at right angles roughly circular.
-    /// Alpha > 1 starts to distort the curve and may introduce self-intersections.
-    /// <para/>
-    /// The control point array contains a pair of coordinates for each input segment.
-    /// </summary>
-    public static Coord[] ControlPoints(Coord[] coords, bool isRing, double alpha, double skew)
-    {
-        int N = coords.Length;
-        int start = 1;
-        int end = N - 1;
-
-        if (isRing)
+        // find the reflected point
+        // used for first/last points not having prev/next 
+        if (reflected)
         {
-            N = coords.Length - 1;
-            start = 0;
-            end = N;
+            
+            ctl = Vector2.Reflect(ctl, perp2(v_12hat));
+            return new Coord[] { c2(v_2), c2(v_2 - ctl) };
         }
-
-        int nControl = 2 * coords.Length - 2;
-        var ctrl = new Coord[nControl];
-
-        for (int i = start; i < end; i++)
+        else
         {
-            int iprev = i == 0 ? N - 1 : i - 1;
-            var v0 = coords[iprev];
-            var v1 = coords[i];
-            var v2 = coords[i + 1];
-
+            return new Coord[] { c2(v_1), c2(v_1 + ctl) };
         }
-        if (!isRing)
-        {
-            // Sets the end control points for a line.
-            // Produce a symmetric curve for the first and last segments
-            // by using mirrored control points for start and end vertex.
-            int last_ctrl = ctrl.Length - 1;
-
-            ctrl[0] = MirrorControlPoint(ctrl[1], coords[1], coords[0]);
-            ctrl[last_ctrl] = MirrorControlPoint(ctrl[last_ctrl - 1],
-                coords[coords.Length - 1], coords[coords.Length - 2]);
-        }
-        return ctrl;
     }
-
-    /// <summary>
-    /// Creates a control point aimed at the control point at the opposite end of the segment.
-    /// </summary>
-    private static Coord AimedControlPoint(Coord c, Coord p1, Coord p0)
-    {
-        double len = Distance(p1, c);
-        double ang = Angle(p0, p1);
-        return Project(p0, ang, len);
-    }
-
 
 
     /// <summary>
@@ -314,7 +294,7 @@ public partial class Script
         Coord p1,
         Coord ctrl1,
         Coord ctrl2,
-        double[,] param
+        float[,] param
         )
     {
         Coord[] curve = new Coord[num_of_bezier_segments];
@@ -340,16 +320,16 @@ public partial class Script
     /// </summary>
     /// <param name="n">The number of segments</param>
     /// <returns>An array of double[n + 1, 4] holding the parameter values</returns>
-    private static double[,] ComputeIterpolationParameters(int n)
+    private static float[,] ComputeIterpolationParameters(int n)
     {
         int iterations = (n >> 1) + 1;
-        double[,] param = new double[n + 1, 4];
+        float[,] param = new float[n + 1, 4];
         for (int i = 0; i < iterations; i++)
         {
-            double t = (double)i / n;
-            double tc = 1.0 - t;
-            double remaining = 1;
-            double temp;
+            float t = (float)i / n;
+            float tc = 1.0f - t;
+            float remaining = 1;
+            float temp;
             int j = n - i;
 
             temp = tc * tc * tc;
@@ -357,12 +337,12 @@ public partial class Script
             param[j, 3] = temp;
             remaining -= temp;
 
-            temp = 3.0 * tc * tc * t;
+            temp = 3.0f * tc * tc * t;
             param[i, 1] = temp;
             param[j, 2] = temp;
             remaining -= temp;
 
-            temp = 3.0 * tc * t * t;
+            temp = 3.0f * tc * t * t;
             param[i, 2] = temp;
             param[j, 1] = temp;
             remaining -= temp;

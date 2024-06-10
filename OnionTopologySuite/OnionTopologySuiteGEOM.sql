@@ -63,6 +63,11 @@ AS
          BinaryWkbGeom(WKBBezierCurveWithControlPoints(GeomWkb(@geom), GeomWkb(@controlPoints))) 
 END;
 
+-- My implementation
+FUNCTION GeomBezierControlsAlphaSkew(@geom GEOM, @alpha FLOAT64, @skew FLOAT64) GEOM
+  AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'Script.GeomBezierControlsAlphaSkew';
+
+
 
 -- HullFunctions
 FUNCTION NTSConcaveHullByLength(@geom GEOM, @maxLength FLOAT64, @isHolesAllowed BOOLEAN) GEOM

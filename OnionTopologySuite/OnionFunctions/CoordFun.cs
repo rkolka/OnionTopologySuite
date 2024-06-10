@@ -1,9 +1,16 @@
 ﻿using System;
 using System.Numerics;
 using Coord = Manifold.Point<double>;
+//using Vector2 = System.Numerics.Vector<double>;
 
 public partial class Script
 {
+
+    public static Vector2 v2(Coord c) => new Vector2((float)c.X, (float)c.Y);
+    public static Coord c2(Vector2 v) => new Coord(v.X, v.Y);
+    public static Coord c2(float x, float y) => new Coord(x, y);
+    public static Coord c2(double x, double y) => new Coord(x, y);
+
 
     public static double Distance(Coord a, Coord b)
     {
@@ -12,19 +19,6 @@ public partial class Script
         return Math.Sqrt(dx * dx + dy * dy);
     }
 
-
-    // Touch System.Numerics.Vector 
-    // not currently in use
-    public static Vector<double> VectorFromCoord(Coord c)
-    {
-        Vector<double> vector = new Vector<double>(new double[] {c.X, c.Y});
-        return vector;
-    }
-    public static Coord CoordFromVector(Vector<double> v)
-    {
-        Coord coord = new Coord(v[0], v[1]);
-        return coord;
-    }
 
     private static Coord MirrorControlPoint(Coord c, Coord p0, Coord p1)
     {

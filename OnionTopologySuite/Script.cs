@@ -1,12 +1,8 @@
 ﻿using Manifold;
-using NetTopologySuite;
 using NetTopologySuite.Geometries;
-using NetTopologySuite.Geometries.Implementation;
 using NetTopologySuite.IO;
 using System;
 using System.IO;
-using System.Reflection;
-using static Manifold.Schema;
 
 public partial class Script
 {

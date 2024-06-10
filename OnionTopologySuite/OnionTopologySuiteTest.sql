@@ -128,6 +128,10 @@ INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveByAlpha(
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveByAlphaAndSkew(@line, @alpha, @skew)', NTSBezierCurveByAlphaAndSkew(@line, @alpha, @skew) FROM (VALUES (1));
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveGetControlPoints(@line, @alpha, @skew)', NTSBezierCurveGetControlPoints(@line, @alpha, @skew) FROM (VALUES (1));
 
+INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'GeomBezierControlsAlphaSkew(@line, @alpha, @skew)', GeomBezierControlsAlphaSkew(@line, @alpha, @skew) FROM (VALUES (1));
+
+
+
 VALUE @controlPoints      GEOM = ( SELECT First([Geom]) FROM [Drawing] where [mfd_id] = 41 ); 
 INSERT INTO [Results] ([signature], [resultGeom]) SELECT 'NTSBezierCurveWithControlPoints(@line, @controlPoints)', NTSBezierCurveWithControlPoints(@line, @controlPoints) FROM (VALUES (1));
 
