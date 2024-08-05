@@ -2,7 +2,7 @@
 using System.Numerics;
 using Manifold;
 
-using Coord = Manifold.Point<double>;
+using Coord2 = Manifold.Point<double>;
 
 public partial class Script
 {
@@ -90,14 +90,6 @@ public partial class Script
     }
 
 
-
-    /// <summary>
-    /// Builds a new geom from ´geom´ where coord at `index´ is replaced with `newCoord`
-    /// </summary>
-    /// <param name="geom">a geom</param>
-    /// <param name="index">an integer</param>
-    /// <param name="newCoord">a float64x2</param>
-    /// <returns>New geom with one coordinate changed, or geom if index out of range.</returns>
     public static Manifold.Geom GeomBezierControls(Manifold.Geom geom, float alpha, float skew)
     {
         if (geom == null || geom.Type == "point")
@@ -191,21 +183,29 @@ public partial class Script
         return string.Format("Wrong number of control points for {0} - expected {1} or {2}, found {3}", geom.Type, geom.Coords.Count, geom.Coords.Count + 1, controls.Coords.Count);
     }
 
-    private static Coord[] AddCurve(
-        Coord p0,
-        Coord p1,
-        Coord ctrl0,
-        Coord crtl1
+    /// <summary>
+    /// Given segment endpoints and controlpoints 
+    /// </summary>
+    /// <param name="p0"></param>
+    /// <param name="p1"></param>
+    /// <param name="ctrl0"></param>
+    /// <param name="crtl1"></param>
+    /// <returns></returns>
+    private static Coord2[] AddCurve(
+        Coord2 p0,
+        Coord2 p1,
+        Coord2 ctrl0,
+        Coord2 crtl1
          )
     {
 
-        Coord[] segment_curve_buffer;
+        Coord2[] segment_curve_buffer;
 
         double len = Distance(p0, p1);
         if (len < default_min_segment_length)
         {
             // segment too short - copy input coordinate
-            segment_curve_buffer = new Coord[1];
+            segment_curve_buffer = new Coord2[1];
             segment_curve_buffer[0] = p1;
         }
         else
@@ -217,8 +217,20 @@ public partial class Script
         return segment_curve_buffer;
     }
 
-
-    public static Coord[] ControlLine(Coord p0, Coord p1, Coord p2, float alpha, float skew, bool reflected)
+    /// <summary>
+    /// Finds controlpoint for p1 coming from p0 and going to p2
+    /// 
+    /// Given the middle point p1 with neighbouring points p0 and p2 
+    /// and 
+    /// </summary>
+    /// <param name="p0"></param>
+    /// <param name="p1"></param>
+    /// <param name="p2"></param>
+    /// <param name="alpha"></param>
+    /// <param name="skew"></param>
+    /// <param name="reflected"></param>
+    /// <returns></returns>
+    public static Coord2[] ControlLine(Coord2 p0, Coord2 p1, Coord2 p2, float alpha, float skew, bool reflected)
     {
         Vector2 v_0 = v2(p0);
         Vector2 v_1 = v2(p1);
@@ -271,11 +283,11 @@ public partial class Script
         {
             
             ctl = Vector2.Reflect(ctl, perp2(v_12hat));
-            return new Coord[] { c2(v_2), c2(v_2 - ctl) };
+            return new Coord2[] { c2(v_2), c2(v_2 - ctl) };
         }
         else
         {
-            return new Coord[] { c2(v_1), c2(v_1 + ctl) };
+            return new Coord2[] { c2(v_1), c2(v_1 + ctl) };
         }
     }
 
@@ -289,22 +301,22 @@ public partial class Script
     /// <param name="ctrl2">The second control point</param>
     /// <param name="param">A set of interpolation parameters</param>
     /// <param name="curve">An array to hold generated points.</param>
-    private static Coord[] CubicBezierSegment(
-        Coord p0,
-        Coord p1,
-        Coord ctrl1,
-        Coord ctrl2,
+    private static Coord2[] CubicBezierSegment(
+        Coord2 p0,
+        Coord2 p1,
+        Coord2 ctrl1,
+        Coord2 ctrl2,
         float[,] param
         )
     {
-        Coord[] curve = new Coord[num_of_bezier_segments];
+        Coord2[] curve = new Coord2[num_of_bezier_segments];
         int n = curve.Length;
         curve[0] = p0;
         curve[n - 1] = p1;
 
         for (int i = 1; i < n - 1; i++)
         {
-            Coord c = new Coord();
+            Coord2 c = new Coord2();
             c.X = param[i, 0] * p0.X + param[i, 1] * ctrl1.X + param[i, 2] * ctrl2.X + param[i, 3] * p1.X;
             c.Y = param[i, 0] * p0.Y + param[i, 1] * ctrl1.Y + param[i, 2] * ctrl2.Y + param[i, 3] * p1.Y;
 

@@ -1,8 +1,12 @@
 ﻿using System;
+// System.Numerics has Vector2 which is like FLOAT32x2
 using System.Numerics;
-using Coord = Manifold.Point<double>;
+// Coord2 is like Manifold FLOAT64X2
+using Coord2 = Manifold.Point<double>;
 
-
+/// <summary>
+/// Everything static goes into one happy class Script
+/// </summary>
 public partial class Script
 {
 
@@ -22,11 +26,6 @@ public partial class Script
 
     // Shorter aliases for creating Vectors
     public static Vector2 v2(float x, float y) => new Vector2(x, y);
-
-
-    // Short accessors of vector components
-    public static float x2(Vector2 v) => v.X;  // v.X
-    public static float y2(Vector2 v) => v.Y;  // v.Y
 
 
     // Short setters of vector components
@@ -53,7 +52,6 @@ public partial class Script
     public static float AzimuthAngleCCW2(Vector2 v) => (float)Math.Atan2(v.Y, v.X);
 
     // Epsilon equality
-
     public static bool EqualsEpsilon2(Vector2 v, Vector2 u, float epsilon) =>
         Math.Abs(v.X - u.X) <= epsilon
         &&
@@ -74,6 +72,9 @@ public partial class Script
         Math.Abs(v.X) < Math.Abs(v.Y) ? v2(1, 0) : v2(0, 1)
     ;
 
+    public static Vector2 FlipX(Vector2 v) => v2(-v.X, v.Y);
+    public static Vector2 FlipY(Vector2 v) => v2(v.X, -v.Y);
+
 
     public static float MinimumComponent2(Vector2 v) =>
         v.X <= v.Y ? v.X : v.Y
@@ -92,7 +93,7 @@ public partial class Script
     // Interpolate or mix vectors a and b by q
     // Lerp(v1, v2, q)
 
-
+    // How much of (b-hat is in a, and how much b-hat perp is in a)
     public static Vector2 AlongAcross(Vector2 a, Vector2 b) =>
           v2(
             Vector2.Dot(a, hat2(b)),
@@ -111,8 +112,8 @@ public partial class Script
 
     public static Vector2 LinearTransform2(Vector2 v, Vector2 igt, Vector2 jgt) =>
         v2(
-            x2(igt)* v.X + x2(jgt)* v.Y,
-            y2(igt)* v.X + y2(jgt)* v.Y
+            igt.X * v.X + jgt.X * v.Y,
+            igt.Y * v.X + jgt.Y * v.Y
         )
     ;
 
