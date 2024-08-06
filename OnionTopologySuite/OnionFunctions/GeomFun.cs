@@ -1,10 +1,13 @@
-﻿using System;
-using Manifold;
+﻿using Manifold;
 // Coord2 is like Manifold FLOAT64X2
 using Coord2 = Manifold.Point<double>;
 
 /// <summary>
 /// Everything static goes into one happy class Script
+/// 
+/// This part implements:
+///  * GeomBuilder helpers
+///  * ...
 /// </summary>
 public partial class Script
 {

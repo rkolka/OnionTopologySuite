@@ -1,10 +1,19 @@
 ﻿using System;
-// System.Numerics.Vector2 is like FLOAT32x2
-using System.Numerics;
 // Coord2 is like Manifold FLOAT64X2
 using Coord2 = Manifold.Point<double>;
+// System.Numerics has Vector2 type which is like FLOAT32x2
+using Vector2 = System.Numerics.Vector2;
 //using Vector2 = System.Numerics.Vector<double>;
 
+
+/// <summary>
+/// Everything static goes into one happy class Script
+/// 
+/// This part implements:
+///  * Coord2 functions (like TriangleFlip, ...)
+///  * Coord2 interactions with Vector2
+///  * ...
+/// </summary>
 public partial class Script
 {
 
@@ -22,6 +31,9 @@ public partial class Script
     // Coord2 from two doubles
     public static Coord2 c2(double x, double y) => new Coord2(x, y);
 
+    public static bool Equals(Coord2 c0, Coord2 c1) =>  (c1.X == c0.X) && (c1.Y == c0.Y);
+ 
+
     // Coord2 shifted by Vector2
     public static Coord2 shift2(Coord2 c, Vector2 v) => new Coord2(c.X + (double)v.X, c.Y + (double)v.Y);
 
@@ -34,18 +46,19 @@ public partial class Script
     }
 
     /// <summary>
-    /// Finds the reflection of c as if baseline is flipped
+    /// Reflect point C across the perpendicular bisector of segment AB.
+    /// In other words finds the tip of triangle `abc` if baseline `ab` is flipped.
     /// </summary>
-    /// <param name="c"></param>
-    /// <param name="p0"></param>
-    /// <param name="p1"></param>
+    /// <param name="c">tip to reflect</param>
+    /// <param name="a">first tip of baseline</param>
+    /// <param name="b">second tip of baseline </param>
     /// <returns></returns>
-    private static Coord2 MirrorTriangle(Coord2 c, Coord2 p0, Coord2 p1)
+    private static Coord2 TriangleFlip(Coord2 c, Coord2 a, Coord2 b)
     {
-        Vector2 baseline = ab2(p0, p1);
-        Vector2 v1 = ab2(p0, c);
+        Vector2 baseline = ab2(a, b);
+        Vector2 v1 = ab2(a, c);
         Vector2 v2 = FlipX(AlongAcross(v1, baseline));
-        return shift2(p1, v2);
+        return shift2(b, v2);
     }
 
 }

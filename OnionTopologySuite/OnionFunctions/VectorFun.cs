@@ -1,8 +1,8 @@
 ﻿using System;
-// System.Numerics has Vector2 which is like FLOAT32x2
-using System.Numerics;
-// Coord2 is like Manifold FLOAT64X2
-using Coord2 = Manifold.Point<double>;
+// System.Numerics has Vector2 type which is like FLOAT32x2
+using Vector2 = System.Numerics.Vector2;
+// System.Numerics.Vector2 has static functions like Dot, Normalize, +, -, etc.
+using static System.Numerics.Vector2;
 
 /// <summary>
 /// Everything static goes into one happy class Script
@@ -32,15 +32,8 @@ public partial class Script
     public static Vector2 setx2(Vector2 v, float x) => v2(x, v.Y);
     public static Vector2 sety2(Vector2 v, float y) => v2(v.X, y);
 
-
-    // regular vector to homogeneous coordinates
-    public static Vector3 v2thom(Vector2 v) => new Vector3(v.X, v.Y, 1);
-
-    // regular vector from homogeneous coordinates
-    public static Vector2 v2fhom(Vector3 v) => v2(v.X / v.Z, v.Y / v.Z);
-
     // flip(negate) vectors
-    public static Vector2 neg2(Vector2 v) => v2(-v.X, -v.Y);
+    // use -v (unary minus)
 
     // Perpicular in 2D (rotate τ/4)
     public static Vector2 perp2(Vector2 v) => v2(-v.Y, v.X);
@@ -59,13 +52,13 @@ public partial class Script
     ;
 
     // Makes Vector ab === Subtracts @a from @b
-    public static Vector2 ab2(Vector2 a, Vector2 b) => v2(b.X - a.X, b.Y - a.Y);
+    public static Vector2 ab2(Vector2 a, Vector2 b) => b - a;
 
     // Scale vectors
-    public static Vector2 scale2(Vector2 a, float b) => v2(b * a.X, b * a.Y);
+    // use α*v - multiply with scalar
 
     // Scale vector components by another vector
-    public static Vector2 scaleComponents2(Vector2 a, Vector2 b) => v2(a.X * b.X, a.Y * b.Y);
+    // use v1*v2 - multiply with another vector
 
     // MostOrthogonalAxis
     public static Vector2 MostOrthogonalAxis2(Vector2 v) =>
@@ -85,9 +78,7 @@ public partial class Script
     ;
 
     // Unitvector in the same direction  a - "hat" operator
-    public static Vector2 hat2(Vector2 a) =>
-        Vector2.Normalize(a)
-    ;
+    // use Normalize from System.Numerics.Vector2
 
 
     // Interpolate or mix vectors a and b by q
@@ -96,18 +87,18 @@ public partial class Script
     // How much of (b-hat is in a, and how much b-hat perp is in a)
     public static Vector2 AlongAcross(Vector2 a, Vector2 b) =>
           v2(
-            Vector2.Dot(a, hat2(b)),
-            Vector2.Dot(a, perp2(hat2(b)))
+            Dot(a, Normalize(b)),
+            Dot(a, perp2(Normalize(b)))
             )
     ;
 
 
     public static float AngleBetweenAbs2(Vector2 a, Vector2 b) =>
-        (float)Math.Acos(Vector2.Dot(hat2(a), hat2(b)))
+        (float)Math.Acos(Dot(Normalize(a), Normalize(b)))
     ;
 
     public static float AngleBetween2(Vector2 a, Vector2 b) =>
-            (float)Math.Acos(Vector2.Dot(hat2(a), hat2(b))) * Math.Sign(Vector2.Dot(perp2(a), b))
+            (float)Math.Acos(Dot(Normalize(a), Normalize(b))) * Math.Sign(Dot(perp2(a), b))
     ;
 
     public static Vector2 LinearTransform2(Vector2 v, Vector2 igt, Vector2 jgt) =>
@@ -121,13 +112,13 @@ public partial class Script
     // first component< -1  -->
     public static Vector2 αβOfIntersection(Vector2 point1, Vector2 vec1, Vector2 point2, Vector2 vec2) =>
         v2(
-	    //	Vector2.Dot(hat2(perp2(vec2)),  ab2(point1, point2) ) / Vector2.Dot(vec1, hat2(perp2(vec2)) ) // no need for expensive hat2
-	    //  hat2 of perp'd vec is both in numerator and in denominator and therefore cancels out :)	
-		    Vector2.Dot(perp2(vec2), ab2(point1, point2) ) / Vector2.Dot(vec1, perp2(vec2) )
+            //	Dot(Normalize(perp2(vec2)),  ab2(point1, point2) ) / Dot(vec1, Normalize(perp2(vec2)) ) // no need for expensive Normalize
+            //  Normalize of perp'd vec is both in numerator and in denominator and therefore cancels out :)	
+            Dot(perp2(vec2), ab2(point1, point2) ) / Dot(vec1, perp2(vec2) )
 		    ,
-	    //  Vector2.Dot(perp2(vec1), ab2(point2, point1) ) / Vector2.Dot(vec2, perp2(vec1) )  // symmetric, but can be rewritten
-	    //  To have more common subexpressions but lose symmetry, switch baseline direction and swich perp in the denominator, both change the sign of Vector2.Dot
-            Vector2.Dot(perp2(vec1), ab2(point1, point2) ) / Vector2.Dot(vec1, perp2(vec2) )
+	    //  Dot(perp2(vec1), ab2(point2, point1) ) / Dot(vec2, perp2(vec1) )  // symmetric, but can be rewritten
+	    //  To have more common subexpressions but lose symmetry, switch baseline direction and swich perp in the denominator, both change the sign of Dot
+            Dot(perp2(vec1), ab2(point1, point2) ) / Dot(vec1, perp2(vec2) )
 	    )
     ;
 

@@ -1,8 +1,13 @@
-﻿using System;
-using System.Numerics;
-using Manifold;
+﻿using Manifold;
+using System;
+using System.Windows.Forms.VisualStyles;
 
+// System.Numerics.Vector2 has static functions like Dot, Normalize, +, -, etc.
+using static System.Numerics.Vector2;
 using Coord2 = Manifold.Point<double>;
+// System.Numerics has Vector2 type which is like FLOAT32x2
+using Vector2 = System.Numerics.Vector2;
+
 
 public partial class Script
 {
@@ -89,7 +94,17 @@ public partial class Script
 
     }
 
-
+    /// <summary>
+    /// Finds default control points for a Geom
+    /// First and last coord of any branch have 1 control point(line)
+    /// Middle coords have 2 control points(lines)
+    /// Other way to look would be that any segment has 2 control points
+    /// And those depend on neighbouring segments.
+    /// </summary>
+    /// <param name="geom"></param>
+    /// <param name="alpha"></param>
+    /// <param name="skew"></param>
+    /// <returns></returns>
     public static Manifold.Geom GeomBezierControls(Manifold.Geom geom, float alpha, float skew)
     {
         if (geom == null || geom.Type == "point")
@@ -106,7 +121,7 @@ public partial class Script
                 builder.StartGeomLine();
                 break;
             case "area":
-                builder.StartGeomArea();
+                builder.StartGeomLine();
                 break;
             default:
                 return geom;
@@ -121,35 +136,62 @@ public partial class Script
             Manifold.Geom.CoordSet coords = geom.Branches[branch].Coords;
             if (coords.Count >= 3)
             {
-                Vector2 first = v2(coords[0]);
-                Vector2 last = v2(coords[coords.Count - 1]);
-                bool is_ring = (first == last);
+                // deterine if this branch makes a ring
+                Coord2 first = coords[0];
+                Coord2 last = coords[coords.Count - 1];
+                bool is_ring = Equals(first, last);
+
                 // first and last are always special but different ways whether is_ring on not
                 if (is_ring)
                 {
-                    AddBranch(builder, ControlLine(coords[coords.Count - 2], coords[0], coords[1], alpha, skew, false));
+                    // This branch is ring and we can take the previous from the end of the branch (NB! the last one equals the first, so we need next to last)
+                    Coord2 prev = coords[coords.Count - 2];
+                    Coord2 curr = first;
+                    Coord2 next = coords[1];
+                    AddBranch(builder, ControlLine(prev, curr, next, alpha, skew, false));
                 } 
                 else
                 {
-                    //find the reflected == true 
-                    AddBranch(builder, ControlLine(coords[2], coords[1], coords[0], alpha, skew, true));
+                    // This branch is no ring and we must fake the "previous" 
+                    // we give prev and next in opposite order and ask for reflected coord (last argument == true )
+                    Coord2 prev = coords[2];
+                    Coord2 curr = coords[1];
+                    Coord2 next = first;
+                    AddBranch(builder, ControlLine(prev, curr, next, alpha, skew, true));
                 }
 
                 // middle ones are "standard"
-                for (int i = 1; i < coords.Count - 2; ++i)
+                for (int i = 1; i < coords.Count - 1; ++i)
                 {
-                    AddBranch(builder, ControlLine(coords[i + 1], coords[i], coords[i - 1], alpha, skew, false));
-                    AddBranch(builder, ControlLine(coords[i - 1], coords[i], coords[i + 1], alpha, skew, false));
+                    Coord2 prev = coords[i - 1];
+                    Coord2 curr = coords[i];
+                    Coord2 next = coords[i + 1];
+                    // find both ways
+                    
+                    // "backwards", no reflection
+                    AddBranch(builder, ControlLine(next, curr, prev, alpha, skew, false));
+                    // "forwards", no reflection
+                    AddBranch(builder, ControlLine(prev, curr, next, alpha, skew, false));
                 }
 
                 // first and last are always special but different ways whether is_ring on not
                 if (is_ring)
                 {
-                    AddBranch(builder, ControlLine(coords[1], coords[coords.Count - 1], coords[coords.Count - 2], alpha, skew, false));
+                    // This branch is ring and we can take the "next" from the start of the branch 
+                    
+                    Coord2 prev = coords[coords.Count - 2];
+                    Coord2 curr = last;
+                    Coord2 next = coords[1];
+                    // we need only "backwards" control, so next, curr, prev
+                    AddBranch(builder, ControlLine(next, curr, prev, alpha, skew, false));
                 }
                 else
                 {
-                    AddBranch(builder, ControlLine(coords[coords.Count - 3], coords[coords.Count - 2], coords[coords.Count - 1], alpha, skew, true));
+                    // We find the "forwards" control of next to last point and ask to reflect it
+                    Coord2 prev = coords[coords.Count - 3];
+                    Coord2 curr = coords[coords.Count - 2];
+                    Coord2 next = last;
+                    AddBranch(builder, ControlLine(prev, curr, next, alpha, skew, true));
                 }
 
             }
@@ -232,22 +274,21 @@ public partial class Script
     /// <returns></returns>
     public static Coord2[] ControlLine(Coord2 p0, Coord2 p1, Coord2 p2, float alpha, float skew, bool reflected)
     {
-        Vector2 v_0 = v2(p0);
-        Vector2 v_1 = v2(p1);
-        Vector2 v_2 = v2(p2);
 
         // vectors from middle point to previous and to next point
         // their lengths
-        Vector2 v_10 = ab2(v_1, v_0);
-        Vector2 v_12 = ab2(v_1, v_2);
+        Vector2 v_10 = ab2(p1, p0);
+        Vector2 v_12 = ab2(p1, p2);
         float len_10 = v_10.Length();
         float len_12 = v_12.Length();
         float lenBase = Math.Min(len_10, len_12);
 
         // unitvectors and the "tangent" unitvector
-        Vector2 v_10hat = hat2(v_10);
-        Vector2 v_12hat = hat2(v_12);
-        Vector2 tangent = hat2(-v_10hat + v_12hat);
+        Vector2 v_10hat = Normalize(v_10);
+        Vector2 v_12hat = Normalize(v_12);
+        Vector2 tangent = Normalize(-v_10hat + v_12hat);
+
+        // We are going to scale the tangent 
 
         //-- make acute corners sharper by shortening tangent vectors
         float intAngAbs = AngleBetweenAbs2(v_10, v_12);
@@ -282,12 +323,12 @@ public partial class Script
         if (reflected)
         {
             
-            ctl = Vector2.Reflect(ctl, perp2(v_12hat));
-            return new Coord2[] { c2(v_2), c2(v_2 - ctl) };
+            ctl = Reflect(ctl, perp2(v_12hat));
+            return new Coord2[] { p2, shift2(p2, -ctl) };
         }
         else
         {
-            return new Coord2[] { c2(v_1), c2(v_1 + ctl) };
+            return new Coord2[] { p1, shift2(p1, ctl) };
         }
     }
 
