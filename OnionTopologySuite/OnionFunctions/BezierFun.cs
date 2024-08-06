@@ -1,5 +1,6 @@
 ﻿using Manifold;
 using System;
+using System.Reflection;
 using System.Windows.Forms.VisualStyles;
 
 // System.Numerics.Vector2 has static functions like Dot, Normalize, +, -, etc.
@@ -19,7 +20,7 @@ public partial class Script
     private static readonly int num_of_bezier_segments = 16;
     private static readonly float[,] interpolation_params = ComputeIterpolationParameters(num_of_bezier_segments);
 
-    private static readonly float default_alpha = -1;
+    private static readonly float default_alpha = 1;
     private static float default_skew = 0;
 
 
@@ -58,7 +59,7 @@ public partial class Script
 
 
     /// <summary>
-    /// Builds a new geom from ´geom´ where coord at `index´ is replaced with `newCoord`
+    /// assumes controls are OK.
     /// </summary>
     /// <param name="geom">a geom</param>
     /// <param name="index">an integer</param>
@@ -88,10 +89,32 @@ public partial class Script
                 return null;
         }
 
+        int control_index = -1;
+        Geom.CoordSet control_coords = controls.Coords;
 
+        for (int branch = 0; branch < geom.Branches.Count; ++branch)
+        {
+            builder.AddBranch();
+
+            Manifold.Geom.CoordSet coords = geom.Branches[branch].Coords;
+            for (int i = 0; i < coords.Count - 1; ++i)
+            {
+                control_index++;
+                Coord2 p0 = coords[i];
+                Coord2 p1 = coords[i + 1];
+                Coord2 ctrl0 = control_coords[4 * control_index + 1];
+                Coord2 ctrl1 = control_coords[4 * control_index + 3];
+
+                AddCoords(builder, BuildBezierCurve(p0, p1, ctrl0, ctrl1));
+            }
+
+            Coord2 last = coords[coords.Count - 1];
+            builder.AddCoord(last);
+
+            builder.EndBranch();
+        }
 
         return builder.EndGeom();
-
     }
 
     /// <summary>
@@ -124,7 +147,7 @@ public partial class Script
                 builder.StartGeomLine();
                 break;
             default:
-                return geom;
+                return null;
         }
 
 
@@ -195,6 +218,10 @@ public partial class Script
                 }
 
             }
+            else
+            {
+                return null;
+            }
         }
 
         return builder.EndGeom();
@@ -222,7 +249,27 @@ public partial class Script
     
     public static string CheckControls(Geom geom, Geom controls)
     {
-        return string.Format("Wrong number of control points for {0} - expected {1} or {2}, found {3}", geom.Type, geom.Coords.Count, geom.Coords.Count + 1, controls.Coords.Count);
+        int expected_branches = 0;
+
+        string type = geom.Type;
+
+        for (int bi = 0; bi < geom.Branches.Count; bi++)
+        {
+            expected_branches += 2 * geom.Branches[bi].Coords.Count - 2;
+        }
+
+        if (!(controls.Type == "line"))
+        {
+            return string.Format("Wrong type of geometry - expected \"line\", found \"{0}\"", controls.Type);
+        }
+
+        if (!(controls.Branches.Count == expected_branches && controls.Coords.Count == 2 * expected_branches))
+        {
+            return string.Format("Wrong number of control lines / points for {0} - expected {1} / {2}, found {3} / {4}", geom.Type, expected_branches, 2 * expected_branches, controls.Branches.Count, controls.Coords.Count);
+        }
+
+        return "OK";
+        
     }
 
     /// <summary>
@@ -233,7 +280,7 @@ public partial class Script
     /// <param name="ctrl0"></param>
     /// <param name="crtl1"></param>
     /// <returns></returns>
-    private static Coord2[] AddCurve(
+    private static Coord2[] BuildBezierCurve(
         Coord2 p0,
         Coord2 p1,
         Coord2 ctrl0,
@@ -335,13 +382,15 @@ public partial class Script
 
     /// <summary>
     /// Calculates vertices along a cubic Bezier curve.
+    /// Allocates and returns array of Coord2's
+    /// contains p0. 
+    /// does not contain p1. 
     /// </summary>
     /// <param name="p0">The start point</param>
     /// <param name="p1">The end point</param>
     /// <param name="ctrl1">The first control point</param>
     /// <param name="ctrl2">The second control point</param>
     /// <param name="param">A set of interpolation parameters</param>
-    /// <param name="curve">An array to hold generated points.</param>
     private static Coord2[] CubicBezierSegment(
         Coord2 p0,
         Coord2 p1,
@@ -353,9 +402,8 @@ public partial class Script
         Coord2[] curve = new Coord2[num_of_bezier_segments];
         int n = curve.Length;
         curve[0] = p0;
-        curve[n - 1] = p1;
 
-        for (int i = 1; i < n - 1; i++)
+        for (int i = 1; i < n; i++)
         {
             Coord2 c = new Coord2();
             c.X = param[i, 0] * p0.X + param[i, 1] * ctrl1.X + param[i, 2] * ctrl2.X + param[i, 3] * p1.X;

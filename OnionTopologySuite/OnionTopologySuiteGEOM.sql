@@ -67,6 +67,16 @@ END;
 FUNCTION GeomBezierControlsAlphaSkew(@geom GEOM, @alpha FLOAT64, @skew FLOAT64) GEOM
   AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'Script.GeomBezierControlsAlphaSkew';
 
+FUNCTION GeomBezierControls(@geom GEOM) GEOM
+  AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'Script.GeomBezierControls';
+
+FUNCTION GeomBezier(@geom GEOM) GEOM
+  AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'Script.GeomBezier';
+
+FUNCTION GeomBezierWithControls(@geom GEOM,@controls GEOM) GEOM
+  AS SCRIPT FILE 'OnionTopologySuite.dll' ENTRY 'Script.GeomBezierWithControls';
+
+
 
 
 -- HullFunctions
